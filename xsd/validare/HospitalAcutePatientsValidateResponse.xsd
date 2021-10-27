@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="HospitalAcutePatientsValidateResponse">
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="response">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Răspuns la validarea pentru cazuri acute la spitale</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="responseType">
+					<xs:sequence>
+						<xs:element name="Acutes" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Lista ta de înregistrări de cazuri acute validate</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Acute" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Înregistrarea unui caz acut validat</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="ForeignPersons" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Lista persoanelor straine</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="ForeignPerson" minOccurs="0" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Persoana straina</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:complexContent>
+												<xs:extension base="feedbackType">
+													<xs:sequence>
+														<xs:element name="ForeignProcedure" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Procedură medicală validată</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:extension>
+											</xs:complexContent>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="PidLists" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Lista CNP-uri pacienti romani</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="PidList" minOccurs="0" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Pacienti romani</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:complexContent>
+												<xs:extension base="feedbackType">
+													<xs:sequence>
+														<xs:element name="Procedure" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Procedură medicală validată</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:extension>
+											</xs:complexContent>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="OtherSuppliers" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Lista CNP-uri care au fost tratate la alti furnizori</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="OtherSupplier" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">CNP care a fost tratat la alti furnizori</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="WaitingLists" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Lista cu programările pacienţilor</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="WaitingList" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Programarea pacientului</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

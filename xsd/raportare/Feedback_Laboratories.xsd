@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="Feedback_Laboratories">
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Fişierul de răspuns, trimis de către casa de asigurări, la raportarea serviciilor efectuate de către unitatea paraclinică.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="services">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Lista tuturor serviciilor ce au fost raportate.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" name="service">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Definitia unui raspuns pentru un serviciu raportat.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="errors">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Lista cu erorile apărute pentru un serviciu care nu a putut fi decontat de casa de asigurări.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element minOccurs="0" maxOccurs="unbounded" name="error">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Definitia unei erori de raportare</xs:documentation>
+														</xs:annotation>
+														<xs:complexType mixed="true">
+															<xs:attribute name="code" type="xs:string" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul erorii</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="errorType" use="optional">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation xml:lang="ro">Tip de eroare in functie de severitate.</xs:documentation>
+                                                                    </xs:annotation>
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:unsignedInt">
+                                                                            <xs:enumeration value="0">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation xml:lang="ro">Averizare</xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:enumeration>
+                                                                            <xs:enumeration value="1">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation xml:lang="ro">Eroare</xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:enumeration>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:attribute>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="AppID" type="xs:decimal" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Indentificatorul unic al serviciului raportat.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="state" type="xs:boolean" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Flag care indică starea serviciului, dacă a fost decontat de casa de asigurări sau nu.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="AppID" type="xs:decimal" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Indentificatorul unic al fişierului de răspuns.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

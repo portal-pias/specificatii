@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/pel/1.0" xmlns="http://www.cnas.ro/pel/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="PEBarcode" version="1.2">
+	<xs:annotation>
+		<xs:documentation xml:lang="ro">Definiţie structură cod de bare 2D tipărit pe reţetă</xs:documentation>
+	</xs:annotation>
+	<!-- structură document: documentul poate începe cu unul dintre cele două noduri rădăcină de mai jos -->
+	<xs:element name="P" type="P">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Reţetă electronică online - variantă alternativă</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="O" type="O">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Reţetă electronică offline (pre-tipărită) - variantă alternativă</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- definiţie tipuri: reţeta pretipărită are doar câmpurile de pe antet, iar cea online o extinde cu informaţiile detaliate -->
+	<xs:complexType name="P">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Definiţia structurii unei reţete electronice online</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="O">
+				<xs:sequence>
+					<xs:element name="PD" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Detalii reţetă</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="allowAnyAttribute">
+									<xs:attribute name="S" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Sursă reţetă</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="PT" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Tipul pacientului</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="N" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">PNS în care este înscris pacientul</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="ON" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Parafă medic care recomandă reţeta</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="PP" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numărul de telefon al medicului prescriptor (cu cod de ţară)</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="PE" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Adresa de e-mail a medicului prescriptor</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="PA" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Adresa poştală a medicului prescriptor</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="TY" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Tipul reţetei</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="E">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Reţetă electronică</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="EV">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Reţetă electronică cost/volum</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="ER">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Reţetă electronică cost/volum/rezultat</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="CD" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">CID asigurat</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="FN" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Prenume asigurat</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="LN" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Nume asigurat</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="FA" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Adresă asigurat</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="CT" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Cod ţară asigurat</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="AC" type="xs:boolean" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Reţetă aprobată de comisie</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="DD" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Cod boală din dosarul de tratament (obligatoriu de completat dacă este reţetă aprobată de comisie)</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="DN" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numărul deciziei de aprobare a dosarului de tratament (obligatoriu de completat daca este reţetă aprobată de comisie)</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="DA" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data deciziei de aprobare a dosarului de tratament (obligatoriu de completat daca este reţetă aprobată de comisie)</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="SL" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numărul legii speciale în baza căreia se acordă procentul de compensare de 100%</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="MR" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Număr de înregistrare în registrul de consultaţii (fişă de observaţii)</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="DT" type="xs:int" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Număr zile tratament</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="RO" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Indică modul de prezentare şi de raportare a reţetei în sistem. Poate avea valorile: 0|Offline;1|Online</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="IT" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Indică tipul de eliberare reţetă: integral, parţial sau fracţionat.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="0">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Prescrisă/Neeliberată</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="1">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Eliberată integral</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="2">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Eliberată parţial</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="3">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Eliberată fracţionat</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="4">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Eliberată parţial şi fracţionat</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="SX" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Sex pacient</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="BD" type="xs:date" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data naşterii pacientului</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="FP" type="xs:boolean" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Indicator cetăţean străin</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="EF" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Cod formular european</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="FD" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Detalii farmacie</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="allowAnyAttribute">
+									<xs:attribute name="CC" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul fiscal al farmaciei</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="OU" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul casei de asigurări (cod din nomenclator)</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="CN" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Număr de contract al farmaciei</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="AC" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">CID împuternicit</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="RD" type="xs:date" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data eliberării reţetei</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="R" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Număr chitanţă cu care a achitat pacientul</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="A" type="xs:boolean" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Specifică dacă are decizie aprobată şi decizia  conţine numele medicamentului </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="D" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Listă medicamente prescrise pe reţetă</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="allowAnyAttribute">
+									<xs:sequence>
+										<xs:element name="E" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Medicament eliberate la faramacie</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="allowAnyAttribute">
+														<xs:attribute name="D" type="xs:string" use="required">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Codul medicamentului eliberat (cod din nomenclator Drugs)</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="RP" type="xs:double" use="optional">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Preţul unitar cu amănuntul al medicamentului eliberat</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="PR" type="xs:double" use="optional">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Preţul de referinţă al medicamentului eliberat</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="RV" type="xs:double" use="optional">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Valoarea cu amănuntul a medicamentului eliberat</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="CV" type="xs:double" use="optional">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Valoarea compensată a medicamentului eliberat</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="CV4" type="xs:double" use="optional">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Valoarea compensată a medicamentului eliberat (partea de 40% suportata din bugenul MS in FNUASS pentru pensionari &lt; 600 lei/luna)</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="CV5" type="xs:double" use="optional">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Valoarea compensată a medicamentului eliberat (partea de 50% suportata din bugetul FNUASS pentru pensionari &lt; 600 lei/luna)</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="VP" type="xs:double" use="optional">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Valoare procent TVA</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="PV" type="xs:double" use="optional">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Valoare medicament pe bază de protocol</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="QP" type="xs:double" use="optional">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Cantitate de medicament pe forma de ambalare</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="PP" type="xs:double" use="optional">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Preţ medicament pe forma de ambalare</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="V" type="xs:double" use="optional">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Valoare plătită de către asigurat</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="IQ" type="xs:double" use="optional">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Cantitate eliberată</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="TD" type="xs:int" use="optional">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Numărul de zile de tratament eliberate</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="CD" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul medicamentului prescris</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="DC" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul de boală pentru care se prescrie medicamentul</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="CM" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul de boală din nomenclatorul CIM10</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="DO" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Categoria bolii pentru care se prescrie medicamentul</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="DT" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul tipului de diagnostic</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="LT" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Cod listă compensată</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="LP" type="xs:double" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Procent de compensare aferent listei</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="TM" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Număr luni prescrise</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="TP" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Tip pacient</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="0">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">ADULT</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="1">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">COPIL</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="CN" type="xs:int" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Poziţia reţetei în borderou</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="BP" type="xs:boolean" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Indicator eliberare pe bază de protocol</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="AS" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Cod substanţă activă</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="C" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Concentraţia de substanţă activă din conţinutul medicamentului</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="PF" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Formă farmaceutică</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="D" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Doză medicament prescris</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="Q" type="xs:double" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Cantiate prescrisă</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="M" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Motivaţia medicală pentru prescrierea denumirii comerciale (dacă este cazul)</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="TC" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Tipul de consumabil</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="0">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Bunuri</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="2">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Medicamente</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="4">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Teste medicale</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="5">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Dispozitive medicale</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="IT" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Tipul de eliberare a medicamentului</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="0">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Prescris/Neeliberat</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="1">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Eliberat integral</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="2">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Anulat</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="3">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Eliberat fracţionat</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="TD" type="xs:int" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numărul de zile de tratament prescrise</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="ID" type="xs:date" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Data la care a fost prescrisă reţeta</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="O">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Definiţia structurii unei reţete electronice offline (pre-tipărite)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="allowAnyAttribute">
+				<xs:attribute name="SC" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Seria reţetei</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="SN" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Numărul reţetei</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="PS" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Parafa medicului prescriptor</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="CC" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Codul unic de identificare al unităţii medicale</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="CN" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Numărul contractului încheiat între furnizor (medic prescriptor) şi casa de asigurări.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="CT" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Tipul contractului</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="OU" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Codul Casa de Asigurări cu care a fost încheiat contractul medicului prescriptor</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="AK" use="optional">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Cheia de identificare a aplicaţiei de raportare</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="20"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="allowAnyAttribute">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tip de bază pentru toate elementele din schemă</xs:documentation>
+		</xs:annotation>
+		<xs:anyAttribute processContents="skip">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Poate conţine orice atribut nedeclarat în schemă, dar validează atributele declarate</xs:documentation>
+			</xs:annotation>
+		</xs:anyAttribute>
+	</xs:complexType>
+</xs:schema>

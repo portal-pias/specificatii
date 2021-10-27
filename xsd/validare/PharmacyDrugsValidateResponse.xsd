@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="PharmacyDrugsValidateResponse">
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="response">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Răspuns la validarea reţetelor eliberate de farmacii</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="responseType">
+					<xs:sequence>
+						<xs:element name="prescription" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Răspuns la validarea unei reţete eliberate</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="feedbackType">
+										<xs:sequence>
+											<xs:element name="prescriptionDrug" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Răspuns la validarea medicamentelor eliberate pe o reţetă</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="prescriptionTest" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Răspuns la validarea testelor medicale eliberate pe reţetă</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

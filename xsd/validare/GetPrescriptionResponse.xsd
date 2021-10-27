@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="GetPrescriptionResponse">
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="response">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Răspuns pentru reţete prescrise de medici</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="getResponseBase">
+					<xs:sequence>
+						<xs:element name="prescription" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Reţetă prescrisă de medic</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="prescriptionDrug" minOccurs="0" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Lista medicamentelor care sunt prescrise pe o reţetă</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="no" type="xs:unsignedInt" use="optional">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Numărul de ordine al medicamentului în reţetă.</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+											<xs:attribute name="drugCode" use="optional">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Codul medicamentului prescris</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="20"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+											<xs:attribute name="activeSubstance" use="optional">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Codul substanţei active ce intră în componenţa medicamentului.</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="150"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+											<xs:attribute name="concentration" use="optional">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Concentraţia de substanţă activă din conţinutul medicamentului.</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="30"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+											<xs:attribute name="pharmaceuticalForm" use="optional">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Forma farmaceutică a medicamentului.</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="100"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+											<xs:attribute name="diseaseCode" use="optional">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Codul de boală pentru care s-a prescris medicamentul.</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="20"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+											<xs:attribute name="diseaseCategory" use="optional">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Categoria bolii pentru care s-a prescris medicamentul.</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="20"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+											<xs:attribute name="diagnosticType" type="diagnosticType" use="optional">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Codul tipului de diagnostic</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+											<xs:attribute name="copaymentListType" use="optional">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Codul listei de compensare (Valaore din nomenclatorul de tipuri liste de compensare)</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="20"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+											<xs:attribute name="copaymentListPercent" type="xs:decimal" use="optional">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Procentul de compensare aferent listei de mai sus</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+											<xs:attribute name="quantity" type="xs:double" use="optional">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Cantitatea prescrisă</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+											<xs:attribute name="dose" use="optional">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Doza de medicament prescrisă</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="20"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="prescriptionTest" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Teste medicale prescrise pe reţetă</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="testName" use="optional">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Denumire test medical</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="100"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+											<xs:attribute name="monthsNo" type="xs:int" use="required">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Număr de luni</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+											<xs:attribute name="patientType" use="required">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Tip pacient</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="COPIL"/>
+														<xs:enumeration value="ADULT"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="stencilNo" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Parafa medicului care prescrie reţeta.</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="20"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="personPID" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Codul numeric personal al pacientului pentru care se prescrie reţeta.</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="20"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="patientInsuranceHouse" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Codul casei de asigurări cu care s-a încheiat contractul de compensare medicamente.</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="20"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="serialNo" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Numărul reţetei.</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="20"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="serialCode" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Seria reţetei</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="20"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="contractNo" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Numărul contractului încheiat între furnizor şi casa de asigurări.</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="20"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="prescriptionDate" type="xs:date" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Data la care a fost emisă reţeta.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="prescriptionType" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Tipul de reţetă (valoare din nomenclatorul de tipuri de reţete)</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="30"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="patientType" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Tipul pacientului (codul din nomenclatorul de stări de asigurare ale unei persoane).</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="20"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="nhp" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Numărul programului naţional de sănătate.</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="20"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="noDaysTreatment" type="xs:string" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Numarul de zile de tratament.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="recommendedByStencilNo" type="stencilType" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Parafa medicului specialist care a recomandat reţeta.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

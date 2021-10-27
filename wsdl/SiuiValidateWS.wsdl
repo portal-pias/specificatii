@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions targetNamespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:intf="http://siuiValidate.webservices.utils.svapnt.siveco.ro"
+                  xmlns:apachesoap="http://xml.apache.org/xml-soap"
+                  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:impl="http://siuiValidate.webservices.utils.svapnt.siveco.ro"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<wsdl:types />
+	<wsdl:message name="validateLabReferralRequest">
+		<wsdl:part name="reportXml" type="soapenc:string" />
+		<wsdl:part name="reportType" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="getClinicReferralRequest">
+		<wsdl:part name="serial" type="soapenc:string" />
+		<wsdl:part name="number" type="soapenc:string" />
+		<wsdl:part name="pid" type="soapenc:string" />
+		<wsdl:part name="stencil" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="validateLabReferralResponse">
+		<wsdl:part name="validateLabReferralReturn" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="validateClinicReferralRequest">
+		<wsdl:part name="reportXml" type="soapenc:string" />
+		<wsdl:part name="reportType" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="getPrescriptionResponse">
+		<wsdl:part name="getPrescriptionReturn" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="validateReportResponse">
+		<wsdl:part name="validateReportReturn" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="getLabReferralRequest">
+		<wsdl:part name="serial" type="soapenc:string" />
+		<wsdl:part name="number" type="soapenc:string" />
+		<wsdl:part name="pid" type="soapenc:string" />
+		<wsdl:part name="stencil" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="getClinicReferralResponse">
+		<wsdl:part name="getClinicReferralReturn" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="validateEnlistedResponse">
+		<wsdl:part name="validateEnlistedReturn" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="validatePharmacyDrugsRequest">
+		<wsdl:part name="reportXml" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="validateSickLeaveResponse">
+		<wsdl:part name="validateSickLeaveReturn" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="getLabReferralResponse">
+		<wsdl:part name="getLabReferralReturn" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="validateSickLeaveRequest">
+		<wsdl:part name="reportXml" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="validateClinicReferralResponse">
+		<wsdl:part name="validateClinicReferralReturn" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="validateEnlistedRequest">
+		<wsdl:part name="enlistedXml" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="validateReportRequest">
+		<wsdl:part name="reportXml" type="soapenc:string" />
+		<wsdl:part name="reportType" type="soapenc:string" />
+		<wsdl:part name="requestType" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="getPrescriptionRequest">
+		<wsdl:part name="serial" type="soapenc:string" />
+		<wsdl:part name="number" type="soapenc:string" />
+		<wsdl:part name="pid" type="soapenc:string" />
+		<wsdl:part name="stencil" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="validatePharmacyDrugsResponse">
+		<wsdl:part name="validatePharmacyDrugsReturn" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="validatePrescriptionRequest">
+		<wsdl:part name="reportXml" type="soapenc:string" />
+		<wsdl:part name="reportType" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="validatePrescriptionResponse">
+		<wsdl:part name="validatePrescriptionReturn" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:portType name="SiuiValidateWS">
+		<wsdl:operation name="getPrescription" parameterOrder="serial number pid stencil">
+			<wsdl:input name="getPrescriptionRequest" message="impl:getPrescriptionRequest" />
+			<wsdl:output name="getPrescriptionResponse" message="impl:getPrescriptionResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="getClinicReferral" parameterOrder="serial number pid stencil">
+			<wsdl:input name="getClinicReferralRequest" message="impl:getClinicReferralRequest" />
+			<wsdl:output name="getClinicReferralResponse" message="impl:getClinicReferralResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="getLabReferral" parameterOrder="serial number pid stencil">
+			<wsdl:input name="getLabReferralRequest" message="impl:getLabReferralRequest" />
+			<wsdl:output name="getLabReferralResponse" message="impl:getLabReferralResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="validateEnlisted" parameterOrder="enlistedXml">
+			<wsdl:input name="validateEnlistedRequest" message="impl:validateEnlistedRequest" />
+			<wsdl:output name="validateEnlistedResponse" message="impl:validateEnlistedResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="validateReport" parameterOrder="reportXml reportType requestType">
+			<wsdl:input name="validateReportRequest" message="impl:validateReportRequest" />
+			<wsdl:output name="validateReportResponse" message="impl:validateReportResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="validatePrescription" parameterOrder="reportXml reportType">
+			<wsdl:input name="validatePrescriptionRequest" message="impl:validatePrescriptionRequest" />
+			<wsdl:output name="validatePrescriptionResponse" message="impl:validatePrescriptionResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="validateClinicReferral" parameterOrder="reportXml reportType">
+			<wsdl:input name="validateClinicReferralRequest" message="impl:validateClinicReferralRequest" />
+			<wsdl:output name="validateClinicReferralResponse" message="impl:validateClinicReferralResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="validateLabReferral" parameterOrder="reportXml reportType">
+			<wsdl:input name="validateLabReferralRequest" message="impl:validateLabReferralRequest" />
+			<wsdl:output name="validateLabReferralResponse" message="impl:validateLabReferralResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="validateSickLeave" parameterOrder="reportXml">
+			<wsdl:input name="validateSickLeaveRequest" message="impl:validateSickLeaveRequest" />
+			<wsdl:output name="validateSickLeaveResponse" message="impl:validateSickLeaveResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="validatePharmacyDrugs" parameterOrder="reportXml">
+			<wsdl:input name="validatePharmacyDrugsRequest" message="impl:validatePharmacyDrugsRequest" />
+			<wsdl:output name="validatePharmacyDrugsResponse" message="impl:validatePharmacyDrugsResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SiuiValidateWSSoapBinding" type="impl:SiuiValidateWS">
+		<wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+		<wsdl:operation name="getPrescription">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getPrescriptionRequest">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:input>
+			<wsdl:output name="getPrescriptionResponse">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getClinicReferral">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getClinicReferralRequest">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:input>
+			<wsdl:output name="getClinicReferralResponse">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getLabReferral">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getLabReferralRequest">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:input>
+			<wsdl:output name="getLabReferralResponse">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="validateEnlisted">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="validateEnlistedRequest">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:input>
+			<wsdl:output name="validateEnlistedResponse">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="validateReport">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="validateReportRequest">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:input>
+			<wsdl:output name="validateReportResponse">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="validatePrescription">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="validatePrescriptionRequest">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:input>
+			<wsdl:output name="validatePrescriptionResponse">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="validateClinicReferral">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="validateClinicReferralRequest">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:input>
+			<wsdl:output name="validateClinicReferralResponse">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="validateLabReferral">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="validateLabReferralRequest">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:input>
+			<wsdl:output name="validateLabReferralResponse">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="validateSickLeave">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="validateSickLeaveRequest">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:input>
+			<wsdl:output name="validateSickLeaveResponse">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="validatePharmacyDrugs">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="validatePharmacyDrugsRequest">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:input>
+			<wsdl:output name="validatePharmacyDrugsResponse">
+				<wsdlsoap:body use="encoded" namespace="http://siuiValidate.webservices.utils.svapnt.siveco.ro" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SiuiValidateWSService">
+		<wsdl:port name="SiuiValidateWS" binding="impl:SiuiValidateWSSoapBinding">
+			<wsdlsoap:address location="https://www.siui.ro/svapntws/services/SiuiValidateWS" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

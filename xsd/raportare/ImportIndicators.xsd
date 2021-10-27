@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="ImportIndicators">
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">
+        Date despre indicatorii spitalicesti.
+      </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="IndicatorsValues">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">
+              Date despre valorile indicatorilor spitalicesti.
+            </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Indicator" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">
+                    Date despre valoarea unui indicator spitalicesc.
+                  </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="departmentCode" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Codul departamentului pentru care este valoarea indicatorului spitalicesc.
+                      </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="indicatorType" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Tipul de indicator spitalicesc.
+                        Acest atribut poate avea urmatoarele valori:
+                        calitativ
+                        cantitativ
+                      </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="calitativ">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">calitativ</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="cantitativ">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">cantitativ</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="lista de prioritate"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="indicatorCode" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Codul indicatorului spitalicesc.
+                        Acest atribut este preluat din nomenclatorul Indicators.
+                      </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="parentIndicatorCode" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Codul indicatorului parinte.
+                        Acest atribut este preluat din nomenclatorul Indicators.
+                      </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="value" type="xs:double" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Valoarea indicatorului.
+                      </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="serviceCode" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Codul serviciului pentru care indicatorul ia aceasta valoare.
+                        Acest atribut este preluat din nomenclatorul HospitalServices.
+                      </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="AppID" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Identificator unic in aplicatia de raportare.
+                        Acest atribut este folosit la identificarea randului raportat.
+                      </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="hospitalCode" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul spitalului</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fiscalCode" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul fiscal al spitalului</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="insuranceHouse" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">
+            Codul casei de asigurari cu care este incheiat contractul.
+            Acest atribut este preluat din nomenclatorul OrgUnits.
+          </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="reportingDate" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data raportării</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="startFrom" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de început a perioadei de raportare</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="endTo" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de sfârşit a perioadei de raportare</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="appId" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">
+            Identificator unic in aplicatia de raportare.
+            Acest atribut este folosit la identificarea raportarii.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="appKey" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Cheia de identificare a aplicaţiei de raportare (producator de software 3rd partry)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

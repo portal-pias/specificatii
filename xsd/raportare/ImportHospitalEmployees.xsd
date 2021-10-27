@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="ImportHospitalEmployees">
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">
+        Lista angajatilor unitatii spitalicesti.
+      </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Employee" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">
+              Angajat al unitatii spitalicesti.
+            </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="EmployeeDetail">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">
+                    Detalii despre angajat.
+                  </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="appId" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+												Identificator unic in aplicatia de raportare.
+												Acest atribut este folosit la identificarea randului raportat.
+											</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="studies" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Tipul de studii pe care le-a efectuat angajatul.
+                        Acest atribut poate avea urmatoarele valori:
+                        1 -&gt; STUDII MEDII
+                        2 -&gt; STUDII SUPERIOARE
+                      </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="1">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">medii</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="2">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">superioare</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="activityDomain" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Domeniul de activitate al angajatului.
+                        Acest atribut poate avea urmatoarele valori:
+                        1 -&gt; STOMATOLOGIE
+                        2 -&gt; MEDICINA
+                        3 -&gt; FARMACEUTICE
+                        4 -&gt; BIOLOGIE
+                        5 -&gt; CHIMIE
+                      </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="1">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Stomatologie</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="2">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Medicina</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="3">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Farmaceutice</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="4">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Biologie</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="5">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Chimie</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="contractNo" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Numarul contractului de munca pe care il are angajatul cu spitalul.
+                      </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="100"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="functionCode" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Codul functiei pe care o are angajatul. Acest atribut este preluat din nomenclatorul PersonFunctions.
+                      </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="validFrom" type="xs:date" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Data de la care incepe valabilitatea contractului de munca al angajatului.
+                      </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="validTo" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Data la care se termina valabilitatea contractului de munca al angajatului.
+                      </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="emplTypeCode" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Codul tipului de angajat. Acest atribut este preluat din nomenclatorul EmplTypes.
+                      </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Department" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">
+                    Date despre asocierea angajatului cu sectiile din spital.
+                  </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="appId" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Identificator unic in aplicatia de raportare.
+                        Acest atribut este folosit la identificarea randului raportat.
+                      </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="deptCode" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Codului departamentului asociat.
+                      </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="validTo" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Data de la care incepe asocierea angajatului cu departamentul.
+                      </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="validFrom" type="xs:date" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Data la care se termina asocierea angajatului cu departamentul.
+                      </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ALPData" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">
+                    Date despre Autorizatia de Libera Practica a angajatului.
+                  </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="appId" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Identificator unic in aplicatia de raportare.
+                        Acest atribut este folosit la identificarea randului raportat.
+                      </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="ALPno" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Numarul Autorizatiei de Libera Practica a angajatului.
+                      </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="100"/>
+												<xs:minLength value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="ALPvalidTo" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Data la care se termina valabilitatea Autorizatia de Libera Practica a angajatului.
+                      </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="ALPvalidFrom" type="xs:date" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Data la care incepe valabilitatea Autorizatia de Libera Practica a angajatului.
+                      </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="ALPissuer" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Numele institutiei care a emis Autorizatia de Libera Practica a angajatului.
+                      </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="100"/>
+												<xs:minLength value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="AMData" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">
+                    Date despre Asigurarile de Malpraxis ale angajatului.
+                  </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="appId" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Identificator unic in aplicatia de raportare.
+                        Acest atribut este folosit la identificarea randului raportat.
+                      </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="AMno" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Numarul Asigurarii de Malpraxis a angajatului.
+                      </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="100"/>
+												<xs:minLength value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="AMvalidTo" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Data la care se termina valabilitatea Asigurarii de Malpraxis a angajatului.
+                      </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="AMvalidFrom" type="xs:date" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Data la care incepe valabilitatea Asigurarii de Malpraxis a angajatului.
+                      </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="AMissuer" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+                        Numele institutiei care e emis Asigurarea de Malpraxis a angajatului.
+                      </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="100"/>
+												<xs:minLength value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="appId" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">
+                  Identificator unic in aplicatia de raportare.
+                  Acest atribut este folosit la identificarea randului raportat.
+                </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="20"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="PID" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">
+                  CNP-ul angajatului.
+                </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string"/>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="stencilNo" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">
+                  Parafa angajatului.
+                </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="6"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="type" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">
+                  Tipul de angajat.
+                  Acest atribut poate avea urmatoarele valori:
+                  1 -&gt; MEDIC
+                  2 -&gt; ASISTENT
+                  0 -&gt; ALTELE
+                </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="1"/>
+									<xs:enumeration value="1">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">medic</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="2">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">asistent</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="0">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">altele</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="validFrom" type="xs:date" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">
+                  Data la care incepe valabilitatea datelor despre angajati.
+                </xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="validTo" type="xs:date" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">
+                  Data la care se termina valabilitatea datelor despre angajati.
+                </xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="CID" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numărul de asigurat al persoanei</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="20"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="fiscalCode" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">
+            Codul fiscal al unitatii spitalicesti.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="insuranceHouse" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">
+            Codul casei de asigurari cu care spitalul are contract.
+            Acest atribut este preluat din nomenclatorul OrgUnits.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="reportingDate" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">
+            Data raportarii.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="appId" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">
+            Identificator unic in aplicatia de raportare.
+            Acest atribut este folosit la identificarea raportarii.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="appKey" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Cheia de identificare a aplicaţiei de raportare (producator de software 3rd partry)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

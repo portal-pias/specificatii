@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="SyncHomeCareResolutionResponse">
+	<xs:element name="synchronization">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Fişier de răspuns pentru sincronizarea deciziilor pentru îngrijire la domiciliu</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="pacients" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Lista pacienţilor de pe deciziile de ingrijire la domiciliu cerute</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="pacient" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Detalii pacient</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="cid" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Cod de identificare al pacientului</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="personType" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="en">Person type</xs:documentation>
+											<xs:documentation xml:lang="ro">Tip persoana (valoarea codului din nomenclatorul de tipuri de persoane)</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="firstName" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="en">First name</xs:documentation>
+											<xs:documentation xml:lang="ro">Prenumele pacientului</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="lastName" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="en">Last name</xs:documentation>
+											<xs:documentation xml:lang="ro">Numele pacientului</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="resolutions">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Lista de decizii de ingrijire la domiciliu</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence minOccurs="0">
+							<xs:element name="resolution" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Definiţia deciziei de îngrijire la domiciliu</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence minOccurs="0">
+										<xs:element name="recommendedServices" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Serviciile recomandate pentru aceasta decizie</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence minOccurs="0">
+													<xs:element name="recommendedService" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Codul serviciului recomandat (valoare din catalogul de servicii medicale)</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:attribute name="code" type="xs:string" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul serviciului</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="period" type="xs:decimal" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Perioada de prestare a serviciului</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="cycle" type="xs:decimal" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">La cate zile se presteaza serviciul in perioada specificata</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="qtyPerCycle" type="xs:decimal" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Cantitatea de servicii prestate la un ciclu</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="serviceCount" type="xs:int" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Numarul total de servicii prestate</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="diagnostics" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Lista de diagnostice asociate deciziei</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence minOccurs="0">
+													<xs:element name="diagnostic" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Diagnostic asociat la decizie</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:attribute name="code" type="xs:string" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul diagnosticului (ICD10)</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+                                        <xs:element name="homeCarePlans" minOccurs="0" maxOccurs="1">
+                                          <xs:annotation>
+                                            <xs:documentation xml:lang="ro">Lista planurilor de reevalaure pentru ingrijiri paliative la domiciliu</xs:documentation>
+                                          </xs:annotation>
+                                          <xs:complexType>
+                                            <xs:sequence>
+                                              <xs:element name="homeCarePlan" minOccurs="0" maxOccurs="unbounded">
+                                                <xs:annotation>
+                                                  <xs:documentation xml:lang="ro">Plan de reevalaure pentru ingrijiri paliative la domiciliu</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:complexType>
+                                                  <xs:sequence>
+                                                    <xs:element name="homeCarePlanServices">
+                                                      <xs:annotation>
+                                                        <xs:documentation xml:lang="ro">Serviciile din planul de reevaluare</xs:documentation>
+                                                      </xs:annotation>
+                                                      <xs:complexType>
+                                                        <xs:sequence>
+                                                          <xs:element name="homeCareService" minOccurs="0" maxOccurs="unbounded">
+                                                            <xs:annotation> 
+                                                              <xs:documentation xml:lang="ro">Serviciul din planul de reevaluare</xs:documentation> 
+                                                            </xs:annotation>
+                                                            <xs:complexType>
+                                                              <xs:attribute name="serviceCode" use="required">
+                                                                <xs:annotation>
+                                                                  <xs:documentation xml:lang="en">Service Code</xs:documentation>
+                                                                  <xs:documentation xml:lang="ro">Codul Serviciului</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                  <xs:restriction base="xs:string">
+                                                                    <xs:maxLength value="20" />
+                                                                  </xs:restriction>
+                                                                </xs:simpleType>
+                                                              </xs:attribute>
+                                                            </xs:complexType>
+                                                          </xs:element>
+                                                        </xs:sequence>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                  </xs:sequence>
+                                                  <xs:attribute name="evalStencilNo" use="required">
+                                                    <xs:annotation>
+                                                      <xs:documentation xml:lang="en">Stencil Number</xs:documentation>
+                                                      <xs:documentation xml:lang="ro">Parafa Medicului Evaluator - medicul evaluator pentru serviciile de ingrijiri la domiciliu paliative</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:maxLength value="6" />
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="evaluationDate" type="xs:date" use="required">
+                                                    <xs:annotation>
+                                                      <xs:documentation xml:lang="en">Evaluation Date</xs:documentation>
+                                                      <xs:documentation xml:lang="ro">Data Evaluarii</xs:documentation>
+                                                    </xs:annotation>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="serviceDate" type="xs:date" use="required">
+                                                    <xs:annotation>
+                                                      <xs:documentation xml:lang="en">Service Date</xs:documentation>
+                                                      <xs:documentation xml:lang="ro">Data la care urmeaza a se efectua serviciile</xs:documentation>
+                                                    </xs:annotation>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="problem" use="optional">
+                                                    <xs:annotation>
+                                                      <xs:documentation xml:lang="en">Problem</xs:documentation>
+                                                      <xs:documentation xml:lang="ro">Problema actuala sau potentiala</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:maxLength value="300" />
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="homeCarePlanType" use="required">
+                                                    <xs:annotation>
+                                                      <xs:documentation xml:lang="ro">Tipul planului de ingrijire: 3=evaluare initiala, 5=reevaluare</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:enumeration value="3">
+                                                          <xs:annotation>
+                                                            <xs:documentation xml:lang="ro">Evaluare Initiala</xs:documentation>
+                                                          </xs:annotation>
+                                                        </xs:enumeration>
+                                                        <xs:enumeration value="5">
+                                                          <xs:annotation>
+                                                            <xs:documentation xml:lang="ro">Reevaluare</xs:documentation>
+                                                          </xs:annotation>
+                                                        </xs:enumeration>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+											      </xs:attribute>
+  											    </xs:complexType>
+                                              </xs:element>
+                                            </xs:sequence>
+                                          </xs:complexType>
+                                        </xs:element>
+									  </xs:sequence>
+									<xs:attribute name="resolutionNo" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numarul deciziei</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="issueDate" type="xs:date" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data la care a fost emisa deciziei</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="stencilNo" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Parafa medicului care a recomandat serviciile</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="physicianName" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numele medicului care a recomandat serviciile</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>									
+									<xs:attribute name="cid" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Cod de identificare al pacientului</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="recomDays" type="xs:integer" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numarul de zile de ingrijiri recomandate</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="claimType" use="required">
+                                      <xs:annotation>
+                                        <xs:documentation xml:lang="ro">Tipul deciziei: 0=medicala, 1=paliativa</xs:documentation>
+                                      </xs:annotation>
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:enumeration value="0">
+                                            <xs:annotation>
+                                              <xs:documentation xml:lang="ro">MEDICAL</xs:documentation>
+                                            </xs:annotation>
+                                          </xs:enumeration>
+                                          <xs:enumeration value="1">
+                                            <xs:annotation>
+                                              <xs:documentation xml:lang="ro">PALIATIV</xs:documentation>
+                                            </xs:annotation>
+                                          </xs:enumeration>
+                                        </xs:restriction>
+                                      </xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="dependenceType" use="optional">
+                                      <xs:annotation>
+                                        <xs:documentation xml:lang="ro">Tip dependenta: 0=medicala, 1=paliativa. Nu mai sunt valabile decat ECOG3 si ECOG4, restul s-au pastrat pentru compatibilitate cu deciziile anterioare</xs:documentation>
+                                      </xs:annotation>
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:enumeration value="-1">
+                                            <xs:annotation>
+                                              <xs:documentation xml:lang="ro">Necompletat</xs:documentation>
+                                            </xs:annotation>
+                                          </xs:enumeration>
+                                          <xs:enumeration value="0">
+                                            <xs:annotation>
+                                              <xs:documentation xml:lang="ro">Total dependent</xs:documentation>
+                                            </xs:annotation>
+                                          </xs:enumeration>
+                                          <xs:enumeration value="1">
+                                            <xs:annotation>
+                                              <xs:documentation xml:lang="ro">Partial dependent</xs:documentation>
+                                            </xs:annotation>
+                                          </xs:enumeration>
+                                          <xs:enumeration value="2">
+                                            <xs:annotation>
+                                              <xs:documentation xml:lang="ro">Independent</xs:documentation>
+                                            </xs:annotation>
+                                          </xs:enumeration>
+                                          <xs:enumeration value="3">
+                                            <xs:annotation>
+                                              <xs:documentation xml:lang="ro">ECOG3</xs:documentation>
+                                            </xs:annotation>
+                                          </xs:enumeration>
+                                          <xs:enumeration value="4">
+                                            <xs:annotation>
+                                              <xs:documentation xml:lang="ro">ECOG4</xs:documentation>
+                                            </xs:annotation>
+                                          </xs:enumeration>
+                                        </xs:restriction>
+                                      </xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="decisionValue" type="xs:double" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Valoarea totala a deciziei</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="tarif" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Tariful pe zi</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="minTarif" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Tariful minim pe zi (Folosit in trecut, cand se reducea tariful dupa 42 de zile).</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="tarifNoDays" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numarul de zile platite cu tariful maximal</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="minTarifNoDays" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numarul de zile platite cu tariful minim (Folosit in trecut, cand se reducea tariful dupa 42 de zile).</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="validFrom" type="xs:date" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Inceputul valabilitatii deciziei</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="validTo" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Sfarsitul valabilitatii deciziei</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

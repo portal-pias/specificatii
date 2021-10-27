@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/des/1.0" xmlns="http://www.cnas.ro/des/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="getReleasedPrescriptionsForCidRequest">
+	<xs:annotation>
+		<xs:documentation xml:lang="ro">Structura unei cereri de preluare în DES a reţetelor eliberate pentru un asigurat (prescripţie electronică)</xs:documentation>
+	</xs:annotation>
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de preluare în DES a reţetelor eliberate pentru un asigurat (CID)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="CID" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul de asigurat al persoanei</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="prescriptionsFromDate" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de început a perioadei pentru care se aduc rețetele</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="prescriptionsToDate" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de sfârşit a perioadei pentru care se aduc rețetele</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="reportDate" type="xs:date" use="required"/>
+			<xs:attribute name="atDate" type="xs:dateTime" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data relativ la care se face verificarea dacă există reţete actualizate - se întorc reţetele actualizate în perioada atDate - prezent</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="isForDmr" type="xs:string" use="optional">
+			    <xs:annotation>
+					<xs:documentation xml:lang="ro">Datele aduse sunt pentru consolidare DMR: 0-NU, 1-DA</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

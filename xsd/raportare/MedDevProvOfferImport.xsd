@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="MedDevProvOfferImport">
+  <xs:element name="offer">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Medical Devices Values</xs:documentation>
+      <xs:documentation xml:lang="ro">Valori dispozitive medicale</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="medDevType" minOccurs="1" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Medical Device Type</xs:documentation>
+            <xs:documentation xml:lang="ro">Tip dispozitiv medical</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <!-- medical device -->
+              <xs:element name="medDev">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Medical Device</xs:documentation>
+                  <xs:documentation xml:lang="ro">Dispozitiv medical</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <!-- medical device doc -->
+                    <xs:element name="medDevDocs" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Medical Device Documents</xs:documentation>
+                        <xs:documentation xml:lang="ro">Documente dispozitiv medical</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="item" type="medDevDoc_Type" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Medical Device Document</xs:documentation>
+                              <xs:documentation xml:lang="ro">Document dispozitiv medical</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <!-- medical device price -->
+                    <xs:element name="medDevPrice" type="medDevValue_Type" minOccurs="0" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Medical Device Price</xs:documentation>
+                        <xs:documentation xml:lang="ro">Pret dispozitiv medical</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <!-- medical device rent price -->
+                    <xs:element name="medDevRentPrice" type="medDevValue_Type" minOccurs="0" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Medical Device Rent Price</xs:documentation>
+                        <xs:documentation xml:lang="ro">Suma inchiriere dispozitiv medical</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                  <!-- medical device name -->
+                  <xs:attribute name="name" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">Medical Device Name</xs:documentation>
+                      <xs:documentation xml:lang="ro">Denumire dispozitiv medical</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <!-- medical device type code -->
+            <xs:attribute name="code" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="en">Medical Device Type Code</xs:documentation>
+                <xs:documentation xml:lang="ro">Cod tip dispozitiv medical</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="20"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="medicalUnit" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Medical Unit Name</xs:documentation>
+          <xs:documentation xml:lang="ro">Nume Unitate Medicala</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="100"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="fiscalCode" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Fiscal Code</xs:documentation>
+          <xs:documentation xml:lang="ro">Cod Fiscal</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="cjasCode" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">CJAS Code</xs:documentation>
+          <xs:documentation xml:lang="ro">Cod CJAS</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="reportingDate" type="xs:date" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Reporting Date</xs:documentation>
+          <xs:documentation xml:lang="ro">Data Raportarii</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="medDevDoc_Type">
+    <xs:attribute name="no" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Document No</xs:documentation>
+        <xs:documentation xml:lang="ro">Nr document</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="50"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="producer" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Producer</xs:documentation>
+        <xs:documentation xml:lang="ro">Producator</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="50"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="date" type="xs:date" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Document Date</xs:documentation>
+        <xs:documentation xml:lang="ro">Data document</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="validFrom" type="xs:date" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Document Valid From</xs:documentation>
+        <xs:documentation xml:lang="ro">Document valabil de la</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="validTo" type="xs:date" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Document Valid To</xs:documentation>
+        <xs:documentation xml:lang="ro">Document valabil pana la</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <!-- 0|certificat de inregistrare;1|declaratie de conformitate -->
+    <xs:attribute name="type" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Document Type</xs:documentation>
+        <xs:documentation xml:lang="ro">Tip document</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="1"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <!-- 0|vanzare;1|reparatie;2|vanzare si reparatie -->
+    <xs:attribute name="for" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Document For</xs:documentation>
+        <xs:documentation xml:lang="ro">Document pentru</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="1"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <!-- 0|adaugare;1|modificare;2|stergere -->
+    <xs:attribute name="operation" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Operation Type</xs:documentation>
+        <xs:documentation xml:lang="ro">Tip operatie</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="1"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="medDevValue_Type">
+    <xs:attribute name="value" type="xs:decimal" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Value</xs:documentation>
+        <xs:documentation xml:lang="ro">Valoare</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="validFrom" type="xs:date" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Valid From</xs:documentation>
+        <xs:documentation xml:lang="ro">Valabil de la</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="validTo" type="xs:date" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Valid To</xs:documentation>
+        <xs:documentation xml:lang="ro">Valabil pana la</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <!-- 0|adaugare;1|modificare;2|stergere -->
+    <xs:attribute name="operation" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Operation Type</xs:documentation>
+        <xs:documentation xml:lang="ro">Tip operatie</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="1"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+</xs:schema>

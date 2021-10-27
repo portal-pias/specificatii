@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="HomeCareServicesValidateResponse">
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="response">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Răspuns la validarea serviciilor de ingrijire la domiciliu</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="responseType">
+					<xs:sequence>
+						<xs:element name="homeCareClaimItem" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Servicii de ingrijire pe asigurat</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="feedbackType">
+										<xs:sequence>
+											<xs:element name="homeCareService" type="feedbackType" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Serviciu de ingrijire la domiciliu raportat pentru validare</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

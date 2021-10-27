@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="Feedback_ImportNhpCj">
+  <xs:element name="reportFeedback">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">Răspuns la raportarea cererilor justificative pentru PNS la nivel judeţean</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="factura" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Validare factura</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Descriere eroare</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:long" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">Indică dacă înregistrarea a fost validată sau nu</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="articol" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Articol factură</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Descriere eroare</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="articleType" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">Tip articol</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="DRG">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">Drug</xs:documentation>
+                      <xs:documentation xml:lang="ro">Medicament</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="GDS">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">Sanitar material</xs:documentation>
+                      <xs:documentation xml:lang="ro">Material sanitar</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="ACS">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">Active substance</xs:documentation>
+                      <xs:documentation xml:lang="ro">Substanta activa</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="MDT">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">Medical test</xs:documentation>
+                      <xs:documentation xml:lang="ro">Test medical</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="MDD">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">Medical device</xs:documentation>
+                      <xs:documentation xml:lang="ro">Instrument medical</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="appID" type="xs:long" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">Indică dacă înregistrarea a fost validată sau nu</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="op" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Validare borderou de plată</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Descriere eroare</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:long" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">Indică dacă înregistrarea a fost validată sau nu</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="reportNo" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Numărul de identificare al raportării</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="error">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">Definiţia tipului de date folosit pentru erorile de raportare (elementul poate conţine ca text inclus comentariile operatorilor SIUI)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:attribute name="code" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Codul de eroare de raportare (valoare din nomenclatorul de erori)</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="errorType" use="optional">
+        <xs:annotation>
+            <xs:documentation xml:lang="ro">Tip de eroare in functie de severitate.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:unsignedInt">
+                <xs:enumeration value="0">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="ro">Avertizare</xs:documentation>
+                    </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value="1">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="ro">Eroare</xs:documentation>
+                    </xs:annotation>
+                </xs:enumeration>
+            </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

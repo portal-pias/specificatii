@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ChronicPatientsValidateRequest"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.cnas.ro/siui/2.0"
+    xmlns="http://www.cnas.ro/siui/2.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de validare pentru pacienţi cu afecţiuni cronice aflaţi în evidenţa medicului</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:sequence>
+						<xs:element name="chronicDisease" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Pacient cu afecţiuni cronice raportat pentru validare</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="claimItemType">
+										<xs:attribute name="stencilNo" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Codul de parafă al medicului</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="personPID" type="pidType" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Codul numeric personal al pacientului</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="CID" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numărul de asigurat al pacientului beneficiar al serviciului paraclinic respectiv</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="cardNo" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numărul cardului electronic de asigurat al pacientului</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="16"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="signHash" type="xs:hexBinary" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Nu se mai foloseşte!</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="personCategory" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Codul categoriei de asigurat a pacientului (valoare din nomenclatorul de categorii de asigurat)</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="chronicDisease" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Codul afecţiunii cronice (valoare din nomenclatorul de afecţiuni cronice)</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="entryDate" type="xs:date" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data intrării în lista persoanelor cu afecţiuni cronice</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="exitDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data ieşirii din lista persoanelor cu afecţiuni cronice</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="stencil" type="stencilType" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Codul de parafă al medicului titular</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="RecoveryAmbProviderServicesOfferImport">
+  <xs:element name="offer">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Services offer</xs:documentation>
+      <xs:documentation xml:lang="ro">Ofertă de servicii</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="services">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Services offer</xs:documentation>
+            <xs:documentation xml:lang="ro">Ofertă de servicii</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="service" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Service element</xs:documentation>
+                  <xs:documentation xml:lang="ro">Element de tip serviciu</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="code" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">Service code</xs:documentation>
+                      <xs:documentation xml:lang="ro">Cod serviciu (valoare din nomenclatorul de servicii)</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="maxNo" type="xs:int" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">Maximum number of services</xs:documentation>
+                      <xs:documentation xml:lang="ro">Număr maxim de servicii ce pot fi prestate</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="medicalUnit" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Medical unit name</xs:documentation>
+          <xs:documentation xml:lang="ro">Nume unitate medicală</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="medicalUnitCUI" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Medical unit CUI</xs:documentation>
+          <xs:documentation xml:lang="ro">CUI unitate medicală</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="reportingDate" type="xs:date" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Offer reproting date</xs:documentation>
+          <xs:documentation xml:lang="ro">Data de raportare a ofertei</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="validFrom" type="xs:date" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Start offer date</xs:documentation>
+          <xs:documentation xml:lang="ro">Început perioadă ofertă</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="validTo" type="xs:date" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">End offer date</xs:documentation>
+          <xs:documentation xml:lang="ro">Sfârşit perioadă ofertă</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

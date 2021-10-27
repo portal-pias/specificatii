@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="FeedbackSintetic">
+  <xs:element name="reportFeedback">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">Definitia unui fisier de raspuns la o raportare de date sintetice (Acut, DRG, Cronice)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Sintetic" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Raspunsul pentru un serviciu clinic raportat</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="errors">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Lista erorilor pentru care raportarea sintetica a fost refuzata la CJAS.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="error">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="ro">Definitia unei erori de raportare</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType mixed="true">
+                        <xs:attribute name="code" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation xml:lang="ro">Codul erorii de raportare</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="errorType" use="optional">
+                           <xs:annotation>
+                               <xs:documentation xml:lang="ro">Tip de eroare in functie de severitate.</xs:documentation>
+                           </xs:annotation>
+                           <xs:simpleType>
+                              <xs:restriction base="xs:unsignedInt">
+                                 <xs:enumeration value="0">
+                                    <xs:annotation>
+                                        <xs:documentation xml:lang="ro">Avertizare</xs:documentation>
+                                    </xs:annotation>
+                                 </xs:enumeration>
+                                 <xs:enumeration value="1">
+                                    <xs:annotation>
+                                        <xs:documentation xml:lang="ro">Eroare</xs:documentation>
+                                    </xs:annotation>
+                                 </xs:enumeration>
+                              </xs:restriction>
+                           </xs:simpleType>
+                        </xs:attribute>	
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Daca acest atribut are valoarea true, randul raportat este corect.
+                  Daca are valoarea false, randul raportat nu a fost validat.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Prescription" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Definitia unui raspuns cu privire la o reteta prescrisa raportata.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Definitia unei erori la o reteta prescrisa raportata.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Daca acest atribut are valoarea true, randul raportat este corect.
+                  Daca are valoarea false, randul raportat nu a fost validat.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="HomeCare" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">
+              Raspunsul cu privire la o recomandare de ingrijire la domiciliu raportata.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Definitia unei erori de raportare.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Daca acest atribut are valoarea true, randul raportat este corect.
+                  Daca are valoarea false, randul raportat nu a fost validat.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MedicalDevice" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Raspunsul cu privire la o recomandare de dispozitiv medical.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Definitia unei erori de raportare.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Daca acest atribut are valoarea true, randul raportat este corect.
+                  Daca are valoarea false, randul raportat nu a fost validat.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MedicalNote" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Raspunsul cu privire la un bilet de trimitere raportat.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Definitia unei erori de raportare.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Daca acest atribut are valoarea true, randul raportat este corect.
+                  Daca are valoarea false, randul raportat nu a fost validat.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PidList" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Raspunsul cu privire la un pacient roman raportat.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Definitia unei erori de raportare.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Daca acest atribut are valoarea true, randul raportat este corect.
+                  Daca are valoarea false, randul raportat nu a fost validat.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ForeignPerson" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Raspunsul cu privire la un pacient strain raportat.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Definitia unei erori de raportare.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Daca acest atribut are valoarea true, randul raportat este corect.
+                  Daca are valoarea false, randul raportat nu a fost validat.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="appId" type="xs:string" use="required">
+        <xs:annotation>
+            <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="error">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">Definitia unei erori de raportare.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:attribute name="code" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Codul erorii</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="errorType" use="optional">
+        <xs:annotation>
+            <xs:documentation xml:lang="ro">Tip de eroare in functie de severitate.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:unsignedInt">
+                <xs:enumeration value="0">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="ro">Avertizare</xs:documentation>
+                    </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value="1">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="ro">Eroare</xs:documentation>
+                    </xs:annotation>
+                </xs:enumeration>
+            </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

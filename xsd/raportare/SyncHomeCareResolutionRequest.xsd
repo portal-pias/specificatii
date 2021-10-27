@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="SyncHomeCareResolutionRequest">
+	<xs:element name="synchronization">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Fişier de cerere pentru sincronizarea deciziilor pentru îngrijire la domiciliu</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="resolutions">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Lista de decizii</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence minOccurs="0">
+							<xs:element name="resolution" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Identificarea unei decizii</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="resolutionNo" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="en">Decision number</xs:documentation>
+											<xs:documentation xml:lang="ro">Numar decizie</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+                        			<xs:attribute name="resolutionDate" type="xs:date" use="required">
+				                        <xs:annotation>
+											<xs:documentation xml:lang="en">Decision date</xs:documentation>
+					                        <xs:documentation xml:lang="ro">Data deciziei</xs:documentation>
+				                        </xs:annotation>
+			                        </xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="medicalUnit" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Nume unitate medicala</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="fiscalCode" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Cod fiscal unitate medicala</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="contractNo" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Numar contract unitate medicala</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="insuranceHouse" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">CJAS de care apartine unitatea medicala</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="requestDate" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data la care a fost ceruta sincronizarea deciziilor</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

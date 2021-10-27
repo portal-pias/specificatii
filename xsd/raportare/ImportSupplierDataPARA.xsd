@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="ImportSupplierDataPARA">
+	<xs:include schemaLocation="ImportSupplierDataCommonTypes.xsd" />
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Lista detaliilor necesare contractării pentru furnizori de servicii paraclinice</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Address" type="AddressType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Adresa de contractare a furnizorului</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Documents" type="DocumentsType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Documentele de contractare ale furnizorului</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="REPLG" type="REPLGType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Reprezentantul legal al furnizorului</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="BankAccount" type="BankAccountType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Conturile bancare ale furnizorului</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Subunits" type="SubunitsType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Secţii/departamente ale furnizorului de servicii</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Employee" type="EmployeeType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Angajaţii furnizorului declaraţi pe contract</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="LaboratoriesServicesOffer" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Element de ofertă de preţ pentru contractare servicii</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="appId" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Identificator unic al elementului raportat la nivelul aplicaţiei de raportare</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="code" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Cod serviciu (valoare din nomenclatorul de servicii)</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="quantity" type="xs:int" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Cantitate ofertată</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="price" type="xs:double" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Preţ ofertat</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="isoCertified" type="xs:boolean" use="optional" default="false">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Valoare care indică dacă serviciul este certificat ISO</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="intercompScheme" type="xs:boolean" use="optional" default="false">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Valoare care indică dacă serviciul face parte dintr-o schemă de intercomparare la nivel naţional</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="validFrom" type="xs:date" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Data de început a valabilităţii ofertei petru serviciul curent</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="validTo" type="xs:date" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii ofertei petru serviciul curent</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="fiscalCode" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul fiscal al furnizorului pentru care se transmit datele de contractare</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="insuranceHouse" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul casei de asigurări cu care furnizorul are contract (valoare preluată din nomenclatorul de case de asigurări)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="reportingDate" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data raportării datelor de contractare</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="appId" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Identificator unic în aplicaţia de raportare. Acest atribut este folosit la identificarea raportării.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="appKey" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Cheia de identificare a aplicaţiei de raportare (producător de software 3rd partry)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="supplierType" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Tipul de furnizor pentru care se face contractarea</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

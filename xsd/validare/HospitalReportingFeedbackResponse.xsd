@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="HospitalReportingFeedbackResponse">
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Răspuns pentru feedback raportare</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="PidLists">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Lista fise pacienti romani</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="PidList" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Fisa pacienti romani</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="error" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Definitia unei erori de raportare.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="code" type="xs:string" use="required">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">
+															Cod eroare
+														</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="name" type="xs:string" use="optional">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">
+															Text eroare
+														</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="errorType" use="required">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Flag care indica provenienţa erorii</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="0">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">eroare SIUI</xs:documentation>
+																</xs:annotation>
+															</xs:enumeration>
+															<xs:enumeration value="1">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">eroare SNSPMS</xs:documentation>
+																</xs:annotation>
+															</xs:enumeration>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="appID" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+												Identificator unic in aplicatia de raportare.
+												Acest atribut este folosit la identificarea randului raportat.
+												Daca un rand nu a fost raportat in SIUI, nu are completat acest atribut.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="medicalSheetNo" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numarul fisei de spitalizare</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="10"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="case_id" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul de identificare al cazului in aplicatia DRG</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="36"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="drgGroupCode" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Grupa DRG</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="drgRelativeValue" type="xs:double" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Valoarea relativa a DRG - ului corespunzator cazului</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="releasedCaseType" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+												Tipul de caz externat; poate lua valori de la 1 la 12, conform formularelor de decontare.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="stateCNAS" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+												Daca acest atribut are valoarea 1, randul raportat este validat de CAS
+												Daca are valoarea 0, randul raportat nu a fost validat de CAS.
+											</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="1"/>
+												<xs:enumeration value="0"/>
+												<xs:enumeration value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="stateSNSPMS" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+												Daca acest atribut are valoarea 1, randul raportat este validat de SNSPMS.
+												Daca are valoarea 0, randul raportat nu a fost validat de SNSPMS.
+											</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="1"/>
+												<xs:enumeration value="0"/>
+												<xs:enumeration value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ForeignPersons">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Lista fise pacienti straini</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ForeignPerson" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Fisa pacienti straini</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="error" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Definitia unei erori de raportare.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="code" type="xs:string" use="required">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Cod eroare</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="name" type="xs:string" use="optional">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Text eroare</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="errorType" use="required">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Flag care indica provenienţa erorii</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="0">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">eroare SIUI</xs:documentation>
+																</xs:annotation>
+															</xs:enumeration>
+															<xs:enumeration value="1">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">eroare SNSPMS</xs:documentation>
+																</xs:annotation>
+															</xs:enumeration>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="appID" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+												Identificator unic in aplicatia de raportare.
+												Acest atribut este folosit la identificarea randului raportat.
+												Daca un rand nu a fost raportat in SIUI, nu are completat acest atribut.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="medicalSheetNo" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numarul fisei de spitalizare</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="10"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="case_id" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul de identificare al cazului in aplicatia DRG</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="36"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="drgGroupCode" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Grupa DRG</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="drgRelativeValue" type="xs:double" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Valoarea relativa a DRG - ului corespunzator cazului</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="releasedCaseType" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+												Tipul de caz externat; poate lua valori de la 1 la 12, conform formularelor de decontare.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="stateCNAS" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+												Daca acest atribut are valoarea 1, randul raportat este validat de CAS.
+												Daca are valoarea 0, randul raportat nu a fost validat de CAS.
+											</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="1"/>
+												<xs:enumeration value="0"/>
+												<xs:enumeration value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="stateSNSPMS" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+												Daca acest atribut are valoarea 1, randul raportat este validat de SNSPMS.
+												Daca are valoarea 0, randul raportat nu a fost validat de SNSPMS.
+											</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="1"/>
+												<xs:enumeration value="0"/>
+												<xs:enumeration value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="AppKey" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Cheia de identificare a aplicaţiei de raportare (producator de software 3rd partry)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="providerCode" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul unic de identificare al furnizorului</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="insuranceHouseCode" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul casei de asigurări cu care furnizorul are contract (valoare din nomenclatorul de case de asigurări)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="reportType" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Tipul de raportare</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="1"/>
+						<xs:enumeration value="1">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Raportare DRG</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="2">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Raportare acut</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="3">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Raportare cronici</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="5">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Raportare servicii paliative</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="reportingStartDate" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de inceput a raportarii pentru care se doreste feedback.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="reportingEndDate" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de sfarsit a raportarii pentru care se doreste feedback.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

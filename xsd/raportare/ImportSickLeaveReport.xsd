@@ -1,0 +1,480 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="ImportSickLeaveReport">
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Raportare periodică pentru certificate de concediu medical</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="certificate" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Certificat de concediu medical prescris</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="AppID" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Identificatorul unic al înregistrării la nivelul aplicaţiei de raportare</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="40"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="correctionType" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Tip rectificare doar pentru raportarile rectificative; Se completează cu următoarele caractere: M – modificare sume, zile pentru certificatele raportate anterior; A- adăugare certificat medical nou; S – ştergere certificat medical existent în declaraţia anterioară</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="M">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Modificare</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="A">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Adăugare</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="S">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Ştergere</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="serialCode" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Seria certificatului medical</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="5"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="serialNo" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numărul certificatului medical</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="10"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="duplicate" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Specifică dacă certificatul medical este emis în duplicat (daca este 0 - nu este duplicat)</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:int">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="duplSerialCode" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Seria certificatului medical care a fost duplicat</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="5"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="duplSerialNo" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numărul certificatului medical care a fost duplicat</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="10"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="month" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Luna de valabilitate a certificatului medical</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:int">
+									<xs:minInclusive value="1"/>
+									<xs:maxInclusive value="12"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="year" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Anul de valabilitate certificatului medical</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:int">
+									<xs:minInclusive value="1750"/>
+									<xs:maxInclusive value="9999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="indemnCode" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Codul de indemnizaţie al certificatului medical</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="2"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="emergency" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Codul de urgenţă medico-chirurgicală</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="3"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="contagious" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Codul de boală contagioasă</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="2"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="certType" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Specifică dacă este concediu medical ambulator, internare sau externare. Dacă pe acelaşi CCM este internare şi externare se trece internare</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="AM">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Ambulator</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="IN">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Internare</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="EX">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Externare</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="issueDate" type="xs:date" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Data de acordare a certificatului medical</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="internValidFrom" type="xs:date" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Data de început a perioadei de concediu medical recomandat pentru certificatele emise pe perioada internării în spital</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="internValidTo" type="xs:date" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Data de sfârşit a perioadei de concediu medical recomandat pentru certificatele emise pe perioada internării în spital</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="internDiagCode" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Codul de diagnostic pentru perioada internării pacientului din spitale</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="3"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="internDiagType" type="diagnosticType" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Tipul de diagnostic pentru perioada internării pacientului din spitale</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="externValidFrom" type="xs:date" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Data de început a perioadei de concediu medical recomandat pentru certificatele emise la externarea din spital</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="externValidTo" type="xs:date" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Data de sfârşit a perioadei de concediu medical recomandat pentru certificatele emise la externarea din spital</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="externDiagCode" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Codul de diagnostic la externarea pacientului din spitale</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="3"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="externDiagType" type="diagnosticType" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Tipul de diagnostic la externarea pacientului din spitale</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="stencil" type="stencilType" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Codul de parafă al medicului emitent</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="pid" type="pidType" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">CNP-ul pacientului pentru care se recomandă concediul medical</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="cid" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numărul de asigurat al pacientului pentru care se recomandă concediul medical</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="20"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="cardNo" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numărul cardului electronic de asigurat al pacientului beneficiar al serviciului</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="16"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="signHash" type="xs:hexBinary" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Nu se mai foloseşte!</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="insuredOrgUnit" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Casa de asigurări la care este pacientul asigurat (codul din nomenclatorul de case de asigurări)</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="20"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="continuation" type="xs:boolean" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Specifică dacă certificatul medical este în continuare</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="expertNo" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numărul avizului medicului expert/specialist pentru cazurile precizate în norme când acesta este necesar</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="6"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="expertDate" type="xs:date" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Data aplicării parafei medicului expert/specialist</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="expertStencil" type="stencilType" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Codul de parafă al medicului expert/specialist</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="maternStencil" type="stencilType" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Codul de parafă al medicului specialist pentru cazul concediului pentru risc maternal</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="cheifStencil" type="stencilType" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Codul de parafă al medicului şef de secţie pentru internările în spital</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="childPid" type="pidType" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">CNP-ul copilului pentru care se recomandă concediul medical (cod indemnizatie 09)</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="childCid" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numărul de asigurat al copilului pentru care se recomandă concediul medical (cod indemnizatie 09)</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="20"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="isEmergencyRecommendation" type="xs:boolean" use="optional">
+							<xs:annotation>
+								<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+								<xs:documentation xml:lang="ro">Specifică dacă există recomandare emisă de către medicul care a asistat urgenta, in cazul certificatelor de concediu medical eliberate de medicul de familie pentru urgente medico-chirurgicale</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>	
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="AppKey" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">3rd partry software provider product key</xs:documentation>
+					<xs:documentation xml:lang="ro">Cheia de identificare a aplicatiei de raportare (producator de software 3rd partry)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="AppID" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Unique identifier of report</xs:documentation>
+					<xs:documentation xml:lang="ro">Identificator unic al raportarii</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="providerCode" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul unic de identificare al furnizorului</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="providerName" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Denumirea furnizorului (unităţii medicale) în numele căreia se emite cererea de validare</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="workPlace" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Punctul de lucru al furnizorului, de la care se efectueaza raportarea</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="insuranceHouse" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul casei de asigurări cu care furnizorul are contract (valoare din nomenclatorul de case de asigurări)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="conventionNo" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Numărul conveţiei de eliberare certificiate medicale în vigoare, pentru care se realizează raportarea</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="reportMonth" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Luna pentru care se realizează raportare (toate înregistrările trebuie sa se încadreze în luna/anul precizate)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="12"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="reportYear" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Anul pentru care se realizează raportare (toate înregistrările trebuie sa se încadreze în luna/anul precizate)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1750"/>
+						<xs:maxInclusive value="9999"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="correction" type="xs:boolean" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Specifică dacă raportarea este rectificativă</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="pidType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date folosit pentru CNP</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="13"/>
+			<xs:minLength value="13"/>
+			<xs:pattern value="[0-9]{13}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="stencilType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date folosit pentru parafa unui medic</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9A-Z]{5,6}">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Parafa poate fi formată numai din 5 sau 6 litere mari şi cifre</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="diagnosticType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Diagnostic type</xs:documentation>
+			<xs:documentation xml:lang="ro">Tipul dianostic</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">ACUT</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">SUBACUT</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">CRONIC</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

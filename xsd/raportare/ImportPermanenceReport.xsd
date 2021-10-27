@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="ImportPermanenceReport">
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Raportare pentru centrele de permanenţă</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="physician" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Datele de identificare ale medicului</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="permanence" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Lista serviciilor efectuate în intervalul de raportare</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="person" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Persoană către care s-au prestat servicii în centrul de permanenţă</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="pid" type="pidType" use="required">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">CNP-ul persoanei</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="cid">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Numărul de asigurat al persoanei</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="cardNo" use="optional">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Numărul cardului electronic de asigurat al pacientului</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="16"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="signHash" type="xs:hexBinary" use="optional">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Nu se mai foloseşte!</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="AppID" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Identificatorul unic la nivelul aplicaţiei al raportării</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="serviceDate" type="xs:date" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data efectuării gărzii în centrul de permanenţă</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="workedHours" type="xs:int" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numărul de ore de gardă în centrul de permanenţă</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numele medicului de familie</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="stencil" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Codul de parafă al medicului</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="6"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="assistant" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Datele de identificare ale asistentului</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="permanence" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Lista serviciilor efectuate în intervalul de raportare</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="AppID" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Identificatorul unic la nivelul aplicaţiei al raportării</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="serviceDate" type="xs:date" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data efectuării gărzii în centrul de permanenţă</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="workedHours" type="xs:int" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numărul de ore de gardă în centrul de permanenţă</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numele asistentului</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="pid" type="pidType" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">CNP-ul asistentului</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="physicianStencil" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Parafa medicului împreună cu care a efectuat permanenţa</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="cid">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numărul de asigurat al asistentului</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="20"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="AppKey" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Cheia de identificare a aplicaţiei de raportare (producator de software 3rd partry)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="AppID" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Identificatorul unic la nivelul aplicaţiei al raportării</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="contractNo" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Numărul contractului în vigoare</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="fiscalCode" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul fiscal al cabinetului medical sau CNP-ul medicului, dacă are contract individual</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="rapDate" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data raportării</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="startFrom" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de inceput a perioadei de raportare</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="endTo" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de sfârşit a perioadei de raprotare</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="invoiceNo" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Numar factura</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="invoiceDate" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data factura</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="invoiceValue" type="xs:decimal" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Valoare factura</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="pidType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date folosit pentru CNP</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="13"/>
+			<xs:minLength value="13"/>
+			<xs:pattern value="[0-9]{13}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

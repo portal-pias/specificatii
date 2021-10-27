@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/pel/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/pel/1.0" elementFormDefault="qualified" id="UpdateInvoicesPERequest">
+	<xs:annotation>
+		<xs:documentation xml:lang="ro">Structura unei cereri de completare a datelor de facturare pentru reţete eliberate în farmacie (prescripţie electronică)</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="CommonReportingTypesPE.xsd"/>
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de completare a datelor de facturare pentru reţete eliberate de farmacii</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:sequence>
+						<xs:element name="invoices" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Datele de identificare ale unei facturi</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="invoiceDetails" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Datele de identificare ale unui detaliu de factură (reţetă)</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="drugInvoiceDetails" maxOccurs="unbounded">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Datele de identificare ale detaliu de reţetă (medicament)</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:attribute name="drugRefID" type="xs:string" use="required">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Numărul unic de identificare al unui detaliu de reţetă, generat de sistem.</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+											<xs:attribute name="prescriptionRefID" use="required">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Numărul unic de înregistrare al reţetei, generat de sistem.</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="40"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+											<xs:attribute name="registerOrderNo" type="xs:integer" use="optional">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Numărul de ordine din borderou.</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="invoiceNo" type="xs:string" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Numărul facturii.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="invoiceDate" type="xs:date" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Data facturii.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

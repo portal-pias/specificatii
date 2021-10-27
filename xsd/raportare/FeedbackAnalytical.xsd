@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="FeedbackAnalytical">
+  <xs:element name="reportFeedback">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">
+        Raspunsul la o raportare.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Internship" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">
+              Raspunsul legat de o internare.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">
+                    Eroarea de validare a unei internari.
+                  </xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:long" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Identificator unic in aplicatia de raportare.
+                  Acest atribut este folosit la identificarea randului raportat.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Starea de validare a unei internari.
+                  Daca are valoarea "true", internarea a fost validata cu succes.
+                  Daca are valoarea "false", internarea are erori de validare.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="secondaryDiagnostic" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">
+              Raspunsul legat de un diagnostic secundar pentru o internare.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">
+                    Eroarea de validare a unui diagnostic secundar.
+                  </xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:long" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Identificator unic in aplicatia de raportare.
+                  Acest atribut este folosit la identificarea randului raportat.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Starea de validare a unui diagnostic secundar.
+                  Daca are valoarea "true", diagnosticul secundar a fost validat cu succes.
+                  Daca are valoarea "false", diagnosticul secundar are erori de validare.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Service" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">
+              Raspunsul legat de un serviciu spitalicesc efectuat pentru o internare.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">
+                    Eroarea de validare a unui serviciu spitalicesc efectuat.
+                  </xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:long" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Identificator unic in aplicatia de raportare.
+                  Acest atribut este folosit la identificarea randului raportat.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Starea de validare a unui serviciu spitalicesc efectuat.
+                  Daca are valoarea "true", serviciul spitalicesc efectuat a fost validat cu succes.
+                  Daca are valoarea "false", serviciul spitalicesc efectuat are erori de validare.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AnalyticalPrescription" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">
+              Raspunsul legat de o reteta emisa pentru o internare.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">
+                    Eroarea de validare a unei retete emise pentru o internare.
+                  </xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:long" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Identificator unic in aplicatia de raportare.
+                  Acest atribut este folosit la identificarea randului raportat.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Starea de validare a unei retete emise.
+                  Daca are valoarea "true", reteta emisa a fost validata cu succes.
+                  Daca are valoarea "false", reteta emisa are erori de validare.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AnalyticalHomeCare" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">
+              Raspunsul legat de o recomandare de ingrijire la domiciliu emisa pentru o internare.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">
+                    Eroarea de validare a unei recomandari de ingrijire la domiciliu emise pentru o internare.
+                  </xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:long" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Identificator unic in aplicatia de raportare.
+                  Acest atribut este folosit la identificarea randului raportat.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Starea de validare a unei recomandari de ingrijire la domiciliu emise.
+                  Daca are valoarea "true", recomandari de ingrijire la domiciliu emisa a fost validata cu succes.
+                  Daca are valoarea "false", recomandari de ingrijire la domiciliu emisa are erori de validare.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AnalyticalMedicalDevice" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">
+              Raspunsul legat de o recomandare de dispozitiv medical emisa pentru o internare.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">
+                    Eroarea de validare a unei recomandari de dispozitiv medical emise pentru o internare.
+                  </xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:long" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Identificator unic in aplicatia de raportare.
+                  Acest atribut este folosit la identificarea randului raportat.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">
+                  Starea de validare a unei recomandari de dispozitiv medical emise.
+                  Daca are valoarea "true", recomandari de dispozitiv medical emisa a fost validata cu succes.
+                  Daca are valoarea "false", recomandari de dispozitiv medical emisa are erori de validare.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="appID" type="xs:decimal" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">
+            Identificator unic in aplicatia de raportare.
+            Acest atribut este folosit la identificarea randului raportat.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="error">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">
+        Definitia elementelor de tip error.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:attribute name="code" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">
+            Codul erorii de validare.
+            Acest atribut are valori preluate din nomenclatorul Errors.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="errorType" use="optional">
+        <xs:annotation>
+            <xs:documentation xml:lang="ro">Tip de eroare in functie de severitate.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:unsignedInt">
+                <xs:enumeration value="0">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="ro">Avertizare</xs:documentation>
+                    </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value="1">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="ro">Eroare</xs:documentation>
+                    </xs:annotation>
+                </xs:enumeration>
+            </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

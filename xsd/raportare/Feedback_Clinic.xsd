@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="Feedback_Clinic">
+  <xs:element name="report">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">Definitia unui fisier de raspuns la o raportare de servicii clinice.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="clinicServices">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Lista tururor serviciilor clinice raportate intr-o anumita data si erorile pentru fiecare serviciu in caz ca acel serviciu nu a fost decontat de catre casa de asigurari.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="clinicService">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Raspunsul pentru un serviciu clinic raportat</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="errors">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="ro">Lista erorilor pentru care serviciu clinic nu a fost decontat de casa de asigurari.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="error">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="ro">Definitia unei erori de raportare</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType mixed="true">
+                              <xs:attribute name="code" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation xml:lang="ro">Codul erorii de raportare</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+							  <xs:attribute name="errorType" use="optional">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Tip de eroare in functie de severitate.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:unsignedInt">
+										<xs:enumeration value="0">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Averizare</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="1">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Eroare</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="AppID" type="xs:decimal" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Id-ul unic de identificare a serviciului clinic raportat.</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="state" type="xs:boolean" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Statusul serviciului care a fost raportat (0- serviciu a fost decontat fara erori; 1-serviciu nu a fost decontat) </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="laboratoriesServices">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Lista tururor serviciilor paraclinice raportate intr-o anumita data si erorile pentru fiecare serviciu in caz ca acel serviciu nu a fost decontat de catre casa de asigurari.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="laboratoriesService">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Raspunsul pentru un serviciu paraclinic raportat.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="errors">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="ro">Lista erorilor pentru care serviciul paraclinic nu a fost decontat de casa de asigurari.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="error">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="ro">Definitia unei erori de raportare</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType mixed="true">
+                              <xs:attribute name="code" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation xml:lang="ro">Codul erorii de raportare</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+							  <xs:attribute name="errorType" use="optional">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Tip de eroare in functie de severitate.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:unsignedInt">
+										<xs:enumeration value="0">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Averizare</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="1">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Eroare</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="AppID" type="xs:decimal" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Id-ul unic de identificare a serviciului paraclinic raportat.</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="state" type="xs:boolean" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Statusul serviciului care a fost raportat (0- serviciu a fost decontat fara erori; 1-serviciu nu a fost decontat) </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dailyServices" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Lista tuturor serviciilor spitalicesti raportate intr-o anumita data si erorile pentru fiecare serviciu in caz ca acel serviciu nu a fost decontat de catre casa de asigurari.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="dailyService">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Raspunsul pentru un serviciu spitalicesc raportat</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="errors">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="ro">Lista erorilor pentru care serviciu spitalicesc nu a fost decontat de casa de asigurari.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="error">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="ro">Definitia erorii de raportare</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType mixed="true">
+                              <xs:attribute name="code" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation xml:lang="ro">Codul erorii de raportare.</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="AppID" type="xs:decimal" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Id-ul unic de identificare a serviciului paraclinic raportat.</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="state" type="xs:boolean" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Statusul serviciului care a fost raportat (0- serviciu a fost decontat fara erori; 1-serviciu nu a fost decontat) </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="AppID" type="xs:decimal" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Id-ul unic de identificare a fisierului de raportare </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

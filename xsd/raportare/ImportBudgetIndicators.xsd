@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="ImportBudgetIndicators">
+  <xs:element name="report">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">
+        Lista indicatorilor bugetari.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="IndicatorsValues">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">
+              Valorile indicatorilor bugetari.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Indicator" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">
+                    Indicator bugetar raportat.
+                  </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="indicatorCode" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">
+                        Codul indicatorului bugetar. Acest atribut este preluat din nomenclatorul BudgetIndicators.
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="yearStipulation" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">
+                        Valoare anuala prevazuta.
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="trimStipulation" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">
+                        Valoare trimestruala prevazuta.
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="payments" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">
+                        Plati efectuate.
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="expenses" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">
+                        Cheltuieli efectuate.
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="AppID" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">
+												Identificator unic in aplicatia de raportare.
+												Acest atribut este folosit la identificarea randului raportat.
+											</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="hospitalCode" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">
+            Codul unitatii care face raportarea.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="20" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="fiscalCode" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">
+            Codul fiscal al unitatii care face raportarea.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="20" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="insuranceHouse" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">
+            Codul casei de asigurari cu care este incheiat contractul. Acest atribut este preluat din nomenclatorul OrgUnits.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="20" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="reportingDate" type="xs:date" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">
+            Data la care se face raportarea.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="startFrom" type="xs:date" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">
+            Data de inceput a perioadei pentru care se face raportarea.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="endTo" type="xs:date" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">
+            Data de sfarsit a perioadei pentru care se face raportarea.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AppID" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">
+						Identificator unic in aplicatia de raportare.
+						Acest atribut este folosit la identificarea raportului.
+					</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AppKey" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Cheia de identificare a aplicaţiei de raportare (producator de software 3rd partry)</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

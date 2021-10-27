@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:intf="http://webservices.utils.svapnt.siveco.ro"
+                  xmlns:apachesoap="http://xml.apache.org/xml-soap"
+                  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:tns1="http://hospitalFeedback.webservices.utils.svapnt.siveco.ro"
+                  xmlns:tns2="http://exceptions.webservices.utils.svapnt.siveco.ro"
+                  xmlns:impl="http://webservices.utils.svapnt.siveco.ro"
+                  targetNamespace="http://webservices.utils.svapnt.siveco.ro"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<wsdl:types>
+		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://hospitalFeedback.webservices.utils.svapnt.siveco.ro">
+			<xsd:import namespace="http://exceptions.webservices.utils.svapnt.siveco.ro" />
+			<xsd:element name="request" type="xsd:string" />
+			<xsd:element name="getHospitalReportingFeedbackReturn" type="xsd:string" />
+			<xsd:element name="fault" type="tns2:RaportariException" />
+		</xsd:schema>
+		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://exceptions.webservices.utils.svapnt.siveco.ro">
+			<xsd:complexType name="RaportariException">
+				<xsd:sequence>
+					<xsd:element name="errorCode" type="xsd:int" />
+					<xsd:element name="message" nillable="true" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="RaportariException">
+		<wsdl:part name="fault" element="tns1:fault" />
+	</wsdl:message>
+	<wsdl:message name="getHospitalReportingFeedbackResponse">
+		<wsdl:part name="getHospitalReportingFeedbackReturn" element="tns1:getHospitalReportingFeedbackReturn" />
+	</wsdl:message>
+	<wsdl:message name="getHospitalReportingFeedbackRequest">
+		<wsdl:part name="request" element="tns1:request" />
+	</wsdl:message>
+	<wsdl:portType name="HospitalFeedbackWS">
+		<wsdl:operation name="getHospitalReportingFeedback" parameterOrder="request">
+			<wsdl:input name="getHospitalReportingFeedbackRequest" message="impl:getHospitalReportingFeedbackRequest" />
+			<wsdl:output name="getHospitalReportingFeedbackResponse" message="impl:getHospitalReportingFeedbackResponse" />
+			<wsdl:fault name="RaportariException" message="impl:RaportariException" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="HospitalFeedbackWSSoapBinding" type="impl:HospitalFeedbackWS">
+		<wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getHospitalReportingFeedback">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getHospitalReportingFeedbackRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getHospitalReportingFeedbackResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault use="literal" name="RaportariException" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="HospitalFeedbackWS">
+		<wsdl:port name="HospitalFeedbackWS" binding="impl:HospitalFeedbackWSSoapBinding">
+			<wsdlsoap:address location="https://www.siui.ro/svapntws/services/HospitalFeedbackWS" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

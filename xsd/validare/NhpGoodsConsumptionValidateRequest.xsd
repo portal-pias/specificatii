@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NhpGoodsConsumptionValidateRequest"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.cnas.ro/siui/2.0"
+    xmlns="http://www.cnas.ro/siui/2.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de validare pentru consumuri de materiale pe PNS</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:sequence>
+						<xs:element name="person" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Datele de identificare ale pacientului</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="claimItemType">
+										<xs:sequence>
+										    <xs:element name="foreignPerson" type="foreignPersonType" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Date de identificare pentru persoană străină (dacă este cazul)</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="GoodsConsumption" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Consum de materiale sanitare</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:complexContent>
+														<xs:extension base="claimItemType">
+															<xs:sequence>
+																<xs:element name="Good" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation xml:lang="ro">Material sanitar</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="claimItemType">
+																				<xs:attribute name="code" type="xs:string" use="required">
+																					<xs:annotation>
+																						<xs:documentation xml:lang="ro">Codul materialului sanitar (valoare din nomenclatorul de materiale sanitare)</xs:documentation>
+																					</xs:annotation>
+																				</xs:attribute>
+																				<xs:attribute name="quantity" type="xs:double" use="required">
+																					<xs:annotation>
+																						<xs:documentation xml:lang="ro">Cantitatea</xs:documentation>
+																					</xs:annotation>
+																				</xs:attribute>
+																				<xs:attribute name="unitPrice" type="xs:double" use="required">
+																					<xs:annotation>
+																						<xs:documentation xml:lang="ro">Preţul unitar</xs:documentation>
+																					</xs:annotation>
+																				</xs:attribute>
+																				<xs:attribute name="vat" type="xs:double" use="required">
+																					<xs:annotation>
+																						<xs:documentation xml:lang="ro">Procentul TVA</xs:documentation>
+																					</xs:annotation>
+																				</xs:attribute>
+																			</xs:extension>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+															<xs:attribute name="code" type="xs:string" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul consumului</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="categoryCode" type="xs:string" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul categoriei</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="consumptionDate" type="xs:date" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Data consumului</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:extension>
+													</xs:complexContent>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="cnp" type="pidType" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">CNP-ul pacientului pentru cetăţeni români; pentru cetăţeni străini se completează cu 0000000000000</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="cid" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numărul de asigurat al pacientului</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="categoryCode" type="xs:string" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Caregoria PNS (terapia) pacientului</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="startDate" type="xs:date" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data intrarii pacientului in PNS</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="endDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data iesirii pacientului din PNS</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									    <xs:attribute name="personType" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Tipul pacientului.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+											  <xs:restriction base="xs:string">
+												<xs:enumeration value="ASIGURAT">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Asigurati</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="CARD_EURO">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Persoane titulare ale cardului european</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="CETA_CONV">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Cetatenii statelor cu care Romania a incheiat intelegeri, conventii sau protocoale internationale</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="FORM_CEE">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Beneficiari de regulament cee 1408/1971</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+											  </xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>											
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="nhp" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Numărul programului naţional de sănătate (valoarea codului din nomenclatorul PNS)</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

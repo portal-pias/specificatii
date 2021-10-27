@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:intf="http://webservices.utils.svapnt.siveco.ro"
+                  xmlns:apachesoap="http://xml.apache.org/xml-soap"
+                  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:tns1="http://exceptions.webservices.utils.svapnt.siveco.ro"
+                  xmlns:impl="http://webservices.utils.svapnt.siveco.ro"
+                  targetNamespace="http://webservices.utils.svapnt.siveco.ro"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<wsdl:types>
+		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://webservices.utils.svapnt.siveco.ro">
+			<xsd:import namespace="http://exceptions.webservices.utils.svapnt.siveco.ro" />
+			<xsd:element name="sendEInvoice">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="invoiceFile" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="sendEInvoiceResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sendEInvoiceReturn" type="xsd:long" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="fault" type="tns1:RaportariException" />
+			<xsd:element name="cancelEInvoice">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="serialCode" type="xsd:string" />
+						<xsd:element name="serialNumber" type="xsd:string" />
+						<xsd:element name="providerFiscalCode" type="xsd:string" />
+						<xsd:element name="cancellationDate" type="xsd:dateTime" />
+						<xsd:element name="cancellationReason" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="cancelEInvoiceResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="cancelEInvoiceReturn" type="xsd:int" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getEInvoiceClearingNote">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="serialCode" type="xsd:string" />
+						<xsd:element name="serialNumber" type="xsd:string" />
+						<xsd:element name="providerFiscalCode" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getEInvoiceClearingNoteResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element maxOccurs="unbounded" name="getEInvoiceClearingNoteReturn" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getEInvoice">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="serialCode" type="xsd:string" />
+						<xsd:element name="serialNumber" type="xsd:string" />
+						<xsd:element name="providerFiscalCode" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getEInvoiceResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element maxOccurs="unbounded" name="getEInvoiceReturn" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://exceptions.webservices.utils.svapnt.siveco.ro">
+			<xsd:complexType name="RaportariException">
+				<xsd:sequence>
+					<xsd:element name="errorCode" type="xsd:int" />
+					<xsd:element name="message" nillable="true" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="RaportariException">
+		<wsdl:part name="fault" element="impl:fault" />
+	</wsdl:message>
+	<wsdl:message name="getEInvoiceClearingNoteResponse">
+		<wsdl:part name="parameters" element="impl:getEInvoiceClearingNoteResponse" />
+	</wsdl:message>
+	<wsdl:message name="cancelEInvoiceResponse">
+		<wsdl:part name="parameters" element="impl:cancelEInvoiceResponse" />
+	</wsdl:message>
+	<wsdl:message name="cancelEInvoiceRequest">
+		<wsdl:part name="parameters" element="impl:cancelEInvoice" />
+	</wsdl:message>
+	<wsdl:message name="sendEInvoiceRequest">
+		<wsdl:part name="parameters" element="impl:sendEInvoice" />
+	</wsdl:message>
+	<wsdl:message name="getEInvoiceRequest">
+		<wsdl:part name="parameters" element="impl:getEInvoice" />
+	</wsdl:message>
+	<wsdl:message name="getEInvoiceResponse">
+		<wsdl:part name="parameters" element="impl:getEInvoiceResponse" />
+	</wsdl:message>
+	<wsdl:message name="sendEInvoiceResponse">
+		<wsdl:part name="parameters" element="impl:sendEInvoiceResponse" />
+	</wsdl:message>
+	<wsdl:message name="getEInvoiceClearingNoteRequest">
+		<wsdl:part name="parameters" element="impl:getEInvoiceClearingNote" />
+	</wsdl:message>
+	<wsdl:portType name="SiuiEInvoiceWS">
+		<wsdl:operation name="sendEInvoice">
+			<wsdl:input name="sendEInvoiceRequest" message="impl:sendEInvoiceRequest" />
+			<wsdl:output name="sendEInvoiceResponse" message="impl:sendEInvoiceResponse" />
+			<wsdl:fault name="RaportariException" message="impl:RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="cancelEInvoice">
+			<wsdl:input name="cancelEInvoiceRequest" message="impl:cancelEInvoiceRequest" />
+			<wsdl:output name="cancelEInvoiceResponse" message="impl:cancelEInvoiceResponse" />
+			<wsdl:fault name="RaportariException" message="impl:RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="getEInvoiceClearingNote">
+			<wsdl:input name="getEInvoiceClearingNoteRequest" message="impl:getEInvoiceClearingNoteRequest" />
+			<wsdl:output name="getEInvoiceClearingNoteResponse" message="impl:getEInvoiceClearingNoteResponse" />
+			<wsdl:fault name="RaportariException" message="impl:RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="getEInvoice">
+			<wsdl:input name="getEInvoiceRequest" message="impl:getEInvoiceRequest" />
+			<wsdl:output name="getEInvoiceResponse" message="impl:getEInvoiceResponse" />
+			<wsdl:fault name="RaportariException" message="impl:RaportariException" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SiuiEInvoiceWSSoapBinding" type="impl:SiuiEInvoiceWS">
+		<wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="sendEInvoice">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="sendEInvoiceRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="sendEInvoiceResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault use="literal" name="RaportariException" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="cancelEInvoice">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="cancelEInvoiceRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="cancelEInvoiceResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault use="literal" name="RaportariException" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getEInvoiceClearingNote">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getEInvoiceClearingNoteRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getEInvoiceClearingNoteResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault use="literal" name="RaportariException" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getEInvoice">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getEInvoiceRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getEInvoiceResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault use="literal" name="RaportariException" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SiuiEInvoiceWSService">
+		<wsdl:port name="SiuiEInvoiceWS" binding="impl:SiuiEInvoiceWSSoapBinding">
+			<wsdlsoap:address location="https://www.siui.ro/svapntws/services/SiuiEInvoiceWS" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

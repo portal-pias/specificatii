@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="SyncMedDevResolutionRequest">
+  <xs:element name="synchronization">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">Fişier de cerere pentru sincronizarea deciziilor pentru dispozitive medicale</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="deviceResolutions">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Lista deciziilor de acordare de dispozitive cerute</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="resolution" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Detalii decizie de acordare</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="resolutionNo" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Numărul deciziei</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="resolutionYear" type="xs:int" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Anul de emitere a deciziei</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="repairResolutions">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Lista deciziilor de reparaţie de dispozitive</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="resolution" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Detalii decizie de reparaţie</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="resolutionNo" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Numărul deciziei</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="resolutionYear" type="xs:int" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Anul de emitere a deciziei</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="medicalUnit" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Codul unităţii medicale (codul fiscal al furnizorului)</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="fiscalCode" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Codul fiscal al furnizorului</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="contractNo" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Numărul contractului</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="insuranceHouse" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Casa de asigurări emitentă (valaorea codului din nomenclatoruld e case de asigurări)</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="requestDate" type="xs:date" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Data cererii</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

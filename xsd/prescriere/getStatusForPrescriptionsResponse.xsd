@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/pel/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/pel/1.0" elementFormDefault="qualified" id="getStatusForPrescriptionsResponse">
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Farmacy prescrption status response</xs:documentation>
+			<xs:documentation xml:lang="ro">Status retete raportate pentru farmacii cu circuit deschis</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="prescriptions" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Prescription collection</xs:documentation>
+						<xs:documentation xml:lang="ro">Colecţie reţete eliberate</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="prescriptionDrugs" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">Prescription drugs collection</xs:documentation>
+									<xs:documentation xml:lang="ro">Colecţie medicamente eliberate pe reţetă</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="drugRefID" type="xs:long" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numărul unic de identificare al unui detaliu de reţetă, generat de sistem.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="drugInvoiceNo" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="en">Invoice number</xs:documentation>
+											<xs:documentation xml:lang="ro">Seria şi numărul facturii</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="drugInvoiceDate" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="en">Invoice date</xs:documentation>
+											<xs:documentation xml:lang="ro">Data facturii</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="series" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">Prescription series</xs:documentation>
+								<xs:documentation xml:lang="ro">Serie reţetă</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="no" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">Prescription number</xs:documentation>
+								<xs:documentation xml:lang="ro">Număr reţetă</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="issuedType" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">Partial or Integral issued</xs:documentation>
+								<xs:documentation xml:lang="ro">Reteta eliberata integral(1) sau partial(2)</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="receipt" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">Patient receipt number</xs:documentation>
+								<xs:documentation xml:lang="ro">Numărul chitanţei cu care a achitat pacientul</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="invoiceDate" type="xs:date" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">Invoice date</xs:documentation>
+								<xs:documentation xml:lang="ro">Data facturii</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="invoiceNo" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">Invoice number</xs:documentation>
+								<xs:documentation xml:lang="ro">Seria şi numărul facturii</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="20"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="fractionNo" type="xs:int" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Număr care indică a cata farmacie care eliberează medicamentul este cea curentă</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="prescriptionRefID" type="xs:long" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numărul unic de înregistrare al reţetei, generat de sistem.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="statusFlag" type="xs:boolean" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Flag care indica daca reteta este eligibila pentru raportarea finala.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="statusCode" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Motivele pentru care reteta nu se va muta in SIUI la raportare</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="1">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">reteta este anulata</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="2">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">reteta nu are completata datele de facturare</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="3">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">reteta nu contine cel putin un medicament eliberat de catre farmacia curenta</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="4">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">reteta a fost deja trimisa in SIUI</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="fiscalCode" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul fiscal al farmaciei</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="workPlace" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Punctul de lucru raportant</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="contractNo" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Numărul de contract al farmaciei</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="contractType" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Tipul de contract al farmaciei</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="insuranceHouse" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul casei de asigurări (cod din nomenclator)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="startFrom" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de început </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="endTo" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de sfârşit</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="prescriptionNo" type="xs:integer" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Numărul de reţete raportate</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

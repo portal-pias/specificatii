@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AmbulanceServicesValidateResponse"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.cnas.ro/siui/2.0"
+    xmlns="http://www.cnas.ro/siui/2.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="response">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Răspuns la validarea serviciilor de ambulanţă</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="responseType">
+					<xs:sequence>
+						<xs:element name="emergService" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Serviciu de urgență validat</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="transAutoService" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Serviciu de transport auto validat</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="transWaterService" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Serviciu de transport naval validat</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="transAirService" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Serviciu de transport aerian validat</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

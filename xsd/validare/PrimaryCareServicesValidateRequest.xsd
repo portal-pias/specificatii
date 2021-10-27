@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PrimaryCareServicesValidateRequest"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.cnas.ro/siui/2.0"
+    xmlns="http://www.cnas.ro/siui/2.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de validare pentru servicii de medicină primară</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:sequence>
+						<xs:element name="service" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Serviciu de imunizare raportat</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="serviceRequestType">
+										<xs:sequence>
+											<xs:element name="immunizations" minOccurs="0">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="immunization" type="immunizationType" minOccurs="0" maxOccurs="unbounded"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="immunization" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Serviciu de imunizare raportat</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="serviceRequestType">
+										<xs:attribute name="school" type="xs:boolean" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Specifică dacă imunizarea a fost efectuată în scoli prin program special</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="catagraph" type="xs:boolean" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Specifică dacă imunizarea nu a fost efectuată propriu-zis şi avem de a face cu o catagrafiere nematerializată</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="pregnancy" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Serviciu de imunizare raportat</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="serviceRequestType">
+										<xs:sequence>
+											<xs:element name="immunizations" minOccurs="0">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="immunization" type="immunizationType" minOccurs="0" maxOccurs="unbounded"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<!--
+						<xs:element name="permanence" type="serviceRequestType" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Serviciu prestat în centre de permanenţă</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						-->
+					</xs:sequence>
+					<xs:attribute name="stencil" type="stencilType" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Codul de parafă al medicului titular</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="immunizationType">
+		<xs:attribute name="AppID" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="code" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="packCode" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="date" type="xs:date" use="required"/>
+		<xs:attribute name="quantity" type="xs:short" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="serviceRequestType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date de bază folosit pentru servicii</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="claimItemType">
+				<xs:sequence>
+					<xs:element name="foreignPerson" type="foreignPersonType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Date de identificare pentru persoană străină (dacă este cazul)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="pid" type="pidType" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">CNP pacient (pentru cetăţeni români, se completează cu 0000000000000 pentru cetăţeni străini)</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="cid" use="optional">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Numărul de asigurat al pacientului</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="20" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="cardNo" use="optional">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Numărul cardului electronic de asigurat al pacientului</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="16"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="authorizedPersonCid" use="optional">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Codul de identificare al reprezentantului legal</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="20"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>	
+				<xs:attribute name="signature" type="xs:base64Binary" use="optional">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">
+							Semnătura digitală a pacientului in format Base64, utilizând certificatul de pe card.
+							Se completează numai dacă este completat şi numărul de card şi cuprinde atributele "cid|cardNo|date|code".
+							Dacă este completat authorizedPersonCid, atributele devin: "authorizedPersonCid|cardNo|date|code".
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="certificateDate" type="xs:date" use="optional">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Data adeverinţei de asigurat pentru cei care nu au card</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="signHash" type="xs:hexBinary" use="optional">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Nu se mai foloseşte!</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="code" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Codul serviciului efectuat (valoare codului din nomenclatorul de servicii medicale)</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="20"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="packCode" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Pachetul de servicii (valoarea codului din nomenclatorul de pachete de servicii medicale)</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="20"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="date" type="xs:date" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Data efectuării serviciului</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="stencil" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Parafa medicului care efectuează serviciul</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="10"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="quantity" type="xs:short" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Cantitatea se servicii efectuate (1)</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="personType" use="optional">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Tipul pacientului (Valoarea codului din nomenclatorul de tipuri de persoană)</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="20"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="diagnostic" use="optional">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Codul diagnosticului pentru consultaţiile în cazul episoadelor de boală acută. (Valoarea codului din nomenclatorul ICD10)</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="20"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="diagnosticType" use="optional">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Tipul de diagnosticului de mai sus.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="0">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">ACUT</xs:documentation>
+								</xs:annotation>
+							</xs:enumeration>
+							<xs:enumeration value="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">SUBACUT</xs:documentation>
+								</xs:annotation>
+							</xs:enumeration>
+							<xs:enumeration value="2">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">CRONIC</xs:documentation>
+								</xs:annotation>
+							</xs:enumeration>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

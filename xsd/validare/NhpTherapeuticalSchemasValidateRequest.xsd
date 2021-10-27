@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NhpTherapeuticalSchemasValidateRequest"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.cnas.ro/siui/2.0"
+    xmlns="http://www.cnas.ro/siui/2.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de validare pentru scheme terapeutice pe PNS</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:sequence>
+						<xs:element name="person" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Datele de identificare ale pacientului</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="claimItemType">
+										<xs:sequence>
+										    <xs:element name="foreignPerson" type="foreignPersonType" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Date de identificare pentru persoană străină (dacă este cazul)</xs:documentation>
+												</xs:annotation>
+											</xs:element>										
+											<xs:element name="TherapeuticalSchema" minOccurs="0" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Datele schemei terapeutice</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:complexContent>
+														<xs:extension base="claimItemType">
+															<xs:sequence>
+																<xs:element name="SchemaDrug" minOccurs="0" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation xml:lang="ro">Medicament de pe o schemă terapeutică</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="claimItemType">
+																				<xs:attribute name="code" type="xs:string" use="required">
+																					<xs:annotation>
+																						<xs:documentation xml:lang="ro">Codul medicamentului (valoare din nomenclatorul de medicamente)</xs:documentation>
+																					</xs:annotation>
+																				</xs:attribute>
+																				<xs:attribute name="type" type="xs:string" use="required">
+																					<xs:annotation>
+																						<xs:documentation xml:lang="ro">Tipul de schemă terapeutică</xs:documentation>
+																					</xs:annotation>
+																				</xs:attribute>
+																				<xs:attribute name="quantity" type="xs:double" use="required">
+																					<xs:annotation>
+																						<xs:documentation xml:lang="ro">Cantitatea</xs:documentation>
+																					</xs:annotation>
+																				</xs:attribute>
+																				<xs:attribute name="date" type="xs:date" use="required">
+																					<xs:annotation>
+																						<xs:documentation xml:lang="ro">Ziua in care trebuie eliberat medicamentul</xs:documentation>
+																					</xs:annotation>
+																				</xs:attribute>
+																			</xs:extension>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+															<xs:attribute name="code" type="xs:string" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul schemei terapeutice</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="categoryCode" type="xs:string" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul categoriei</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="diagCode" type="xs:string" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul diagnosticului</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="validFrom" type="xs:date" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Data de inceput a valabilităţii</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="validTo" type="xs:date" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:extension>
+													</xs:complexContent>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="cnp" type="pidType" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">CNP-ul pacientului pentru cetăţeni români; pentru cetăţeni străini se completează cu 0000000000000</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="cid" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numărul de asigurat al pacientului</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="categoryCode" type="xs:string" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Caregoria PNS (terapia) pacientului</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="startDate" type="xs:date" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data intrarii pacientului in PNS</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="endDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data iesirii pacientului din PNS</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>										
+									    <xs:attribute name="personType" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Tipul pacientului. Daca nu e completat se consideră implicit ASIGURAT.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+											  <xs:restriction base="xs:string">
+												<xs:enumeration value="ASIGURAT">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Asiguraţi</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="CARD_EURO">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Persoane titulare ale cardului european</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="CETA_CONV">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Cetăţenii statelor cu care Romania a încheiat întelegeri, convenţii sau protocoale internaţionale</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="FORM_CEE">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Beneficiari de regulament cee 1408/1971</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+											  </xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>										
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="nhp" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Numărul programului naţional de sănătate (valoarea codului din nomenclatorul PNS)</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

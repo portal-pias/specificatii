@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="FeedbackHomeCareReport">
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Răspuns la raportarea pentru furnizorii de servicii de îngrijire la domiciliu</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="homeCareServices">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Lista serviciilor de ingrijire la domiciliu raportate</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="homeCareService" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Serviciul de îngrijire validat</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="errors" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Erori aparute la procesare unui serviciu de ingrijire la domiciliu</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="error" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Eroare de validare la prelucrarea raportării</xs:documentation>
+														</xs:annotation>
+														<xs:complexType mixed="true">
+															<xs:attribute name="code" type="xs:string" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Cod eroare</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+                                                            <xs:attribute name="errorType" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Tip de eroare in functie de severitate.</xs:documentation>
+																</xs:annotation>
+																<xs:simpleType>
+																	<xs:restriction base="xs:unsignedInt">
+																		<xs:enumeration value="0">
+																			<xs:annotation>
+																				<xs:documentation xml:lang="ro">Averizare</xs:documentation>
+																			</xs:annotation>
+																		</xs:enumeration>
+																		<xs:enumeration value="1">
+																			<xs:annotation>
+																				<xs:documentation xml:lang="ro">Eroare</xs:documentation>
+																			</xs:annotation>
+																		</xs:enumeration>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="AppID" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Identificator unic in aplicatia de ingrijiri la domiciliu al unui serviciu</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="state" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Status serviciu, arata daca e valid serviciul</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="AppID" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

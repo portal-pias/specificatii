@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="ImportNhpBP">
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Raportarea cazurilor testate Babes-Papanicolaou efectuate in cadrul subprogramului de screening </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="PidListBP" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Borderou centralizator al cazurilor testate Babes-Papanicolaou</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="PidBP" minOccurs="1" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Caz testat Babes Papanicolaou</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="pid" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">CNP al femeii cu FS1 completat in integralitate</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="13"/>
+												<xs:minLength value="13"/>
+												<xs:pattern value="[0-9]{13}"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="cid" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numărul de asigurat al persoanei</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="cardNo" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numărul cardului electronic de asigurat al pacientului</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="16"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="signHash" type="xs:hexBinary" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Nu se mai foloseşte!</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="serialFS1" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Seria formularului</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="priceList" type="xs:double" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Tarif/caz testat Babes-Papanicolaou( lei )</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="totalValue" type="xs:double" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Total suma de decontat( lei )</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="appID" type="xs:unsignedLong" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="provider" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Denumirea furnizorului de servicii</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="fiscalCode" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul fiscal al furnizorului de servicii</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="contractNo" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Numărul de contract valabil la data raportării</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="contractYear" type="xs:unsignedInt" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Anul contractului</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="insuranceHouse" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Casa de asigurări cu care are contract furnizorul</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Nhp" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul subprogramului de screening - pentru cazurile testate Babes-Papanicolaou se raporteaza DPA_ONCO_BP</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="reportingDate" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data raportării</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="startFrom" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de început a raportării</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="endTo" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de sfârşit a raportării</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="appKey" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Cheia de identificare a aplicaţiei de raportare (producator de software 3rd partry)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="appID" type="xs:unsignedLong" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Identificatorul unic al raportării</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="invoiceNo" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Invoice number</xs:documentation>
+					<xs:documentation xml:lang="ro">Numar factura spital</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="invoiceDate" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Invoice date</xs:documentation>
+					<xs:documentation xml:lang="ro">Data factura spital</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="invoiceValue" type="xs:decimal" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Invoice amount</xs:documentation>
+					<xs:documentation xml:lang="ro">Valoare factura spital</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

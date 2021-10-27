@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="ImportAcut">
+	<xs:annotation>
+		<xs:documentation xml:lang="ro">Definitia unui fisier de raportare pentru acute.</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="HospitalCommonTypes.xsd"/>
+	<xs:element name="report">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Acute">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">
+              Lista informatiilor despre cazurile acute.
+            </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Acut" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Definitia rand de acute raportat.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="AppID" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+												Identificator unic in aplicatia de raportare.
+												Acest atribut este folosit la identificarea randului raportat.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="hospitalDeptCode" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul sectiei de spital.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="realisedCasesNo" type="xs:integer" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numarul de cazuri externate si raportate catre SNSPMS.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="invalidatedCasesNo" type="xs:integer" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numarul de cazuri externate, raportate si invalidate de SNSPMS.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="personType" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul tipului de persoana pentru care sunt valabile informatiile raportate (Asigurata, Boli profesionale, Vatamari corporale, Card European, Asigurari internationale.)</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="ASIGURAT">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Asigurati</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="ACCI_PROF">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Accidente de munca sau boli profesionale</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="PREJ_DAUN">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Accidente rutiere sau vatamari corporale</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="CARD_EURO">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Persoane titulare ale cardului european</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="CETA_CONV">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Cetatenii statelor cu care Romania a incheiat intelegeri, conventii sau protocoale internationale</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="FORM_CEE">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Beneficiari de regulament cee 1408/1971</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="fromDate" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data de inceput a perioadei raportate</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="toDate" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data de sfarsit a perioadei raportate</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="transferredCasesNo" type="xs:integer" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Nr. cazuri externate (reinternate şi transferate)</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="transferredCasesApproved" type="xs:integer" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Nr. cazuri externate (reinternate şi transferate) aprobate</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="AcutPrescriptions" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Lista retetelor prescrise.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AcutPrescription" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Reteta prescrisa.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="Prescription">
+											<xs:sequence>
+												<xs:element name="AcutPrescDrug" type="PrescDrug" maxOccurs="unbounded">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Medicament prescris pe reteta.</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="AcutHomeCare" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Lista cu recomandarile de ingrijiri la domiciliu.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="HomeCare">
+								<xs:sequence>
+									<xs:element name="AcutServices" type="Services" minOccurs="0" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Recomandare de ingrijire la domiciliu.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="AcutMedicalDevices" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Lista recomandarilor de dispozitive medicale prescrise.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AcutMedicalDevice" type="MedicalDevice" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Recomandare de dispozitiv medical prescris.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="AcutMedicalNotes" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Lista biletelor de trimitere prescrise.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AcutMedicalNote" type="MedicalNote" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Bilet de trimitere prescris.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ForeignPersons" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Lista persoanelor straine.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ForeignPerson" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Persoana straina.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="ForeignPerson">
+											<xs:sequence>
+												<xs:element name="ForeignProcedure" type="ForeignProcedure" minOccurs="0" maxOccurs="unbounded">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Serviciile medicale efectuate persoanei staine</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="ForeignExpenses" type="ForeignExpenses" minOccurs="0"/>
+											</xs:sequence>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PidLists">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Lista CNP-uri care se incadreaza la situatii exceptionale</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="PidList" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Persoane care se incadreaza la situatii exceptionale</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="PidList">
+											<xs:sequence>
+												<xs:element name="Procedure" type="Procedure" minOccurs="0" maxOccurs="unbounded">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Proceduri efectuate</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="Expenses" type="Expenses" minOccurs="0"/>
+											</xs:sequence>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="OtherSuppliers">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Lista CNP-uri care au fost tratate la alti furnizori</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="OtherSupplier" type="OtherSupplier" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">CNP care a fost tratat la alti furnizori</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="AppKey" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Cheia de identificare a aplicaţiei de raportare (producator de software 3rd partry)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="AppID" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">
+						Identificator unic in aplicatia de raportare.
+						Acest atribut este folosit la identificarea raportarii.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="hospitalCode" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul unitatii care face raportarea.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="fiscalCode" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul fiscal al unitatii care face raportarea.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="insuranceHouse" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">
+            Codul casei de asigurari cu care este contractul. Acest atribut este preluat din nomenclatorul OrgUnits.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="contractNo" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Numarul contractului pentru care se face raportarea.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="reportingDate" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data raportării.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="startFrom" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de început a perioadei raportate.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="endTo" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de sfârşit a perioadei raportate.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="invoiceNo" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Invoice number</xs:documentation>
+					<xs:documentation xml:lang="ro">Numar factura</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="invoiceDate" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Invoice date</xs:documentation>
+					<xs:documentation xml:lang="ro">Data factura</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="invoiceValue" type="xs:decimal" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Invoice amount</xs:documentation>
+					<xs:documentation xml:lang="ro">Valoare factura</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

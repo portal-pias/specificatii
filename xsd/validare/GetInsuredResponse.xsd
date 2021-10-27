@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="GetInsuredResponse"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.cnas.ro/siui/2.0"
+    xmlns="http://www.cnas.ro/siui/2.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:element name="insuredResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="insured">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="categories" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Lista de categorii</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="category" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Categoria pacientului</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="code" type="xs:string" use="required">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Codul categoriei de asigurat (valoare din nomenclatorul de categorii)</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="validFrom" type="xs:date" use="optional">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Data de început a valabilităţii</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="validTo" type="xs:date" use="optional">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="states" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Lista de stărilor de asigurare ale persoanei (valori folosite la reţete)</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="state" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Starea de asigurare a persoanei</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="code" type="xs:string" use="required">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Codul stării de asigurat (valoarea codului din nomenclatorul de stări)</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="validFrom" type="xs:date" use="optional">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Data de început a valabilităţii</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="validTo" type="xs:date" use="optional">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="pid" type="pidType" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Codul numeric personal al pacientului (CNP)</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="cid" type="cidType" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numărul de asigurat al pacientului (CID)</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="state" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Starea de asigurat a pacientului</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:short">
+									<xs:enumeration value="-1">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Eroare</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="0">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Inexistent</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="1">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Asigurat</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="2">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Neasigurat</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="3">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Decedat</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="pidType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date folosit pentru CNP</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="13"/>
+			<xs:minLength value="13"/>
+			<xs:pattern value="[0-9]{13}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cidType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date folosit pentru CID</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+			<xs:minLength value="20"/>
+			<xs:pattern value="[0-9]{20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

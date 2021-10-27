@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ElectronicInvoice"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.cnas.ro/siui/2.0"
+    xmlns="http://www.cnas.ro/siui/2.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<!-- Structura facturii electronice -->
+	<xs:element name="invoice">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Structura facturii electronice pentru CNAS</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="invoiceHeaderType">
+					<xs:sequence>
+						<xs:element name="provider">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Datele de identificare ale furnizorului</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="invoicePartnerType">
+										<xs:attribute name="capital" type="xs:decimal" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Capitalul social al furnizorului</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="signature" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numele reprezentantului legal al furnizorului</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="100" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="stencilNo" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Codul de parafă al medicului</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="[0-9A-Z]{5,6}">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Parafa poate fi formată numai din 5 sau 6 litere mari şi cifre</xs:documentation>
+														</xs:annotation>
+													</xs:pattern>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="insurer">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Datele de identificare ale casei de asigurări</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="invoicePartnerType">
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="item" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Articol facturat (unul sau mai multe)</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="invoiceItemType">
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!-- Structura tipurilor de bază -->
+	<xs:complexType name="invoiceHeaderType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date de bază folosit pentru antentul unei facturi</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="serialCode" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Seria facturii (dacă e cazul)</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="serialNumber" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Numărul de identificare al facturii (exclude seria)</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="issueDate" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de emitere a facturii</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dueDate" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data scadenţei</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="startDate" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de început a perioadei de facturare</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="endDate" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de sfârşit a perioadei de facturare</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="orgUnitCode" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Codul case de asigurări (Valoarea codului din nomenclatorul de case de asigurări)</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="30" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="providerCode" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Identificatorul unic al furnizorului emitent al facturii (codul de partener din SIUI)</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="providerCategory" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Categoria furnizorului emitent al facturii</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="contractNumber" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Numărul de contract al furnizorului</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="40" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="contractType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Tipul de contract al furnizorului</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="contractDate" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data încheierii contractului furnizorului</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="totalAmmount" type="xs:decimal" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Valoarea totală a facturii (fără TVA)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vatAmmount" type="xs:decimal" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Valoarea TVA aferentă facturii</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isFinal" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Factura este finală (nu se mai poate modifica)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isSigned" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Factura este semnată electronic (se foloseşte doar pe răspuns)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cancellationDate" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data anulării facturii electronice</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cancellationReason" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Motivul anulării facturii electronice</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="255" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="isRegularization" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Specifică dacă este factură de regularizare</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="invoicePartnerType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date de bază folosit pentru un articol facturat</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="fiscalCode" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Codul fiscal al persoanei juridice</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="companyName" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Denumirea persoanei juridice (aşa cum apare pe factură)</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="100" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="registerNo" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Numărul de înregistrare în Registrul Comerţului</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="bankName" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Denumirea băncii</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="40" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="bankAccount" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Contul bancar (IBAN)</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="24" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="invoiceItemType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date de bază folosit pentru un articol facturat</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="code" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Codul articolului facturat (valoare din nomenclatorul COM_ITEMS)</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="description" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Descrierea articolului facturat (aşa cum apare pe factură)</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="200" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="unitName" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Unitatea de măsură a articolului</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="unitPrice" type="xs:decimal" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Preţul unitar al articolului facturat</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="quantity" type="xs:decimal" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Cantitatea facturată</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ammount" type="xs:decimal" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Valoarea articolului facturat (fără TVA)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vat" type="xs:decimal" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">TVA aferent articolului facturat</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

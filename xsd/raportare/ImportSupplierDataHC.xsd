@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="ImportSupplierDataHC">
+	<xs:include schemaLocation="ImportSupplierDataCommonTypes.xsd" />
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Lista detaliilor necesare contractării pentru furnizori de servicii de îngrijire la domiciliu</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Address" type="AddressType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Adresa de contractare a furnizorului</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Documents" type="DocumentsType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Documentele de contractare ale furnizorului</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="REPLG" type="REPLGType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Reprezentantul legal al furnizorului</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="BankAccount" type="BankAccountType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Conturile bancare ale furnizorului</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Employee" type="EmployeeType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Angajaţii furnizorului declaraţi pe contract</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="fiscalCode" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul fiscal (sau CNP, după caz) al furnizorului pentru care se transmit datele de contractare</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="insuranceHouse" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul casei de asigurări cu care furnizorul are contract (valoare preluată din nomenclatorul de case de asigurări)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="reportingDate" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data raportării datelor de contractare</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="appId" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Identificator unic în aplicaţia de raportare. Acest atribut este folosit la identificarea raportării.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="appKey" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Cheia de identificare a aplicaţiei de raportare (producător de software 3rd partry)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="supplierType" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Tipul de furnizor pentru care se face contractarea</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

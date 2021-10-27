@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="ImportNhpOrderReport">
+  <xs:element name="order">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">Raportare de comenzi de medicamente şi materiale sanitare pentru PNS</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="items" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Lista articolelor raportate</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="drug" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Medicament raportat</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="no" type="xs:unsignedInt" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Număr</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="code" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Codul medicamentului (valoare din nomenclatorul de medicamente)</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Denumirea medicamentului (denumirea asociată codului din nomenclatorul de medicamente)</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="orderedQuantity" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Cantiatea comandată</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="reportedStock" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Stocul existent raportat</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="ambulatory" type="xs:boolean" use="optional">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Este comanndă în ambulatoriu?</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="AppID" type="xs:long" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="activeSubstance" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Substanţă activă</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="no" type="xs:unsignedInt" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Număr</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="code" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Codul substanţei active (valoare din nomenclatorul de substanţe active)</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Denumirea substanţei active (valoare corespunzătaore codului din nomenclatorul de substanţe active)</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="orderedQuantity" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Cantitatea comandată</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="reportedStock" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Stocul existent raportat</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="ambulatory" type="xs:boolean" use="optional">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Este comanndă în ambulatoriu?</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="AppID" type="xs:long" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="medicalDevice" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Dispozitiv medical</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="no" type="xs:unsignedInt" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Număr</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="code" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Codul dispozitivului medical (valoare din nomenclatorul de dispozitive medicale)</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Denumirea dispozitivului medical (valoare corespunzătaore codului din nomenclatorul de dispozitive medicale)</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="orderedQuantity" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Cantitatea comandată</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="reportedStock" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Stocul existent raportat</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="ambulatory" type="xs:boolean" use="optional">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Este comanndă în ambulatoriu?</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="AppID" type="xs:long" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="medicalTest" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Test medical</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="no" type="xs:unsignedInt" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Număr</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="code" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Codul testului medical (valoare din nomenclatorul de teste medicale)</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Denumirea testului medical (valoare corespunzătaore codului din nomenclatorul de teste medicale)</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="orderedQuantity" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Cantitatea comandată</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="reportedStock" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Stocul existent raportat</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="ambulatory" type="xs:boolean" use="optional">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Este comanndă în ambulatoriu?</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="AppID" type="xs:long" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="good" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Materiale sanitare</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="no" type="xs:unsignedInt" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Număr</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="code" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Codul consumabilului (valoare din nomenclatorul de dispozitive medicale)</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Denumirea consumabilului (valoare corespunzătaore codului din nomenclatorul de dispozitive medicale)</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="orderedQuantity" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Cantitatea comandată</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="reportedStock" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Stocul existent raportat</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="ambulatory" type="xs:boolean" use="optional">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Este comanndă în ambulatoriu?</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="AppID" type="xs:long" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="NhpCode" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Numărul programului naţional de sănătate pentru care se face raportarea</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="NhpName" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Denumirea programului naţional de sănătate pentru care se face raportarea</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="medicalServiceProviderCUI" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">CUI-ul furnizorului de </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="medicalServiceProviderName" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Denumirea furnizorului de servicii medicale</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="orderDate" type="xs:date" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Data comenzii raportate</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="orderMonth" type="xs:unsignedInt" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Luna pentru care se face comandă</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="orderYear" type="xs:unsignedInt" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Anul pentru care se face comandă</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="orderType" type="xs:unsignedInt" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Tipul comenzii</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="orderNo" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Numărul comenzii</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ContractNo" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Numărul contractului între furnizor şi casa de asigurări</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ContractYear" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Anul de valabilitate a contractului</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="nomenclatorVersion" type="xs:unsignedInt" use="optional">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Versiunea nomenclatoarelor la data raportării</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

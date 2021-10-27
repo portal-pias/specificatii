@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://specialFiles.webservices.utils.svapnt.siveco.ro" xmlns:intf="http://specialFiles.webservices.utils.svapnt.siveco.ro" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://specialFiles.utils.commonSIUI.svapnt.siveco.ro" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<schema targetNamespace="http://specialFiles.utils.commonSIUI.svapnt.siveco.ro" xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+			<complexType name="FormValidateException">
+				<sequence>
+					<element name="code" nillable="true" type="soapenc:string"/>
+					<element name="message" nillable="true" type="soapenc:string"/>
+				</sequence>
+			</complexType>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="getJustificationTreatmentFormRequest">
+		<wsdl:part name="formTypeCode" type="soapenc:string"/>
+		<wsdl:part name="providerCode" type="soapenc:string"/>
+		<wsdl:part name="cid" type="soapenc:string"/>
+		<wsdl:part name="fromDate" type="xsd:dateTime"/>
+		<wsdl:part name="toDate" type="xsd:dateTime"/>
+		<wsdl:part name="refID" type="soapenc:string"/>
+	</wsdl:message>
+	<wsdl:message name="getJustificationTreatmentFormResponse">
+		<wsdl:part name="getJustificationTreatmentFormReturn" type="soapenc:string"/>
+	</wsdl:message>
+	<wsdl:message name="sendTreatmentFormResponse">
+		<wsdl:part name="sendTreatmentFormReturn" type="soapenc:string"/>
+	</wsdl:message>
+	<wsdl:message name="sendTreatmentFormRequest">
+		<wsdl:part name="formTypeCode" type="soapenc:string"/>
+		<wsdl:part name="providerCode" type="soapenc:string"/>
+		<wsdl:part name="cid" type="soapenc:string"/>
+		<wsdl:part name="xmlForm" type="soapenc:string"/>
+	</wsdl:message>
+	<wsdl:message name="FormValidateException">
+		<wsdl:part name="fault" type="tns1:FormValidateException"/>
+	</wsdl:message>
+	<wsdl:message name="interruptTreatmentFormRequest">
+		<wsdl:part name="formTypeCode" type="soapenc:string"/>
+		<wsdl:part name="providerCode" type="soapenc:string"/>
+		<wsdl:part name="stencilNo" type="soapenc:string"/>
+		<wsdl:part name="cid" type="soapenc:string"/>
+		<wsdl:part name="refID" type="soapenc:string"/>
+	</wsdl:message>
+	<wsdl:message name="interruptTreatmentFormResponse">
+		<wsdl:part name="interruptTreatmentFormReturn" type="soapenc:string"/>
+	</wsdl:message>
+	<wsdl:message name="confirmTreatmentFormResponse">
+		<wsdl:part name="confirmTreatmentFormReturn" type="soapenc:string"/>
+	</wsdl:message>
+	<wsdl:message name="interruptTreatmentFormWithReasonResponse">
+		<wsdl:part name="interruptTreatmentFormWithReasonReturn" type="soapenc:string"/>
+	</wsdl:message>
+	<wsdl:message name="interruptTreatmentFormWithReasonRequest">
+		<wsdl:part name="formTypeCode" type="soapenc:string"/>
+		<wsdl:part name="providerCode" type="soapenc:string"/>
+		<wsdl:part name="stencilNo" type="soapenc:string"/>
+		<wsdl:part name="cid" type="soapenc:string"/>
+		<wsdl:part name="refID" type="soapenc:string"/>
+		<wsdl:part name="interruptionReasonCode" type="soapenc:string"/>
+	</wsdl:message>
+	<wsdl:message name="confirmTreatmentFormRequest">
+		<wsdl:part name="formTypeCode" type="soapenc:string"/>
+		<wsdl:part name="providerCode" type="soapenc:string"/>
+		<wsdl:part name="stencilNo" type="soapenc:string"/>
+		<wsdl:part name="cid" type="soapenc:string"/>
+		<wsdl:part name="refID" type="soapenc:string"/>
+	</wsdl:message>
+	<wsdl:portType name="SiuiTreatmentFormWS">
+		<wsdl:operation name="sendTreatmentForm" parameterOrder="formTypeCode providerCode cid xmlForm">
+			<wsdl:input message="impl:sendTreatmentFormRequest" name="sendTreatmentFormRequest"/>
+			<wsdl:output message="impl:sendTreatmentFormResponse" name="sendTreatmentFormResponse"/>
+			<wsdl:fault message="impl:FormValidateException" name="FormValidateException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getJustificationTreatmentForm" parameterOrder="formTypeCode providerCode cid fromDate toDate refID">
+			<wsdl:input message="impl:getJustificationTreatmentFormRequest" name="getJustificationTreatmentFormRequest"/>
+			<wsdl:output message="impl:getJustificationTreatmentFormResponse" name="getJustificationTreatmentFormResponse"/>
+			<wsdl:fault message="impl:FormValidateException" name="FormValidateException"/>
+		</wsdl:operation>
+		<wsdl:operation name="confirmTreatmentForm" parameterOrder="formTypeCode providerCode stencilNo cid refID">
+			<wsdl:input message="impl:confirmTreatmentFormRequest" name="confirmTreatmentFormRequest"/>
+			<wsdl:output message="impl:confirmTreatmentFormResponse" name="confirmTreatmentFormResponse"/>
+			<wsdl:fault message="impl:FormValidateException" name="FormValidateException"/>
+		</wsdl:operation>
+		<wsdl:operation name="interruptTreatmentForm" parameterOrder="formTypeCode providerCode stencilNo cid refID">
+			<wsdl:input message="impl:interruptTreatmentFormRequest" name="interruptTreatmentFormRequest"/>
+			<wsdl:output message="impl:interruptTreatmentFormResponse" name="interruptTreatmentFormResponse"/>
+			<wsdl:fault message="impl:FormValidateException" name="FormValidateException"/>
+		</wsdl:operation>
+		<wsdl:operation name="interruptTreatmentFormWithReason" parameterOrder="formTypeCode providerCode stencilNo cid refID interruptionReasonCode">
+			<wsdl:input message="impl:interruptTreatmentFormWithReasonRequest" name="interruptTreatmentFormWithReasonRequest"/>
+			<wsdl:output message="impl:interruptTreatmentFormWithReasonResponse" name="interruptTreatmentFormWithReasonResponse"/>
+			<wsdl:fault message="impl:FormValidateException" name="FormValidateException"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SiuiTreatmentFormWSSoapBinding" type="impl:SiuiTreatmentFormWS">
+		<wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="sendTreatmentForm">
+			<wsdlsoap:operation soapAction=""/>
+			<wsdl:input name="sendTreatmentFormRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" use="encoded"/>
+			</wsdl:input>
+			<wsdl:output name="sendTreatmentFormResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" use="encoded"/>
+			</wsdl:output>
+			<wsdl:fault name="FormValidateException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="FormValidateException" namespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" use="encoded"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getJustificationTreatmentForm">
+			<wsdlsoap:operation soapAction=""/>
+			<wsdl:input name="getJustificationTreatmentFormRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" use="encoded"/>
+			</wsdl:input>
+			<wsdl:output name="getJustificationTreatmentFormResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" use="encoded"/>
+			</wsdl:output>
+			<wsdl:fault name="FormValidateException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="FormValidateException" namespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" use="encoded"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="confirmTreatmentForm">
+			<wsdlsoap:operation soapAction=""/>
+			<wsdl:input name="confirmTreatmentFormRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" use="encoded"/>
+			</wsdl:input>
+			<wsdl:output name="confirmTreatmentFormResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" use="encoded"/>
+			</wsdl:output>
+			<wsdl:fault name="FormValidateException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="FormValidateException" namespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" use="encoded"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="interruptTreatmentForm">
+			<wsdlsoap:operation soapAction=""/>
+			<wsdl:input name="interruptTreatmentFormRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" use="encoded"/>
+			</wsdl:input>
+			<wsdl:output name="interruptTreatmentFormResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" use="encoded"/>
+			</wsdl:output>
+			<wsdl:fault name="FormValidateException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="FormValidateException" namespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" use="encoded"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="interruptTreatmentFormWithReason">
+			<wsdlsoap:operation soapAction=""/>
+			<wsdl:input name="interruptTreatmentFormWithReasonRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" use="encoded"/>
+			</wsdl:input>
+			<wsdl:output name="interruptTreatmentFormWithReasonResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" use="encoded"/>
+			</wsdl:output>
+			<wsdl:fault name="FormValidateException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="FormValidateException" namespace="http://specialFiles.webservices.utils.svapnt.siveco.ro" use="encoded"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SiuiTreatmentFormWSService">
+		<wsdl:port binding="impl:SiuiTreatmentFormWSSoapBinding" name="SiuiTreatmentFormWS">
+			<wsdlsoap:address location="https://www.siui.ro/svapntws/services/SiuiTreatmentFormWS"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="FeedbackSickLeaveReport">
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Răspuns la raportarea pentru certificate de concediu medical</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="certificate" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Răspuns la validarea unui certificat de concediu medical</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="errors" type="errorsCollection" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Lista de erori detectate la prelucrarea raportării</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="AppID" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Identificatorul unic la nivelul aplicaţiei al înregistrării</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="serialCode" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Seria certificatului medical</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="5"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="serialNo" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numărul certificatului medical</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="10"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="state" type="xs:boolean" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Indică dacă înregistrarea raportată a fost validată sau nu</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="AppID" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Identificatorul unic al raportării (unic la nivel de aplicaţie)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="reportMonth" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Luna pentru care s-a realizat raportarea </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="12"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="reportYear" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Anul pentru care s-a realizat raportarea </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1750"/>
+						<xs:maxInclusive value="9999"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="errorType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Definiţia tipului de date folosit pentru erorile de raportare (elementul poate conţine ca text inclus comentariile operatorilor SIUI)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="code" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Codul erorii (valoare din nomenclatorul de erori SIUI)</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="errorsCollection">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Definiţia tipului de date folosit pentru lista de erori</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="error" type="errorType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Eroare de raportare (element de tip)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

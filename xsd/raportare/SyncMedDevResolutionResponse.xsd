@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="SyncMedDevResolutionResponse">
+  <xs:element name="synchronization">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">Fişier de răspuns pentru sincronizarea deciziilor pentru dispozitive medicale</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="pacients" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Lista pcienţilor de pe deciziilor cerute</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pacient" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Datele pacientului</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="address" type="addressType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="ro">Adresa pacientului</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="pid" type="pidType" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Codul numeric personal al pacientului</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+									<xs:attribute name="cid" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numărul de asigurat al pacientului</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+                  <xs:attribute name="firstName" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Prenumele persoanei</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="lastName" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Numele de familie persoanei</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="birthDate" type="xs:date" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Data naşterii</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="placeOfBirth" type="xs:string">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Locul naşterii (valoarea codului din catalogul de localităţi)</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="gender" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Sexul pacientului</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="1">
+                          <xs:annotation>
+                            <xs:documentation xml:lang="ro">MASCULIN</xs:documentation>
+                          </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="2">
+                          <xs:annotation>
+                            <xs:documentation xml:lang="ro">FEMININ</xs:documentation>
+                          </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="3">
+                          <xs:annotation>
+                            <xs:documentation xml:lang="ro">BISEXUAL</xs:documentation>
+                          </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="4">
+                          <xs:annotation>
+                            <xs:documentation xml:lang="ro">NECUNOSCUT</xs:documentation>
+                          </xs:annotation>
+                        </xs:enumeration>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="unitOfPayment" type="xs:string">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Casa de asigurări (valoarea codului din nomenclatorul de case de asigurări)</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="bloodType" type="xs:string">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Grupa sanguină</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="bloodRH" type="xs:string">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">RH sanguin</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="deviceResolutions">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Lista deciziilor de acordare de dispozitive</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="resolution" type="resolutionType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Detalii decizie de acordare</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="repairResolutions">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Lista deciziilor de reparaţie de dispozitive</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="resolution" type="resolutionType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Detalii decizie de reparaţie</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="resolutionType">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">Definitia tipului de date folosit pentru decizii</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="resolutionNo" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Număr decizie</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="requestNo" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Număr cerere</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="resolutionYear" type="xs:int" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Anul de emitere a deciziei</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="insuranceHouse" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Casa de asigurări emitentă (valaorea codului din nomenclatoruld e case de asigurări)</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="resolutionDate" type="xs:date" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Data deciziei</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="requestDate" type="xs:date" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Data cererii</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="expirationDate" type="xs:date" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Data de expirare</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="pid" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">CNP-ul pacientului</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="personType" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Tipul de persoană (valoarea codului din nomenclatorul de tipuri de persoană)</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="prescIcd10" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Codul de diagnostic de pe scrisoarea medicală pe bază căruia s-a acordat dispozitivul</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="prescDate" type="xs:date" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Data scrisorii medicale</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="prescSerialCode" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Seria scrisorii medicale</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="prescSerialNo" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Numpărul scrisorii medicale</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="medDevice" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Codul categoriei dispozitivului medical</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="medDevType" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Codul tipului de dispozitiv medical</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="prothesysType" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Tipul de proteză (stânga / dreapta)</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="acceptedPrice" type="xs:decimal" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Preţul acceptat</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="talonCount" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Numărul talonului</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="firstTalonDate" type="xs:date" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Data de inceput a primului talon. Daca nu exista se considera data deciziei</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>	
+    <xs:attribute name="resolutionState" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Starea deciziei</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="ro">NEFACTURATA</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="1">
+            <xs:annotation>
+              <xs:documentation xml:lang="ro">FACTURATA</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="2">
+            <xs:annotation>
+              <xs:documentation xml:lang="ro">EXPIRATA</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="3">
+            <xs:annotation>
+              <xs:documentation xml:lang="ro">IN SEMNARE</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="4">
+            <xs:annotation>
+              <xs:documentation xml:lang="ro">PARTIAL FACTURAT</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="5">
+            <xs:annotation>
+              <xs:documentation xml:lang="ro">PLATITA COMPLET</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="pidType">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">Definitia tipului de date folosit pentru CNP</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="13" />
+      <xs:minLength value="13" />
+      <xs:pattern value="[0-9]{13}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="addressType">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">Definitia tipului de date folosit pentru adresă</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="city" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Codul localităţii (valoare din catalogul de localităţi)</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="streetName" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Numele străzii</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="streetNo" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Numărul străzii</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="postalCode" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Codul poştal</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="bl" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Bloc</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="sc" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Scară</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="et" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Etaj</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="ap" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Apartament</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+</xs:schema>

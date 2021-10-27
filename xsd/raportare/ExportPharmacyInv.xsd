@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="ExportPharmacyInv">
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Structura fisierului de borderouri de retete raportate</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="files" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Sheet" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Fisa de borderou</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="detailSheet" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Detaliu de fisa de borderou</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="borderouType"/>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="invoiceNo" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numarul facturii care însoteste borderoul</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="invoiceDate" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data facturii care însoteste borderoul</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="invoiceRegistrationNo" use="optional">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="invoiceRegistrationDate" type="xs:date" use="optional"/>
+									<xs:attribute name="registerValue" type="xs:double" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Valoare totala acceptata la decontare a borderoului</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="registerValueRejected" type="xs:double" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Valoare totala respinsa la decontare a borderoului</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="refundType" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Tipul de decont (încadrarea bugetara)</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="AppID" type="xs:string" use="required"/>
+						<xs:attribute name="workPlace" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Codul Punctului de lucru, de care apartine raportarea</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="20"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="contractNo" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numarul contractului in baza caruia s-a facut raportarea</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="20"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="fileName" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numele fisierului de raportare</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="100"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="reportingDate" type="xs:date" use="required"/>
+						<xs:attribute name="isEprescReporting" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Tipul raportarii: 0-Retete Tipizate stupefiante(P,S); 1,3,5-Retete electronice din PEL(E,ER,EV); 2,4,6-Retete electronice trimise direct de FARMACIE(E,ER,EV)</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="1"/>
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+									<xs:enumeration value="2"/>
+									<xs:enumeration value="3"/>
+									<xs:enumeration value="4"/>
+									<xs:enumeration value="5"/>
+									<xs:enumeration value="6"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="AppID" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Identificatorul unic al înregistrarii la nivelul aplicatiei de raportare</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="pharmacy" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul farmaciei</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fiscalCode" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul unid de indentificare ficala (CUI) al farmaciei</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="insuranceHouse" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul casei de asigurari (valoare din nomenclatorul de case de asigurari)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="startFrom" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de început a perioadei raportate</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="endTo" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data de sfârsit a perioadei raportate</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="borderouType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date al unui detaliu de borderou</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="Item" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Identificator element de detaliu de borderou - prestatie facturata</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="value" type="xs:double" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Valoarea acceptata la plata</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ValueRejected" type="xs:double" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Valoarea respinsa la plata</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

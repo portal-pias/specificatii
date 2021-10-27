@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="ImportStockPaperRequest">
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Raportare document de actualizare a stocului de medicamente</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DocStock">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Document raportat de actualizarea stocului</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="articol" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Articol document</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="code" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul articolului (valoare din nomenclatorul drugs)</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="qty" type="xs:decimal" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Cantitate facturată</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="vat" type="xs:double" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Procent TVA</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="vatValue" type="xs:double" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Valoarea TVA</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="totalValueWoVat" type="xs:double" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Valoare fără TVA</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="unitPrice" type="xs:double" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Preţ unitar</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="AppID" type="xs:unsignedLong" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="refNoDoc" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numar document referit, in cazul casarilor sau transferurilor</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="refDateDoc" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data documentului referit, in cazul casarilor sau transferurilor</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="refPosArt" type="xs:double" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">AppID-ul articolului de pe documentul referit, in cazul casarilor si transferurilor</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="noDocStock" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Numărul documentului</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="dateDocStock" type="xs:date" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Data facturii</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="docStockUic" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Codul unic de identificare al furnizorului de pe document (cel care emite sau cel care primeste - in cazul iesirilor)</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="totalValue" type="xs:double" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Valoarea totală a facturii</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="docStockType" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Tip de document de actualizare Stoc (se preia din nomenclatorul StockPaperTypes)</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="AppID" type="xs:unsignedLong" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="AppKey" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Cheia de identificare a aplicaţiei de raportare (producator de software 3rd partry)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="AppID" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Identificator unic al raportării</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="pharmacy" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Denumirea furnizorului</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fiscalCode" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul unic de identificare al furnizorului (Codul Fiscal)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="contractNo" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Numărul de contract al furnizorului pentru care se realizează raportarea</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="providerCategCode" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Cod categorie furnizor pentru care se realizează raportarea</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="insuranceHouse" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Codul casei de asigurări cu care are contract furnizorul</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="reportingDate" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Data la care s-a efectuat raportarea</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

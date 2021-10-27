@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://webservices.utils.svapnt.siveco.ro"
+                  xmlns:apachesoap="http://xml.apache.org/xml-soap"
+                  xmlns:impl="http://webservices.utils.svapnt.siveco.ro"
+                  xmlns:intf="http://webservices.utils.svapnt.siveco.ro"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:tns1="http://exceptions.webservices.utils.svapnt.siveco.ro"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<schema elementFormDefault="qualified" targetNamespace="http://exceptions.webservices.utils.svapnt.siveco.ro" xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+			<complexType name="RaportariException">
+				<sequence>
+					<element name="errorCode" type="xsd:int" />
+					<element name="message" nillable="true" type="soapenc:string" />
+				</sequence>
+			</complexType>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="RaportariException">
+		<wsdl:part name="fault" type="tns1:RaportariException" />
+	</wsdl:message>
+	<wsdl:message name="deleteDailyReportResponse">
+		<wsdl:part name="deleteDailyReportReturn" type="xsd:int" />
+	</wsdl:message>
+	<wsdl:message name="deleteStockReportRequest">
+		<wsdl:part name="fiscalCode" type="soapenc:string" />
+		<wsdl:part name="contractNo" type="soapenc:string" />
+		<wsdl:part name="contractType" type="soapenc:string" />
+		<wsdl:part name="insuranceHouse" type="soapenc:string" />
+		<wsdl:part name="stockDocNo" type="soapenc:string" />
+		<wsdl:part name="stockDocDate" type="xsd:dateTime" />
+		<wsdl:part name="stockDocType" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="sendStockReportResponse">
+		<wsdl:part name="sendStockReportReturn" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="sendStockReportRequest">
+		<wsdl:part name="requestXml" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="deleteStockReportResponse">
+		<wsdl:part name="deleteStockReportReturn" type="xsd:int" />
+	</wsdl:message>
+	<wsdl:message name="sendDailyReportResponse">
+		<wsdl:part name="sendDailyReportReturn" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="sendDailyReportRequest">
+		<wsdl:part name="requestXml" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="deleteDailyReportRequest">
+		<wsdl:part name="fiscalCode" type="soapenc:string" />
+		<wsdl:part name="contractNo" type="soapenc:string" />
+		<wsdl:part name="contractType" type="soapenc:string" />
+		<wsdl:part name="insuranceHouse" type="soapenc:string" />
+		<wsdl:part name="dailyConsumptionDate" type="xsd:dateTime" />
+	</wsdl:message>
+	<wsdl:portType name="SiuiDrugConsumptionWS">
+		<wsdl:operation name="deleteDailyReport" parameterOrder="fiscalCode contractNo contractType insuranceHouse dailyConsumptionDate">
+			<wsdl:input message="impl:deleteDailyReportRequest" name="deleteDailyReportRequest" />
+			<wsdl:output message="impl:deleteDailyReportResponse" name="deleteDailyReportResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="sendStockReport" parameterOrder="requestXml">
+			<wsdl:input message="impl:sendStockReportRequest" name="sendStockReportRequest" />
+			<wsdl:output message="impl:sendStockReportResponse" name="sendStockReportResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="sendDailyReport" parameterOrder="requestXml">
+			<wsdl:input message="impl:sendDailyReportRequest" name="sendDailyReportRequest" />
+			<wsdl:output message="impl:sendDailyReportResponse" name="sendDailyReportResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="deleteStockReport" parameterOrder="fiscalCode contractNo contractType insuranceHouse stockDocNo stockDocDate stockDocType">
+			<wsdl:input message="impl:deleteStockReportRequest" name="deleteStockReportRequest" />
+			<wsdl:output message="impl:deleteStockReportResponse" name="deleteStockReportResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SiuiDrugConsumptionWSSoapBinding" type="impl:SiuiDrugConsumptionWS">
+		<wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="deleteDailyReport">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="deleteDailyReportRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://pharmacy.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="deleteDailyReportResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="RaportariException" namespace="http://webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="sendStockReport">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="sendStockReportRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://pharmacy.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="sendStockReportResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="RaportariException" namespace="http://webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="sendDailyReport">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="sendDailyReportRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://pharmacy.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="sendDailyReportResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="RaportariException" namespace="http://webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="deleteStockReport">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="deleteStockReportRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://pharmacy.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="deleteStockReportResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="RaportariException" namespace="http://webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SiuiDrugConsumptionWSService">
+		<wsdl:port binding="impl:SiuiDrugConsumptionWSSoapBinding" name="SiuiDrugConsumptionWS">
+			<wsdlsoap:address location="https://www.siui.ro/svapntws/services/SiuiDrugConsumptionWS" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

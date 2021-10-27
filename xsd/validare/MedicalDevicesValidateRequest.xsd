@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MedicalDevicesValidateRequest"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.cnas.ro/siui/2.0"
+    xmlns="http://www.cnas.ro/siui/2.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Medical Devices Invoices Validation Request</xs:documentation>
+			<xs:documentation xml:lang="ro">Cerere de validare pentru dispozitive medicale acordate</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:sequence>
+						<xs:element name="medicalDevice" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">Medical Device</xs:documentation>
+								<xs:documentation xml:lang="ro">Dispozitiv medical acordat</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="claimItemType">
+										<xs:attribute name="personType" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Person type</xs:documentation>
+												<xs:documentation xml:lang="ro">Tipul persoanei</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="10" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="personIdentifier" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Person identifier</xs:documentation>
+												<xs:documentation xml:lang="ro">Identificatorul pacientului (CNP)</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="30" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="cid" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numărul de asigurat al pacientului</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="authorizedCid" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Cid imputernicit</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="byMail" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">The device was sent by mail</xs:documentation>
+												<xs:documentation xml:lang="ro">Dispozitivul medical a fost trimis prin posta</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Valorile posibile pentru tipul de diagnostic</xs:documentation>
+												</xs:annotation>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="0">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Dispozitivul nu a fost trimis prin posta</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Dispozitivul a fost trimis prin posta</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="cardNo" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numărul cardului electronic de asigurat al pacientului</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="16"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="certificateDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Insured certificate date</xs:documentation>
+												<xs:documentation xml:lang="ro">Data adeverintei de asigurat pentru cei care nu au card</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="signature" type="xs:base64Binary" use="optional">
+												<xs:annotation>
+														<xs:documentation xml:lang="ro">
+																Semnătura digitală a pacientului in format Base64, utilizând certificatul de pe card.
+																Se completează numai dacă este completat şi numărul de card şi cuprinde atributele "cid|cardNo|grantDate|repDevCode".
+														</xs:documentation>
+												</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="signHash" type="xs:hexBinary" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Nu se mai foloseşte!</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="repDevCode" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Medical device code</xs:documentation>
+												<xs:documentation xml:lang="ro">Cod dispozitiv medical</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="serialNo" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Serial number</xs:documentation>
+												<xs:documentation xml:lang="ro">Numar serial</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="40" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="prodCUI" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Producer PID</xs:documentation>
+												<xs:documentation xml:lang="ro">CUI producator</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="prodDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Production date</xs:documentation>
+												<xs:documentation xml:lang="ro">Data producerii</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="guaranteeExpDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Guarantee Expiration Date</xs:documentation>
+												<xs:documentation xml:lang="ro">Data expirarii garantiei</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="invoiceValue" type="xs:decimal" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Invoiced value</xs:documentation>
+												<xs:documentation xml:lang="ro">Valoare facturata</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="repReferencePrice" type="xs:decimal" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Reference Price</xs:documentation>
+												<xs:documentation xml:lang="ro">Pret referinta</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="receiptNo" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Receipt Number</xs:documentation>
+												<xs:documentation xml:lang="ro">Numar chitanta</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="receiptValue" type="xs:decimal" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Receipt Value</xs:documentation>
+												<xs:documentation xml:lang="ro">Valoare chitanta</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="receiptDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Receipt date</xs:documentation>
+												<xs:documentation xml:lang="ro">Data chitanta</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="repDecisionNo" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Decision number</xs:documentation>
+												<xs:documentation xml:lang="ro">Numar decizie</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="repDecisionYear" type="xs:decimal" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Decision year</xs:documentation>
+												<xs:documentation xml:lang="ro">An decizie</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="repDecisionDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Decision date</xs:documentation>
+												<xs:documentation xml:lang="ro">Data decizie</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="resellerCUI" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Reseller PID</xs:documentation>
+												<xs:documentation xml:lang="ro">CUI vanzator</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="grantDate" type="xs:dateTime" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Grant date</xs:documentation>
+												<xs:documentation xml:lang="ro">Data acordare</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="orderDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Order date</xs:documentation>
+												<xs:documentation xml:lang="ro">Data comanda</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="devType" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Device type</xs:documentation>
+												<xs:documentation xml:lang="ro">Tip dispozitiv</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="1" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="providerAuthorization" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Provider's authorization</xs:documentation>
+												<xs:documentation xml:lang="ro">Autorizatie furnizor </xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="receptionConfirmation" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Reception confirmation</xs:documentation>
+												<xs:documentation xml:lang="ro">Confirmare primire</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="1" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="efficiencyConfirmation" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Efficiency confirmation</xs:documentation>
+												<xs:documentation xml:lang="ro">Confirmare eficienta</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="1" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="conformityDeclarationNo" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Conformity Declaration Number</xs:documentation>
+												<xs:documentation xml:lang="ro">Numar declaratie de conformitate</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="prothesysType" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Prothesys type</xs:documentation>
+												<xs:documentation xml:lang="ro">Tip proteza</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="1" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="talonNo" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Talons number</xs:documentation>
+												<xs:documentation xml:lang="ro">Numar taloane</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="2" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="guaranteeCert" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Certification Guarantee</xs:documentation>
+												<xs:documentation xml:lang="ro">Certificat Garantie</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="vatValue" type="xs:decimal" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">VAT value</xs:documentation>
+												<xs:documentation xml:lang="ro">Valoare TVA</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="deliveryDetails" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Delivery details</xs:documentation>
+												<xs:documentation xml:lang="ro">Detalii pentru livrarea prin posta</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

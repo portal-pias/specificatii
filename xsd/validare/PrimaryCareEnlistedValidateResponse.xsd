@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="PrimaryCareEnlistedValidateResponse">
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="response">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Răspuns la validarea pentru persoane înscrise pe lista mediciului de familie</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="responseType">
+					<xs:sequence>
+						<xs:element name="enlisted" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Răspuns la validarea pentru persoana inscrise</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="feedbackType">
+										<xs:sequence>
+											<xs:element name="operations" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Lista mişcărilor persoanei înscrise</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="operation" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Răspuns la validarea mişcării persoanei inscrise</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="categories" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Lista de categorii de asigurat ale persoanei înscrise</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="category" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Răspuns la validarea categoriei de asigurat a persoanei</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="allergies" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Lista de alergii ale persoanei înscrise</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="allergy" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Răspuns la validarea alergiei persoanei</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="states" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Lista de stărilor de asigurare ale persoanei înscrise (valori folosite la reţete)</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="state" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Răspuns la validarea stării de asigurare a persoanei înscrise</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="NHPs" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Lista programelor naţionale de sănătate în care este înscrisă persoana</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="NHP" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Răspuns la validarea programului naţional de sănătate în care este înscrisă persoana</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="citizenships" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Lista de cetăţenii ale persoanei înscrise</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="base" type="feedbackType" minOccurs="0">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Răspuns la validarea cetăţeniei principală (de bază)</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+														<xs:element name="supl" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Răspuns la validarea cetăţeniilor alternative (suplimentare)</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="IDCards" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Lista de acte de identitate ale persoanei înscrise</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="IDCard" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Răspuns la validarea actului de identitate cu care se legitimează persoana</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="chronics" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Lista de boli cronice ale persoanei înscrise</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="chronic" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Răspuns la validarea bolii cronice</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="relatives" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Lista rudelor coasigurate ale persoanei înscrise</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="relative" type="feedbackType" minOccurs="0" maxOccurs="unbounded">
+															<xs:annotation>
+																<xs:documentation xml:lang="ro">Răspuns la validarea rudei coasigurate</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

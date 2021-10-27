@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FeedbackPhysicianReport" targetNamespace="http://www.cnas.ro/siui/2.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0"
+           elementFormDefault="qualified">
+    <xs:element name="report">
+        <xs:annotation>
+            <xs:documentation xml:lang="ro">Răspuns la raportarea pentru medicii de familie</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="physician" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="ro">Date de identificare medic de familie</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="capita">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="ro">Mişcări în lista de înscrişi</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="enlisted" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="ro">Date de identificare persoana inscrisă
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="errors" type="errorsCollection" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation xml:lang="ro">Lista de erori detectate la
+                                                                prelucrarea raportării
+                                                            </xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="operations" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation xml:lang="ro">Lista mişcărilor persoanei
+                                                                inscrise
+                                                            </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="operation" type="feedbackType">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation xml:lang="ro">Mişcare persoana
+                                                                            inscrisă
+                                                                        </xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="categories" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation xml:lang="ro">Lista de categorii asociate
+                                                                de asigurat ale pacientului înscris
+                                                            </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="category" type="feedbackType"
+                                                                            minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation xml:lang="ro">Categoria
+                                                                            pacientului
+                                                                        </xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="allergies" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation xml:lang="ro">Lista de alergii ale
+                                                                pacientului înscris
+                                                            </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="allergy" type="feedbackType"
+                                                                            minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation xml:lang="ro">Alergie
+                                                                        </xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="states" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation xml:lang="ro">Lista de stărilor de
+                                                                asigurare ale persoanei (valori folosite la reţete)
+                                                            </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="state" type="feedbackType"
+                                                                            minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation xml:lang="ro">Starea de
+                                                                            asigurare a persoanei
+                                                                        </xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="NHPs" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation xml:lang="ro">Lista programelor naţionale
+                                                                de sănătate în care este înscris pacientul
+                                                            </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="NHP" type="feedbackType" minOccurs="0"
+                                                                            maxOccurs="unbounded">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation xml:lang="ro">Program naţional
+                                                                            de sănătate
+                                                                        </xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="citizenships" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation xml:lang="ro">Lista de cetăţenii a
+                                                                pacientului
+                                                            </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="base" type="feedbackType"
+                                                                            minOccurs="0">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation xml:lang="ro">Cetăţenia
+                                                                            principală (de bază)
+                                                                        </xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                                <xs:element name="supl" type="feedbackType"
+                                                                            minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation xml:lang="ro">Cetăţenii
+                                                                            alternative (suplimentare)
+                                                                        </xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="IDCards" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation xml:lang="ro">Lista de acte de identitate
+                                                                a pacientului
+                                                            </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="IDCard" type="feedbackType"
+                                                                            minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation xml:lang="ro">Actul de
+                                                                            identitate cu care se legitimează pacientul
+                                                                        </xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="chronics" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation xml:lang="ro">Lista de boli cronice ale
+                                                                pacientului
+                                                            </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="chronic" type="feedbackType"
+                                                                            minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation xml:lang="ro">Boală cronică
+                                                                        </xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="relatives" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation xml:lang="ro">Lista rudelor care au
+                                                                legături de coasigurare cu pacientul
+                                                            </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="relative" type="feedbackType"
+                                                                            minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation xml:lang="ro">Datele de
+                                                                            identificare ale rudei
+                                                                        </xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="AppID" type="xs:string" use="required">
+                                                    <xs:annotation>
+                                                        <xs:documentation xml:lang="ro">Identificatorul unic al
+                                                            înregistrării
+                                                        </xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="state" type="xs:boolean" use="required">
+                                                    <xs:annotation>
+                                                        <xs:documentation xml:lang="ro">Indică dacă înregistrarea
+                                                            raportată a fost validată sau nu
+                                                        </xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="services">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="ro">Lista serviciilor raportate</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="service" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="ro">Serviciu medical general
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:complexContent>
+                                                    <xs:extension base="feedbackType">
+                                                        <xs:sequence>
+                                                            <xs:element name="immunizations" minOccurs="0">
+                                                                <xs:annotation>
+                                                                    <xs:documentation xml:lang="ro">Lista imunizărilor
+                                                                        efectuate în cadrul cunsultaţiei
+                                                                    </xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:complexType>
+                                                                    <xs:sequence>
+                                                                        <xs:element name="immunization"
+                                                                                    type="feedbackType" minOccurs="0"
+                                                                                    maxOccurs="unbounded">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation xml:lang="ro">Serviciu
+                                                                                    de imunizare efectuat în cadrul
+                                                                                    cunsultaţiei
+                                                                                </xs:documentation>
+                                                                            </xs:annotation>
+                                                                        </xs:element>
+                                                                    </xs:sequence>
+                                                                </xs:complexType>
+                                                            </xs:element>
+                                                        </xs:sequence>
+                                                    </xs:extension>
+                                                </xs:complexContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="immunization" type="feedbackType" minOccurs="0"
+                                                    maxOccurs="unbounded">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="ro">Serviciu de imunizare care nu este
+                                                    efectuat în cadrul unei consultaţii
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="pregnancy" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="ro">Serviciu pentru gravide
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:complexContent>
+                                                    <xs:extension base="feedbackType">
+                                                        <xs:sequence>
+                                                            <xs:element name="immunizations" minOccurs="0">
+                                                                <xs:annotation>
+                                                                    <xs:documentation xml:lang="ro">Lista imunizărilor
+                                                                        efectuate în cadrul cunsultaţiei
+                                                                    </xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:complexType>
+                                                                    <xs:sequence>
+                                                                        <xs:element name="immunization"
+                                                                                    type="feedbackType" minOccurs="0"
+                                                                                    maxOccurs="unbounded">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation xml:lang="ro">Serviciu
+                                                                                    de imunizare efectuat în cadrul
+                                                                                    cunsultaţiei
+                                                                                </xs:documentation>
+                                                                            </xs:annotation>
+                                                                        </xs:element>
+                                                                    </xs:sequence>
+                                                                </xs:complexType>
+                                                            </xs:element>
+                                                        </xs:sequence>
+                                                    </xs:extension>
+                                                </xs:complexContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="monitoringServices" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+                                    <xs:documentation xml:lang="ro">Serviciii de monitorizare
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="monitoringService" minOccurs="0"
+                                                    maxOccurs="unbounded">
+                                            <xs:annotation>
+                                                <xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+                                                <xs:documentation xml:lang="ro">Serviciu de monitorizare
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:complexContent>
+                                                    <xs:extension base="feedbackType">
+                                                    </xs:extension>
+                                                </xs:complexContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" use="optional">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ro">Numele medicului de familie</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="stencil" type="xs:string" use="required">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ro">Codul de parafă al medicului</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="contractNo" type="xs:string" use="required">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ro">Numărul contractului în vigoare</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="fiscalCode" type="xs:string" use="required">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ro">Codul fiscal al cabinetului medical sau CNP-ul
+                                    medicului, dacă are contract individual
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="AppID" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="rapDate" type="xs:date" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ro">Data raportării</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="startFrom" type="xs:date" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ro">Data de inceput a perioadei de raportare</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="endTo" type="xs:date" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ro">Data de sfârşit a perioadei de raprotare</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="feedbackType">
+        <xs:annotation>
+            <xs:documentation xml:lang="ro">Tipul de date de bază folosit pentru trimiterea erorilor de raportare
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="errors" type="errorsCollection" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ro">Lista de erori detectate la prelucrarea raportării
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="AppID" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="state" type="xs:boolean" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="ro">Indica daca înregistrarea raportată a fost validată sau nu
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="errorType">
+        <xs:annotation>
+            <xs:documentation xml:lang="ro">Definiţia tipului de date folosit pentru erorile de raportare (elementul
+                poate conţine ca text inclus comentariile operatorilor SIUI)
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="code" type="xs:string" use="required">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="ro">Codul erorii (valoare din nomenclatorul de erori SIUI)
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="errorType" use="optional">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="ro">Tip de eroare in functie de severitate.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:unsignedInt">
+                            <xs:enumeration value="0">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="ro">Avertizare</xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                            <xs:enumeration value="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="ro">Eroare</xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="errorsCollection">
+        <xs:annotation>
+            <xs:documentation xml:lang="ro">Definiţia tipului de date folosit pentru lista de erori</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="error" type="errorType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ro">Eroare de raportare (element de tip)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

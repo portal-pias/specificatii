@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="HospitalMedicalDeviceRecValidateRequest"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.cnas.ro/siui/2.0"
+    xmlns="http://www.cnas.ro/siui/2.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de validare pentru recomandări de dispozitive medicale</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:sequence>
+						<xs:element name="MedicalDeviceRecommendation" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Înregistrarea unei recomandări de dispozitive medicale</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="claimItemType">
+										<xs:attribute name="serialCode" type="xs:string" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Seria recomandarii</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="serialNo" type="xs:string" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numărul recomandării</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="recomDate" type="xs:date" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data recomandării</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="deviceCode" type="xs:string" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Codul dispozitivului medical recomandat (Valoare din nomenclatorul de dispozitive medicale)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="deviceType" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Tipul de dispozitiv prescris.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="0">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DREPT</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">STANG</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="prothesysType" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Tipul de proteză</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="0">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DEFINITIVA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">TEMPORARA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="repPhysician" type="xs:string" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Parafa medicului care a facut recomandarea</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="repDiagnosticCode" type="xs:string" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Diagnosticul pentru care a fost facuta recomandarea. Acest atribut este preluat din nomenclatorul ICD10S</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="repPid" type="xs:string" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">CNP-ul pacientului pentru care a fost facuta recomandarea</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>	
+										<xs:attribute name="repCid" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numărul de asigurat al pacientului</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="cardNo" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numărul cardului electronic de asigurat al pacientului</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="16"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="signature" type="xs:base64Binary" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">
+													Semnătura digitală a pacientului in format Base64, utilizând certificatul de pe card.
+													Se completează numai dacă este completat şi numărul de card şi cuprinde atributele "cid|cardNo|recomDate|serialCode/serialNo".
+												</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="signHash" type="xs:hexBinary" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Nu se mai foloseşte!</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

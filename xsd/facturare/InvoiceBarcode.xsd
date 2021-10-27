@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="InvoiceBarcode" version="1.0">
+	<xs:annotation>
+		<xs:documentation xml:lang="ro">Definiţie structură cod de bare 2D tipărit pe factura electronică</xs:documentation>
+	</xs:annotation>
+	<!-- structură document-->
+	<xs:element name="F" type="F">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Factură electronică</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- definiţie tipuri-->
+	<xs:complexType name="F">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Definiţia structurii unei facturi electronice</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="D">
+				<xs:sequence>
+					<xs:element name="A" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Listă articole pe factură</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="allowAnyAttribute">
+									<xs:attribute name="AD" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Descriere articol</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="AU" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Unitate de Măsură</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+                  <xs:attribute name="AP" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Preț unitar</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="AC" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Cantitatea</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="AV" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Valoare</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="AT" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="ro">Valoare T.V.A.</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="D">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Definiţia detaliilor unei facturi electronice</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="allowAnyAttribute">
+				<xs:attribute name="SC" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Serie factură</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="SN" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Număr factură</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+        <xs:attribute name="ID" type="xs:date" use="required">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Data la care a fost emisă factura</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="TA" type="xs:double" use="optional">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Total valoare factură</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="TT" type="xs:double" use="optional">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Total valoare T.V.A. factură</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+				<xs:attribute name="FN" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Nume furnizor de servicii medicale</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="FF" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">C.I.F. furnizor de servicii medicale</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="FR" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Nr. RC furnizor de servicii medicale</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="FA" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Adresa furnizor de servicii medicale</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="FB" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Banca furnizor de servicii medicale</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+        <xs:attribute name="FO" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Cont furnizor de servicii medicale</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="FC" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Capital social furnizor de servicii medicale</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="FS" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Semnatura furnizor de servicii medicale</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="CN" type="xs:string" use="required">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Nume cumpărător</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="CF" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">C.I.F. cumpărător</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="CR" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Nr. RC cumpărător</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="CA" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Adresa cumpărător</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="CB" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Banca cumpărător</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="CO" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Cont cumpărător</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="allowAnyAttribute">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tip de bază pentru toate elementele din schemă</xs:documentation>
+		</xs:annotation>
+		<xs:anyAttribute processContents="skip">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Poate conţine orice atribut nedeclarat în schemă, dar validează atributele declarate</xs:documentation>
+			</xs:annotation>
+		</xs:anyAttribute>
+	</xs:complexType>
+</xs:schema>

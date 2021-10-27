@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="Feedback_ImportNhpBP">
+  <xs:element name="reportFeedback">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">Răspuns la raportarea cazurilor testate Babes-Papanicolaou efectuate in cadrul subprogramului de screening</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="PidBP" minOccurs="1" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation xml:lang="ro">Validare caz testat Babes Papanicolaou</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="ro">Descriere eroare</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="appID" type="xs:long" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isValid" type="xs:boolean" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="ro">Indică dacă înregistrarea a fost validată sau nu</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>				
+      </xs:sequence>	  
+      <xs:attribute name="appID" type="xs:unsignedLong" use="required">
+		    <xs:annotation>
+				<xs:documentation xml:lang="ro">Identificatorul unic al raportării</xs:documentation>
+			</xs:annotation>
+	  </xs:attribute>
+	  <xs:attribute name="reportingDate" type="xs:date" use="required">
+			<xs:annotation>
+			    <xs:documentation xml:lang="ro">Data raportării</xs:documentation>
+			</xs:annotation>
+	  </xs:attribute>
+	  <xs:attribute name="startFrom" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de început a raportării</xs:documentation>
+			</xs:annotation>
+	  </xs:attribute>
+	  <xs:attribute name="endTo" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de sfârşit a raportării</xs:documentation>
+			</xs:annotation>
+	  </xs:attribute>						  		
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="error">
+    <xs:annotation>
+      <xs:documentation xml:lang="ro">Definiţia tipului de date folosit pentru erorile de raportare (elementul poate conţine ca text inclus comentariile operatorilor SIUI)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:attribute name="code" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="ro">Codul de eroare de raportare (valoare din nomenclatorul de erori)</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

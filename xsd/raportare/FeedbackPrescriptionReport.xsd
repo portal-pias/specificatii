@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by rth77 (rus) -->
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="FeedbackPrescriptionReport">
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Farmacy reporting feedback</xs:documentation>
+			<xs:documentation xml:lang="ro">Răspuns raportare farmacii cu circuit deschis</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="prescriptions" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Prescription collection</xs:documentation>
+						<xs:documentation xml:lang="ro">Colecţie reţete eliberate</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="errors" type="errorsCollection" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">Errors collection</xs:documentation>
+									<xs:documentation xml:lang="ro">Colecţie de erori aferente elementului curent</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="prescriptionDrugs" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">Prescription drugs</xs:documentation>
+									<xs:documentation xml:lang="ro">Medicamente eliberate pe reţetă</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="errors" type="errorsCollection" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Errors collection</xs:documentation>
+												<xs:documentation xml:lang="ro">Colecţie de erori aferente elementului curent</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="AppID" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="en">Record identifier</xs:documentation>
+											<xs:documentation xml:lang="ro">Identificator la nivel de aplicaţie</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="state" type="xs:int" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="en">Validation state, indicating whether the current item is valid on not</xs:documentation>
+											<xs:documentation xml:lang="ro">Starea de validare, indicând dacă înregistrarea este validată sau nu</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="AppID" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">Record identifier</xs:documentation>
+								<xs:documentation xml:lang="ro">Identificator la nivel de aplicaţie</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="state" type="xs:int" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">Validation state, indicating whether the current item is valid on not</xs:documentation>
+								<xs:documentation xml:lang="ro">Starea de validare, indicând dacă înregistrarea este validată sau nu</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="AppID" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Record identifier</xs:documentation>
+					<xs:documentation xml:lang="ro">Identificator la nivel de aplicaţie</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="UIC" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Farmacy fiscal code</xs:documentation>
+					<xs:documentation xml:lang="ro">Codul fiscal al farmaciei</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="reportingDate" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Reporting date</xs:documentation>
+					<xs:documentation xml:lang="ro">Data raportării</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="startFrom" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Reporting start date</xs:documentation>
+					<xs:documentation xml:lang="ro">Data de început a rapotării</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="endTo" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Reporting end date</xs:documentation>
+					<xs:documentation xml:lang="ro">Data de sfârşit a rapotării</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="errorsCollection">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Errors collection type definition</xs:documentation>
+			<xs:documentation xml:lang="ro">Definiţia conţinutului tipului "Colecţie de erori"</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="error" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Error description</xs:documentation>
+					<xs:documentation xml:lang="ro">Descriere eroare</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="code" type="xs:string" use="required">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">Error code</xs:documentation>
+									<xs:documentation xml:lang="ro">Cod eroare (cod din nomenclator)</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+							<xs:attribute name="errorType" use="optional">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Tip de eroare in functie de severitate.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:unsignedInt">
+										<xs:enumeration value="0">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Avertizare</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="1">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Eroare</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="comments" type="xs:string" use="optional">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">Error comments</xs:documentation>
+									<xs:documentation xml:lang="ro">Dataliere suplimentara aferenta erorii</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

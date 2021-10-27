@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions targetNamespace="http://webservices.utils.svapnt.siveco.ro"
+                  xmlns:apachesoap="http://xml.apache.org/xml-soap"
+                  xmlns:impl="http://webservices.utils.svapnt.siveco.ro"
+                  xmlns:intf="http://webservices.utils.svapnt.siveco.ro"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:message name="getPersonInfoRequest">
+		<wsdl:part name="pid" type="soapenc:string" />
+		<wsdl:part name="fromDate" type="xsd:dateTime" />
+	</wsdl:message>
+	<wsdl:message name="getPersonInfoResponse">
+		<wsdl:part name="getPersonInfoReturn" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="getInsuredByCIDResponse">
+		<wsdl:part name="getInsuredByCIDReturn" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="getInsuredByCIDRequest">
+		<wsdl:part name="cid" type="soapenc:string" />
+		<wsdl:part name="requestDate" type="xsd:dateTime" />
+	</wsdl:message>
+	<wsdl:message name="getInsuredResponse">
+		<wsdl:part name="getInsuredReturn" type="soapenc:string" />
+	</wsdl:message>
+	<wsdl:message name="getInsuredRequest">
+		<wsdl:part name="pid" type="soapenc:string" />
+		<wsdl:part name="requestDate" type="xsd:dateTime" />
+	</wsdl:message>
+	<wsdl:portType name="SiuiInsuredWS">
+		<wsdl:operation name="getInsured" parameterOrder="pid requestDate">
+			<wsdl:input message="impl:getInsuredRequest" name="getInsuredRequest" />
+			<wsdl:output message="impl:getInsuredResponse" name="getInsuredResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="getInsuredByCID" parameterOrder="cid requestDate">
+			<wsdl:input message="impl:getInsuredByCIDRequest" name="getInsuredByCIDRequest" />
+			<wsdl:output message="impl:getInsuredByCIDResponse" name="getInsuredByCIDResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="getPersonInfo" parameterOrder="pid fromDate">
+			<wsdl:input message="impl:getPersonInfoRequest" name="getPersonInfoRequest" />
+			<wsdl:output message="impl:getPersonInfoResponse" name="getPersonInfoResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SiuiInsuredWSSoapBinding" type="impl:SiuiInsuredWS">
+		<wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getInsured">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getInsuredRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="getInsuredResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getInsuredByCID">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getInsuredByCIDRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="getInsuredByCIDResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPersonInfo">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getPersonInfoRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="getPersonInfoResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SiuiInsuredWSService">
+		<wsdl:port name="SiuiInsuredWS" binding="impl:SiuiInsuredWSSoapBinding">
+			<wsdlsoap:address location="https://www.siui.ro/svapntws/services/SiuiInsuredWS" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

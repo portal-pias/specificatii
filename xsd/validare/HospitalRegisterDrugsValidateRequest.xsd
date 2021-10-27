@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" targetNamespace="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="HospitalRegisterDrugsValidateRequest">
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de validare pentru farmacii cu circuit închis</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:sequence>
+						<xs:element name="hospitalRegister" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Condica de medicamente (lista de medicamente)</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="claimItemType">
+										<xs:sequence>
+											<xs:element name="hospRegDrug" minOccurs="0" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Medicament eliberat pe condica de medicamente</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:complexContent>
+														<xs:extension base="claimItemType">
+															<xs:attribute name="pos" type="xs:integer" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Numărul de poziţie pe condica de medicamente</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="supplyType" type="xs:int" use="optional"/>
+															<xs:attribute name="supplyCode" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul de consumabil (valoare din nomenclator)</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="quantityPrescribed" type="xs:double" use="optional"/>
+															<xs:attribute name="quantity" type="xs:double" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Cantitatea consumată</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="retailPrice" type="xs:double" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Preţul cu amănuntul</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="noDaysTreatment" type="xs:integer" use="optional"/>
+															<xs:attribute name="personPID" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul numeric personal al pacientului (CNP)</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="personCID" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Numărul de asigurat al pacientului (CID)</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="cardNo" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Numărul cardului electronic de asigurat al pacientului</xs:documentation>
+																</xs:annotation>
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:length value="16"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+															<xs:attribute name="signature" type="xs:base64Binary" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">
+																		Semnătura digitală a pacientului in format Base64, utilizând certificatul de pe card.
+																		Se completează numai dacă este completat şi numărul de card şi cuprinde atributele "cid|cardNo|eval(hospRegDate??prescIssueDate)|eval(hospregNo??prescSeries/prescNo)".
+																		Dacă este completat authorizedPersonCid, atributele devin: "authorizedPersonCid|cardNo|eval(hospRegDate??prescIssueDate)|eval(hospregNo??prescSeries/prescNo)".
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="signHash" type="xs:hexBinary" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Nu se mai foloseşte!</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="authorizedPersonCid" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul de identificare al persoanei imputernicite</xs:documentation>
+																</xs:annotation>
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:maxLength value="20"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+															<xs:attribute name="certificateDate" type="xs:date" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Data eliberarii adeverinței de asigurat </xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="patientInsuranceHouse" type="xs:string" use="optional"/>
+															<xs:attribute name="citizenship" type="xs:string" use="optional"/>
+															<xs:attribute name="patientType" type="xs:string" use="optional"/>
+															<xs:attribute name="isInsured" type="xs:boolean" use="optional"/>
+															<xs:attribute name="diseaseCode" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul de boală (G)</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="diseaseCategCode" type="xs:string" use="optional"/>
+															<xs:attribute name="nhpNo" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Numărul programului naţional de sănătate.</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="nhpCategory" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Categoria programului naţional de sănătate</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="merNo" type="xs:integer" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Numărul de înregistrare în registrul de consultaţii.</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="merDate" type="xs:date" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Data înregistrării în registrul de consultaţii.</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="hospFileInternmentNo" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Numarul fisei de internare</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="hospFileinternmentDate" type="xs:date" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Data fisei de internare</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="physicianContract" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Numărul de contract al medicului prescriptor</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="physicianStencil" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Parafa medicului prescriptor</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="physicianSpeciality" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul specialităţii medicului prescriptor</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="invoiceNoCas" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Seria si numarul facturii catre casa de asigurari de sanatate</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="invoiceDateCas" type="xs:date" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Data facturii catre casa de asigurari de sanatate</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="dayDose" type="xs:double" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Doza zilnica</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="invoiceNoPurchase" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Seria si numarul facturii de achizitie</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="invoiceDatePurchase" type="xs:date" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Data facturii de achizitie</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="cuiPurchase" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul unic de identificare al furnizorului de pe factura de achizitie</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="drugGroupNo" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Numarul lotului de medicamente</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="drugGroupDate" type="xs:date" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Data lotului de medicamente</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="quantityUTPurchase" type="xs:double" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Cantitate de UT facturata</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="TVA" type="xs:double" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">TVA</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="valueTVA" type="xs:double" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Valoare TVA</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="valueWithoutTVA" type="xs:double" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Valoare fara TVA</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="valueTotal" type="xs:double" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Valoare totala factura</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="priceUT" type="xs:double" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Pret unitar</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:extension>
+													</xs:complexContent>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="hospRegDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data condicii de medicamente</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="hospregNo" type="xs:string" use="optional"/>
+										<xs:attribute name="healthDepartment" type="xs:string" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Codul departametului de spitalului</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="chiefPhysicianContract" type="xs:string" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numărul de contractul al medicului şef</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="chiefPhysicianStencil" type="xs:string" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Parafa medicului şef</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="chiefPhysicianSpeciality" type="xs:string" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Codul specialităţii mediclui şef</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="hospRegNo" type="xs:string" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numărul foii de condică în registrul spitalului</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="isPrescription" type="xs:boolean" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Specifică dacă medicamentul este eliberat pe bază de reţetă</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="isEprescReporting" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Reporting Electronic Prescriptions</xs:documentation>
+												<xs:documentation xml:lang="ro">Raportare de retete electronice</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="1"/>
+													<xs:enumeration value="0">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Raportare de retete tipizate</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Raportare de retete electronice</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>										
+										<xs:attribute name="prescSeries" type="xs:string" use="optional"/>
+										<xs:attribute name="prescNo" type="xs:string" use="optional"/>
+										<xs:attribute name="prescriptionDate" type="xs:date" use="optional"/>
+										<xs:attribute name="prescIssueDate" type="xs:date" use="optional"/>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

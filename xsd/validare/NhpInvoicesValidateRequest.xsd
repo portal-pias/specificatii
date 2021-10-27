@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NhpInvoicesValidateRequest"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.cnas.ro/siui/2.0"
+    xmlns="http://www.cnas.ro/siui/2.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de validare pentru facturi pe PNS</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:sequence>
+						<xs:element name="invoice" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Factura raportata</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="claimItemType">
+										<xs:sequence>
+											<xs:element name="articol" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Articol factură</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:complexContent>
+														<xs:extension base="claimItemType">
+															<xs:attribute name="code" type="xs:string" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul articolului (valoare din nomenclatorul corespunzător tipuli de mai jos)</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="articleType" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Tipul de articol facturat</xs:documentation>
+																</xs:annotation>
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:enumeration value="DRG">
+																			<xs:annotation>
+																				<xs:documentation xml:lang="en">Drug</xs:documentation>
+																				<xs:documentation xml:lang="ro">Medicament</xs:documentation>
+																			</xs:annotation>
+																		</xs:enumeration>
+																		<xs:enumeration value="GDS">
+																			<xs:annotation>
+																				<xs:documentation xml:lang="en">Sanitar material</xs:documentation>
+																				<xs:documentation xml:lang="ro">Material sanitar</xs:documentation>
+																			</xs:annotation>
+																		</xs:enumeration>
+																		<xs:enumeration value="MDT">
+																			<xs:annotation>
+																				<xs:documentation xml:lang="en">Medical test</xs:documentation>
+																				<xs:documentation xml:lang="ro">Test medical</xs:documentation>
+																			</xs:annotation>
+																		</xs:enumeration>
+																		<xs:enumeration value="MDD">
+																			<xs:annotation>
+																				<xs:documentation xml:lang="en">Medical device</xs:documentation>
+																				<xs:documentation xml:lang="ro">Instrument medical</xs:documentation>
+																			</xs:annotation>
+																		</xs:enumeration>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+															<xs:attribute name="quantity" type="xs:decimal" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Cantitate facturată</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="vat" type="xs:double" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Procent TVA</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="vatValue" type="xs:double" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Valoarea TVA</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="totalValueWoVat" type="xs:double" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Valoare fără TVA</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="totalValue" type="xs:double" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Valoare totală</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="unitPrice" type="xs:double" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Preţ unitar</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="allocationType" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro"> Modul de distributie a valorii articolelor</xs:documentation>
+																</xs:annotation>
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:enumeration value="0">
+																			<xs:annotation>
+																				<xs:documentation xml:lang="ro">PNS nedefalcat</xs:documentation>
+																			</xs:annotation>
+																		</xs:enumeration>
+																		<xs:enumeration value="1">
+																			<xs:annotation>
+																				<xs:documentation xml:lang="ro">1-Spital</xs:documentation>
+																			</xs:annotation>
+																		</xs:enumeration>
+																		<xs:enumeration value="2">
+																			<xs:annotation>
+																				<xs:documentation xml:lang="ro">2-Ambulatoriu</xs:documentation>
+																			</xs:annotation>
+																		</xs:enumeration>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+															<xs:attribute name="indicatorCode" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Codul indicatorului pe care se defalca valoarea  articolului</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:extension>
+													</xs:complexContent>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="invoiceNo" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numărul facturii</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="invoiceDate" type="xs:date" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data facturii</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="invoiceUic" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Codul unic de identificare al furnizorului de pe factură</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="totalValue" type="xs:double" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Valoarea totală a facturii</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="nhp" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Numărul programului naţional de sănătate (valoarea codului din nomenclatorul PNS)</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

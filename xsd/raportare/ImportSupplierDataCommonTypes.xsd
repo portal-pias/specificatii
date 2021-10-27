@@ -1,0 +1,1466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="ImportSupplierDataCommonTypes">
+	<xs:complexType name="AddressType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date folosit pentru adresa de contractare</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="adressType" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Tipul adresei</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="districtCode" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Codul judeţului (valoare din nomenclator)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cityCode" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Codul localităţii (valoare din nomenclator)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="streetCode" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Codul străzii (valoare din nomenclator)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="streetNo" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Numărul stradal</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="comments" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Comentarii</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="validFrom" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de început a valabilităţii adresei</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="validTo" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii adresei</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="appId" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Identificator unic al adresei la nivelul aplicaţiei de raportare</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="DocumentsType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date folosit pentru documentele de contractare</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="docType" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Codul tipului de document (valoare preluată din nomenclatorul de tipuri de documente)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="docNo" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Numărul documentului</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="docIssuer" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Emitentul documentului</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="validFrom" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de început a valabilităţii documentului</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="validTo" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii documentului</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="appId" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Identificator unic al documentului la nivelul aplicaţiei de raportare</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="REPLGType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date folosit pentru reprezentant legal</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="PID" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">CNP reprezentant legal</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="13" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="CID" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">CID (număr de asigurat) reprezentant legal</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="contactName" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Nume reprezentant legal</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="validFrom" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de început a valabilităţii reprezentantului legal</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="validTo" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii reprezentantului legal</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="appId" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Identificator unic al reprezentantului legal la nivelul aplicaţiei de raportare</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="BankAccountType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date folosit pentru conturi bancare</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="account" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Codul IBAN al contului bancar</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="accountType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Tipul contului bancar. Acest atribut poate avea următoarele valori:
+					0 -&gt; OPERAŢII CURENTE
+					1 -&gt; DEPOZIT
+					2 -&gt; ACREDITIV
+					3 -&gt; GARANŢII
+					4 -&gt; BLOCAJE
+					5 -&gt; CREDIT
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Operaţii curente</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Depozit</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="2">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Acreditiv</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="3">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Garanţii</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="4">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Blocaje</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="5">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Credit</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="bank" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Codul băncii contului bancar (valoare preluată din nomenclatorul de bănci)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="appId" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Identificator unic al contului bancar la nivelul aplicaţiei de raportare</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="currencyCode" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Codul valutei contului bancar (valoare preluată din nomenclatorul de tipuri de valute)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="preferredAccount" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Specifică dacă este preferenţial contul bancar</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="validFrom" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de început a valabilităţii contului bancar</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="validTo" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii contului bancar</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="SubunitsType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date folosit pentru puncte de lucru/subunităţi</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Documents" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Documentele punctului de lucru/subunităţii</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="docType" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Tipul documentului punctului de lucru/subunităţii (valoare preluată din nomenclatorul de tipuri de documente)</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="docNo" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Numărul documentului punctului de lucru/subunităţii</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="validFrom" type="xs:date" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de început a valabilităţii documentului punctului de lucru/subunităţii</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="validTo" type="xs:date" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii documentului punctului de lucru/subunităţii</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="appId" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Identificator unic al documentului punctului de lucru/subunităţii la nivelul aplicaţiei de raportare</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Address" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Adresele punctului de lucru/subunităţii</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="adressType" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Tipul adresei (valoare din nomenclatorul de tipui de adrese)</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string" />
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="districtCode" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Codul judeţului (valoare din nomenclatorul de judeţe)</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="cityCode" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Codul localităţii (valoare din nomenclatorul de localităţi)</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="streetCode" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Codul străzii (valoare din nomenclatorul de străzi)</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="streetNo" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Numărul stradal</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="comments" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Comentarii</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="validFrom" type="xs:date" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de început a valabilităţii adresei punctului de lucru/subunităţii</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="validTo" type="xs:date" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii adresei punctului de lucru/subunităţii</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="appId" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Identificator unic al adresei punctului de lucru/subunităţii la nivelul aplicaţiei de raportare</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OpenSchedule" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Programele de lucru ale punctului de lucru/subunităţii</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="activityType" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Tip de activitate. Acest atribut poate avea următoarele valori:
+								1 -&gt; CABINET
+								2 -&gt; TEREN
+								3 -&gt; ECOGRAFII
+							</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="1">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Cabinet</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="2">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Teren</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="3">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Ecografii</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="week" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Săptămâna. Acest atribut poate avea următoarele valori:
+								1 -&gt; IMPARĂ
+								2 -&gt; PARĂ
+								3 -&gt; SĂPTĂMÂNAL
+							</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="1">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Impară</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="2">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Pară</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="3">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Săptămânal</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="day" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Ziua. Acest atribut poate avea următoarele valori:
+								1 -&gt; LUNI
+								2 -&gt; MARŢI
+								3 -&gt; MIERCURI
+								4 -&gt; JOI
+								5 -&gt; VINERI
+								6 -&gt; SÂMBĂTĂ
+								7 -&gt; DUMINICĂ
+								8 -&gt; ZILNIC
+								9 -&gt; ZILE LUCRĂTOARE
+							</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="1">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Luni</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="2">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Marţi</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="3">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Miercuri</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="4">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Joi</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="5">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Vineri</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="6">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Sâmbătă</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="7">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Duminică</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="8">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Zilnic</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="9">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Zile lucrătoare</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="beginHour" type="xs:long" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Ora de început</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="endHour" type="xs:long" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Ora de sfârşit</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="legalFreeDays" type="xs:boolean" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Specifică dacă include şi sărbătorile legale</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="overtime" type="xs:boolean" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Specifică dacă include şi timp suplimentar</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="validFrom" type="xs:date" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de început a valabilităţii programului de lucru al punctului de lucru/subunităţii</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="validTo" type="xs:date" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii programului de lucru al punctului de lucru/subunităţii</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="appId" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Identificator unic al programului de lucru al punctului de lucru/subunităţii la nivelul aplicaţiei de raportare</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="code" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Codul punctului de lucru/subunităţii</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Numele punctului de lucru/subunităţii</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="validFrom" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de început a valabilităţii punctului de lucru/subunităţii</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="validTo" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii punctului de lucru/subunităţii</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="forContract" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Specifică dacă punctul de lucru/subunitatea se include pe contract</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="appId" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Identificator unic al punctului de lucru/subunităţii la nivelul aplicaţiei de raportare</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="SimpleEmployeeType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Tipul de date folosit pentru datele angajaţilor</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="EmployeeDocuments" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Documentele angajatului</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="appId" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Identificator unic al documentului angajatului la nivelul aplicaţiei de raportare</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1" />
+								<xs:maxLength value="20" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="docNo" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Numărul documentului angajatului</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="100" />
+								<xs:minLength value="0" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="docValidTo" type="xs:date" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii documentului angajatului</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="docValidFrom" type="xs:date" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de început a valabilităţii documentului angajatului</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="docIssuer" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Emitentul documentului angajatului</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="100" />
+								<xs:minLength value="0" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="docTypeCode" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Tipul documentului angajatului (valoare din nomenclatorul de tipuri de documente)</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Employer" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Angajatorul (Furnizorul / Departamentul / Subunitatea unde este angajată persoana)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="EmployeeDetail" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Detalii despre angajat</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="appId" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Identificator unic al detaliului despre angajat la nivelul aplicaţiei de raportare</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1" />
+											<xs:maxLength value="20" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="studies" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Tipul de studii pe care le-a efectuat angajatul. Acest atribut poate avea următoarele valori:
+											1 -&gt; STUDII MEDII
+											2 -&gt; STUDII SUPERIOARE
+										</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="1">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Medii</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="2">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Superioare</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="activityDomain" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Domeniul de activitate al angajatului. Acest atribut poate avea următoarele valori:
+											1 -&gt; STOMATOLOGIE
+											2 -&gt; MEDICINĂ
+											3 -&gt; FARMACEUTIC
+											4 -&gt; BIOLOGIE
+											5 -&gt; CHIMIE
+											6 -&gt; BIOCHIMIE
+										</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="1">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Stomatologie</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="2">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Medicină</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="3">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Farmaceutic</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="4">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Biologie</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="5">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Chimie</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="6">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Biochimie</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="functionCode" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Codul functiei pe care o are angajatul (valoare preluată din nomenclatorul de tipuri de funcţii)</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1" />
+											<xs:maxLength value="20" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="validFrom" type="xs:date" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Data de început a valabilităţii detaliului despre angajat</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="validTo" type="xs:date" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii detaliului despre angajat</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="emplTypeCode" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Codul tipului de angajat (valoare preluată din nomenclatorul de tipuri de angajare)</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1" />
+											<xs:maxLength value="20" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="labourContractNo" type="xs:string" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Numărul contractului de munca al angajatului</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="EmployerWorkingSchedule" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Programele de lucru ale angajatului</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="activityType" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Tip de activitate. Acest atribut poate avea următoarele valori:
+											1 -&gt; CABINET
+											2 -&gt; TEREN
+											3 -&gt; ECOGRAFII
+										</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="1">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Cabinet</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="2">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Teren</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="3">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Ecografii</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="week" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Săptămâna. Acest atribut poate avea următoarele valori:
+											1 -&gt; IMPARĂ
+											2 -&gt; PARĂ
+											3 -&gt; SĂPTĂMÂNAL
+										</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="1">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Impară</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="2">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Pară</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="3">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Săptămânal</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="day" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Ziua. Acest atribut poate avea următoarele valori:
+											1 -&gt; LUNI
+											2 -&gt; MARŢI
+											3 -&gt; MIERCURI
+											4 -&gt; JOI
+											5 -&gt; VINERI
+											6 -&gt; SÂMBĂTĂ
+											7 -&gt; DUMINICĂ
+											8 -&gt; ZILNIC
+											9 -&gt; ZILE LUCRĂTOARE
+										</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="1">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Luni</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="2">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Marţi</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="3">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Miercuri</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="4">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Joi</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="5">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Vineri</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="6">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Sâmbătă</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="7">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Duminică</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="8">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Zilnic</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="9">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Zile lucrătoare</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="beginHour" type="xs:long" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Ora de început</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="endHour" type="xs:long" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Ora de sfârşit</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="legalFreeDays" type="xs:boolean" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Specifică dacă include şi sărbătorile legale</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="overtime" type="xs:boolean" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Specifică dacă include şi timp suplimentar</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="validFrom" type="xs:date" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Data de început a valabilităţii programului de lucru al punctului de lucru/subunităţii</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="validTo" type="xs:date" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii programului de lucru al punctului de lucru/subunităţii</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="appId" type="xs:string" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Identificator unic al programului de lucru la nivelul aplicaţiei de raportare</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="code" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Codul angajatorului. Acest cod poate fi codul fiscal al furnizorului, codul sectiei sau cod de subunitate</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="appId" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Identificatorul unic al angajatorului la nivelul aplicaţiei de raportare</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="validFrom" type="xs:date" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de început a valabilităţii angajatorului</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="validTo" type="xs:date" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii angajatorului</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="appId" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Identificatorul unic al angajatului la nivelul aplicaţiei de raportare</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1" />
+					<xs:maxLength value="20" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="PID" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">CNP-ul angajatului</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1" />
+					<xs:maxLength value="13" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="CID" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">CID-ul (numărul de asigurat) angajatului</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stencilNo" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro"> Parafa medicului</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1" />
+					<xs:maxLength value="6" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="type" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Tipul de angajat. Acest atribut poate avea următoarele valori:
+					3 -&gt; MEDIC
+					2 -&gt; ASISTENT
+					1 -&gt; ALTELE
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1" />
+					<xs:maxLength value="1" />
+					<xs:enumeration value="3">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Medic</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="2">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Asistent</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Altele</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="validFrom" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de început a valabilităţii datelor despre angajati.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="validTo" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii datelor despre angajati.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="EmployeeType">
+		<xs:sequence>
+			<xs:element name="EmployeeDocuments" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Date despre documentele angajatului</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="appId" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Identificatorul unic al documentului angajatului la nivelul aplicaţiei de raportare</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1" />
+								<xs:maxLength value="20" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="docNo" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Numărul documentului angajatului</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="100" />
+								<xs:minLength value="0" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="docValidTo" type="xs:date" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii documentului angajatului</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="docValidFrom" type="xs:date" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de început a valabilităţii documentului angajatului</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="docIssuer" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Emitentul documentului angajatului</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="100" />
+								<xs:minLength value="0" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="docTypeCode" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Codul tipului de document al angajatului (valoare preluată din nomenclatorul de tipuri de documente)</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PhysicianSpecialty" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Specialităţile medicului</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PhysicianSpecialtyDegree" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Gradul medicului</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="code" type="xs:string" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Codul gradului medicului (valoare preluată din nomenclatorul de grade)</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="validFrom" type="xs:date" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Data de început a valabilităţii gradului medicului</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="validTo" type="xs:date" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii gradului medicului</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="appId" type="xs:string" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Identificatorul unic al gradului medicului la nivelul aplicaţiei de raportare</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="specialtyCode" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Codul de specialitate al medicului (valoare preluată din nomenclatorul de specialităţi)</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="validFrom" type="xs:date" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de început a valabilităţii specialităţii medicului</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="validTo" type="xs:date" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii specialităţii medicului</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="appId" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Identificatorul unic al specialităţii medicului la nivelul aplicaţiei de raportare</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Employer" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Angajatorul (Furnizorul / Departamentul / Subunitatea unde este angajată persoana)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="EmployeeDetail" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Detalii despre angajat</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="appId" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Identificatorul unic al detaliului despre angajat la nivelul aplicaţiei de raportare</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1" />
+											<xs:maxLength value="20" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="studies" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Tipul de studii pe care le-a efectuat angajatul. Acest atribut poate avea următoarele valori:
+											1 -&gt; STUDII MEDII
+											2 -&gt; STUDII SUPERIOARE
+										</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="1">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Medii</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="2">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Superioare</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="activityDomain" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Domeniul de activitate al angajatului. Acest atribut poate avea următoarele valori:
+											1 -&gt; STOMATOLOGIE
+											2 -&gt; MEDICINA
+											3 -&gt; FARMACEUTIC
+											4 -&gt; BIOLOGIE
+											5 -&gt; CHIMIE
+											6 -&gt; BIOCHIMIE
+										</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="1">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Stomatologie</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="2">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Medicină</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="3">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Farmaceutic</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="4">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Biologie</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="5">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Chimie</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="6">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Biochimie</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="emplTypeCode" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Codul tipului de angajat (valoare preluată din nomenclatorul de tipuri de angajat)</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1" />
+											<xs:maxLength value="20" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="functionCode" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Codul funcţiei pe care o are angajatul (valoare preluată din nomenclatorul de funcţii)</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1" />
+											<xs:maxLength value="20" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="validFrom" type="xs:date" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Data de început a valabilităţii a detaliului despre angajat</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="validTo" type="xs:date" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii detaliului despre angajat</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="labourContractNo" type="xs:string" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Numărul contractului de muncă al angajatului</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="EmployerWorkingSchedule" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Programul de lucru al angajatului</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="activityType" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Tip de activitate. Acest atribut poate avea următoarele valori:
+											1 -&gt; CABINET
+											2 -&gt; TEREN
+											3 -&gt; ECOGRAFII
+										</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="1">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Cabinet</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="2">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Teren</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="3">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Ecografii</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="week" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Săptămâna. Acest atribut poate avea următoarele valori:
+											1 -&gt; IMPARĂ
+											2 -&gt; PARĂ
+											3 -&gt; SĂPTĂMÂNAL
+										</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="1">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Impară</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="2">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Pară</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="3">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Săptămânal</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="day" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Ziua. Acest atribut poate avea următoarele valori:
+											1 -&gt; LUNI
+											2 -&gt; MARŢI
+											3 -&gt; MIERCURI
+											4 -&gt; JOI
+											5 -&gt; VINERI
+											6 -&gt; SÂMBĂTĂ
+											7 -&gt; DUMINICĂ
+											8 -&gt; ZILNIC
+											9 -&gt; ZILE LUCRĂTOARE
+										</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="1">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Luni</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="2">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Marţi</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="3">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Miercuri</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="4">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Joi</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="5">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Vineri</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="6">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Sâmbătă</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="7">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Duminică</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="8">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Zilnic</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="9">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Zile lucrătoare</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="beginHour" type="xs:long" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Ora de început</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="endHour" type="xs:long" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Ora de sfârşit</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="legalFreeDays" type="xs:boolean" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Specifică dacă include şi sărbătorile legale</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="overtime" type="xs:boolean" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Specifică dacă include şi timp suplimentar</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="validFrom" type="xs:date" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Data de început a valabilităţii programului de lucru al angajatului</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="validTo" type="xs:date" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii programului de lucru al angajatului</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="appId" type="xs:string" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Identificatorul unic al programului de lucru al angajatului la nivelul aplicaţiei de raportare</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="code" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Codul angajatorului. Acest cod poate fi codul fiscal al furnizorului, codul secţiei sau codul de subunitate</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="validFrom" type="xs:date" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de început a valabilităţii detaliului despre angajat</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="validTo" type="xs:date" use="optional">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii detaliului despre angajat</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="appId" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Identificatorul unic al detaliului despre angajat la nivelul aplicaţiei de raportare</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="appId" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Identificatorul unic al angajatului la nivelul aplicaţiei de raportare</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1" />
+					<xs:maxLength value="20" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="PID" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">CNP-ul angajatului</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1" />
+					<xs:maxLength value="13" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="CID" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">CID-ul ( numărul de asigurat ) angajatului</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stencilNo" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Parafa medicului</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1" />
+					<xs:maxLength value="6" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="type" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Tipul de angajat. Acest atribut poate avea următoarele valori:
+					3 -&gt; MEDIC
+					2 -&gt; ASISTENT
+					1 -&gt; ALTELE
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1" />
+					<xs:maxLength value="1" />
+					<xs:enumeration value="3">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Medic</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="2">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Asistent</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Altele</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="validFrom" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de început a valabilităţii datelor despre angajaţi</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="validTo" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii datelor despre angajaţi</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

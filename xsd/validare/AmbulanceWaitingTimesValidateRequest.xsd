@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AmbulanceWaitingTimesValidateRequest"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.cnas.ro/siui/2.0"
+    xmlns="http://www.cnas.ro/siui/2.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de validare pentru timpi de aşteptare la ambulanţe</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:sequence>
+						<xs:element name="vehicleTypeWaitingTime" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Timpul de aşteptare raportat pe tipul de vehicul</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="claimItemType">
+										<xs:attribute name="vehicleType" type="xs:string" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Codul tipului de vehicul (valoare din nomenclatorul de tipuri de vehicule)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="emergencyCategCode" type="xs:string" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Codul categoriei de urgenţă pentru timpul de aşteptare raportat (valoare din nomenclatorul de coduri de urgenţe)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="waitingTime" type="xs:decimal" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Valoarea timpul de aşteptare raportat pe tipul de vehicul (valoare exprimată în minute)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

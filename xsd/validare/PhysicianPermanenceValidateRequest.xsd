@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="PhysicianPermanenceValidateRequest">
+	<xs:include schemaLocation="CommonReportingTypes.xsd"/>
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Raportare pentru centrele de permanenţă</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:sequence>
+						<xs:element name="physician" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Date de identificare medic de familie</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="claimItemType">
+										<xs:sequence>
+											<xs:element name="permanence" minOccurs="0" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Lista serviciilor efectuate pacientului în intervalul de raportare</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:complexContent>
+														<xs:extension base="claimItemType">
+															<xs:sequence>
+																<xs:element name="person" minOccurs="0" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation xml:lang="ro">Persoană către care s-au prestat servicii în centrul de permanenţă</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="claimItemType">
+																				<xs:attribute name="pid" type="pidType" use="required">
+																					<xs:annotation>
+																						<xs:documentation xml:lang="ro">Codul numeric personal al pacientului</xs:documentation>
+																					</xs:annotation>
+																				</xs:attribute>
+																				<xs:attribute name="cid" use="optional">
+																					<xs:annotation>
+																						<xs:documentation xml:lang="ro">Numărul de asigurat al pacientului</xs:documentation>
+																					</xs:annotation>
+																					<xs:simpleType>
+																						<xs:restriction base="xs:string">
+																							<xs:maxLength value="20" />
+																						</xs:restriction>
+																					</xs:simpleType>
+																				</xs:attribute>
+																				<xs:attribute name="cardNo" use="optional">
+																					<xs:annotation>
+																						<xs:documentation xml:lang="ro">Numărul cardului electronic de asigurat al pacientului</xs:documentation>
+																					</xs:annotation>
+																					<xs:simpleType>
+																						<xs:restriction base="xs:string">
+																							<xs:length value="16"/>
+																						</xs:restriction>
+																					</xs:simpleType>
+																				</xs:attribute>
+																				<xs:attribute name="signature" type="xs:base64Binary" use="optional">
+																					<xs:annotation>
+																						<xs:documentation xml:lang="ro">
+																							Semnătura digitală a pacientului in format Base64, utilizând certificatul de pe card.
+																							Se completează numai dacă este completat şi numărul de card şi cuprinde atributele "cid|cardNo|serviceDate|serviceCode".
+																						</xs:documentation>
+																					</xs:annotation>
+																				</xs:attribute>
+																				<xs:attribute name="signHash" type="xs:hexBinary" use="optional">
+																					<xs:annotation>
+																						<xs:documentation xml:lang="ro">Nu se mai foloseşte!</xs:documentation>
+																					</xs:annotation>
+																				</xs:attribute>
+																			</xs:extension>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+															<xs:attribute name="serviceDate" type="xs:date" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Data efectuării gărzii în centrul de permanenţă</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="workedHours" type="xs:int" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Numărul de ore de gardă în centrul de permanenţă</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:extension>
+													</xs:complexContent>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="name" type="xs:string" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numele medicului de familie</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="stencil" type="stencilType" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Codul de parafă al medicului</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="assistant" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Date de identificare asistent</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="claimItemType">
+										<xs:sequence>
+											<xs:element name="permanence" minOccurs="0" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Lista serviciilor efectuate pacientului în intervalul de raportare</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:complexContent>
+														<xs:extension base="claimItemType">
+															<xs:attribute name="serviceDate" type="xs:date" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Data efectuării gărzii în centrul de permanenţă</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="workedHours" type="xs:int" use="required">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Numărul de ore de gardă în centrul de permanenţă</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:extension>
+													</xs:complexContent>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="name" type="xs:string" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numele medicului de familie</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="pid" type="pidType" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">CNP-ul asistentului</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="physicianStencil" type="stencilType" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Parafa medicului împreună cu care a efectuat permanenţa</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

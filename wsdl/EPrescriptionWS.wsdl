@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://processPrescription.webservices.utils.svapnt.siveco.ro"
+                  xmlns:apachesoap="http://xml.apache.org/xml-soap"
+                  xmlns:impl="http://processPrescription.webservices.utils.svapnt.siveco.ro"
+                  xmlns:intf="http://processPrescription.webservices.utils.svapnt.siveco.ro"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:tns1="http://exceptions.webservices.utils.svapnt.siveco.ro"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<schema targetNamespace="http://exceptions.webservices.utils.svapnt.siveco.ro" xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+			<complexType name="EPrescriptionException">
+				<sequence>
+					<element name="errorCode" type="xsd:int" />
+					<element name="message" nillable="true" type="soapenc:string" />
+				</sequence>
+			</complexType>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="processPrescribedPrescriptionRequest">
+		<wsdl:part name="reportXml" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="cancelReleasedPrescriptionRequest">
+		<wsdl:part name="providerCode" type="xsd:string" />
+		<wsdl:part name="workplaceCode" type="xsd:string" />
+		<wsdl:part name="insuranceHouseCode" type="xsd:string" />
+		<wsdl:part name="series" type="xsd:string" />
+		<wsdl:part name="no" type="xsd:string" />
+		<wsdl:part name="fractionNo" type="xsd:int" />
+		<wsdl:part name="cancellationReason" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="updateInvoicesResponse">
+		<wsdl:part name="updateInvoicesReturn" type="xsd:int" />
+	</wsdl:message>
+	<wsdl:message name="getPrescribedPrescriptionResponse">
+		<wsdl:part name="getPrescribedPrescriptionReturn" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="downloadNotReportedPrescriptionsReportResponse">
+		<wsdl:part name="downloadNotReportedPrescriptionsReportReturn" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="EPrescriptionException">
+		<wsdl:part name="fault" type="tns1:EPrescriptionException" />
+	</wsdl:message>
+	<wsdl:message name="updateInvoicesRequest">
+		<wsdl:part name="requestXml" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="getReleasedHospitalPrescriptionRequest">
+		<wsdl:part name="providerCode" type="xsd:string" />
+		<wsdl:part name="workplaceCode" type="xsd:string" />
+		<wsdl:part name="insuranceHouseCode" type="xsd:string" />
+		<wsdl:part name="series" type="xsd:string" />
+		<wsdl:part name="no" type="xsd:string" />
+		<wsdl:part name="fractionNo" type="xsd:int" />
+	</wsdl:message>
+	<wsdl:message name="processIssuedPrescriptionRequest">
+		<wsdl:part name="reportXml" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="cancelReleasedHospitalPrescriptionRequest">
+		<wsdl:part name="providerCode" type="xsd:string" />
+		<wsdl:part name="workplaceCode" type="xsd:string" />
+		<wsdl:part name="insuranceHouseCode" type="xsd:string" />
+		<wsdl:part name="series" type="xsd:string" />
+		<wsdl:part name="no" type="xsd:string" />
+		<wsdl:part name="fractionNo" type="xsd:int" />
+		<wsdl:part name="cancellationReason" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="processPrescribedPrescriptionResponse">
+		<wsdl:part name="processPrescribedPrescriptionReturn" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="downloadNotReportedPrescriptionsReportRequest">
+		<wsdl:part name="insuranceHouseCode" type="xsd:string" />
+		<wsdl:part name="fromDate" type="xsd:dateTime" />
+		<wsdl:part name="toDate" type="xsd:dateTime" />
+		<wsdl:part name="providerCode" type="xsd:string" />
+		<wsdl:part name="stencilNo" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="processHospitalPrescriptionRequest">
+		<wsdl:part name="reportXml" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="getStatusForPrescriptionsResponse">
+		<wsdl:part name="getStatusForPrescriptionsReturn" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="processHospitalPrescriptionResponse">
+		<wsdl:part name="processHospitalPrescriptionReturn" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="getStatusForPrescriptionsRequest">
+		<wsdl:part name="insuranceHouseCode" type="xsd:string" />
+		<wsdl:part name="providerCode" type="xsd:string" />
+		<wsdl:part name="contractNo" type="xsd:string" />
+		<wsdl:part name="contractType" type="xsd:string" />
+		<wsdl:part name="startFrom" type="xsd:dateTime" />
+		<wsdl:part name="endTo" type="xsd:dateTime" />
+		<wsdl:part name="workPlaceCode" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="getReleasedPrescriptionRequest">
+		<wsdl:part name="providerCode" type="xsd:string" />
+		<wsdl:part name="workplaceCode" type="xsd:string" />
+		<wsdl:part name="insuranceHouseCode" type="xsd:string" />
+		<wsdl:part name="series" type="xsd:string" />
+		<wsdl:part name="no" type="xsd:string" />
+		<wsdl:part name="fractionNo" type="xsd:int" />
+	</wsdl:message>
+	<wsdl:message name="cancelPrescribedPrescriptionResponse">
+		<wsdl:part name="cancelPrescribedPrescriptionReturn" type="xsd:int" />
+	</wsdl:message>
+	<wsdl:message name="cancelReleasedHospitalPrescriptionResponse">
+		<wsdl:part name="cancelReleasedHospitalPrescriptionReturn" type="xsd:int" />
+	</wsdl:message>
+	<wsdl:message name="getPrescribedPrescriptionsForCidRequest">
+		<wsdl:part name="requestXml" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="cancelPrescribedPrescriptionRequest">
+		<wsdl:part name="providerCode" type="xsd:string" />
+		<wsdl:part name="physicianStencilNo" type="xsd:string" />
+		<wsdl:part name="contractNo" type="xsd:string" />
+		<wsdl:part name="contractType" type="xsd:string" />
+		<wsdl:part name="insuranceHouseCode" type="xsd:string" />
+		<wsdl:part name="series" type="xsd:string" />
+		<wsdl:part name="no" type="xsd:string" />
+		<wsdl:part name="prescriptionDate" type="xsd:dateTime" />
+		<wsdl:part name="cancellationReason" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="getReleasedPrescriptionResponse">
+		<wsdl:part name="getReleasedPrescriptionReturn" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="cancelReleasedPrescriptionResponse">
+		<wsdl:part name="cancelReleasedPrescriptionReturn" type="xsd:int" />
+	</wsdl:message>
+	<wsdl:message name="processIssuedPrescriptionResponse">
+		<wsdl:part name="processIssuedPrescriptionReturn" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="getPrescribedPrescriptionsForCidResponse">
+		<wsdl:part name="getPrescribedPrescriptionsForCidReturn" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="getPrescribedPrescriptionRequest">
+		<wsdl:part name="providerCode" type="xsd:string" />
+		<wsdl:part name="physicianStencilNo" type="xsd:string" />
+		<wsdl:part name="contractNo" type="xsd:string" />
+		<wsdl:part name="contractType" type="xsd:string" />
+		<wsdl:part name="insuranceHouseCode" type="xsd:string" />
+		<wsdl:part name="series" type="xsd:string" />
+		<wsdl:part name="no" type="xsd:string" />
+		<wsdl:part name="prescriptionDate" type="xsd:dateTime" />
+	</wsdl:message>
+	<wsdl:message name="getReleasedHospitalPrescriptionResponse">
+		<wsdl:part name="getReleasedHospitalPrescriptionReturn" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:portType name="EPrescriptionWS">
+		<wsdl:operation name="processPrescribedPrescription" parameterOrder="reportXml">
+			<wsdl:input message="impl:processPrescribedPrescriptionRequest" name="processPrescribedPrescriptionRequest" />
+			<wsdl:output message="impl:processPrescribedPrescriptionResponse" name="processPrescribedPrescriptionResponse" />
+			<wsdl:fault message="impl:EPrescriptionException" name="EPrescriptionException" />
+		</wsdl:operation>
+		<wsdl:operation name="processIssuedPrescription" parameterOrder="reportXml">
+			<wsdl:input message="impl:processIssuedPrescriptionRequest" name="processIssuedPrescriptionRequest" />
+			<wsdl:output message="impl:processIssuedPrescriptionResponse" name="processIssuedPrescriptionResponse" />
+			<wsdl:fault message="impl:EPrescriptionException" name="EPrescriptionException" />
+		</wsdl:operation>
+		<wsdl:operation name="getPrescribedPrescription" parameterOrder="providerCode physicianStencilNo contractNo contractType insuranceHouseCode series no prescriptionDate">
+			<wsdl:input message="impl:getPrescribedPrescriptionRequest" name="getPrescribedPrescriptionRequest" />
+			<wsdl:output message="impl:getPrescribedPrescriptionResponse" name="getPrescribedPrescriptionResponse" />
+			<wsdl:fault message="impl:EPrescriptionException" name="EPrescriptionException" />
+		</wsdl:operation>
+		<wsdl:operation name="cancelPrescribedPrescription" parameterOrder="providerCode physicianStencilNo contractNo contractType insuranceHouseCode series no prescriptionDate cancellationReason">
+			<wsdl:input message="impl:cancelPrescribedPrescriptionRequest" name="cancelPrescribedPrescriptionRequest" />
+			<wsdl:output message="impl:cancelPrescribedPrescriptionResponse" name="cancelPrescribedPrescriptionResponse" />
+			<wsdl:fault message="impl:EPrescriptionException" name="EPrescriptionException" />
+		</wsdl:operation>
+		<wsdl:operation name="cancelReleasedPrescription" parameterOrder="providerCode workplaceCode insuranceHouseCode series no fractionNo cancellationReason">
+			<wsdl:input message="impl:cancelReleasedPrescriptionRequest" name="cancelReleasedPrescriptionRequest" />
+			<wsdl:output message="impl:cancelReleasedPrescriptionResponse" name="cancelReleasedPrescriptionResponse" />
+			<wsdl:fault message="impl:EPrescriptionException" name="EPrescriptionException" />
+		</wsdl:operation>
+		<wsdl:operation name="updateInvoices" parameterOrder="requestXml">
+			<wsdl:input message="impl:updateInvoicesRequest" name="updateInvoicesRequest" />
+			<wsdl:output message="impl:updateInvoicesResponse" name="updateInvoicesResponse" />
+			<wsdl:fault message="impl:EPrescriptionException" name="EPrescriptionException" />
+		</wsdl:operation>
+		<wsdl:operation name="getReleasedPrescription" parameterOrder="providerCode workplaceCode insuranceHouseCode series no fractionNo">
+			<wsdl:input message="impl:getReleasedPrescriptionRequest" name="getReleasedPrescriptionRequest" />
+			<wsdl:output message="impl:getReleasedPrescriptionResponse" name="getReleasedPrescriptionResponse" />
+			<wsdl:fault message="impl:EPrescriptionException" name="EPrescriptionException" />
+		</wsdl:operation>
+		<wsdl:operation name="downloadNotReportedPrescriptionsReport" parameterOrder="insuranceHouseCode fromDate toDate providerCode stencilNo">
+			<wsdl:input message="impl:downloadNotReportedPrescriptionsReportRequest" name="downloadNotReportedPrescriptionsReportRequest" />
+			<wsdl:output message="impl:downloadNotReportedPrescriptionsReportResponse" name="downloadNotReportedPrescriptionsReportResponse" />
+			<wsdl:fault message="impl:EPrescriptionException" name="EPrescriptionException" />
+		</wsdl:operation>
+		<wsdl:operation name="getStatusForPrescriptions" parameterOrder="insuranceHouseCode providerCode contractNo contractType startFrom endTo workPlaceCode">
+			<wsdl:input message="impl:getStatusForPrescriptionsRequest" name="getStatusForPrescriptionsRequest" />
+			<wsdl:output message="impl:getStatusForPrescriptionsResponse" name="getStatusForPrescriptionsResponse" />
+			<wsdl:fault message="impl:EPrescriptionException" name="EPrescriptionException" />
+		</wsdl:operation>
+		<wsdl:operation name="getPrescribedPrescriptionsForCid" parameterOrder="requestXml">
+			<wsdl:input message="impl:getPrescribedPrescriptionsForCidRequest" name="getPrescribedPrescriptionsForCidRequest" />
+			<wsdl:output message="impl:getPrescribedPrescriptionsForCidResponse" name="getPrescribedPrescriptionsForCidResponse" />
+			<wsdl:fault message="impl:EPrescriptionException" name="EPrescriptionException" />
+		</wsdl:operation>
+		<wsdl:operation name="processHospitalPrescription" parameterOrder="reportXml">
+			<wsdl:input message="impl:processHospitalPrescriptionRequest" name="processHospitalPrescriptionRequest" />
+			<wsdl:output message="impl:processHospitalPrescriptionResponse" name="processHospitalPrescriptionResponse" />
+			<wsdl:fault message="impl:EPrescriptionException" name="EPrescriptionException" />
+		</wsdl:operation>
+		<wsdl:operation name="cancelReleasedHospitalPrescription" parameterOrder="providerCode workplaceCode insuranceHouseCode series no fractionNo cancellationReason">
+			<wsdl:input message="impl:cancelReleasedHospitalPrescriptionRequest" name="cancelReleasedHospitalPrescriptionRequest" />
+			<wsdl:output message="impl:cancelReleasedHospitalPrescriptionResponse" name="cancelReleasedHospitalPrescriptionResponse" />
+			<wsdl:fault message="impl:EPrescriptionException" name="EPrescriptionException" />
+		</wsdl:operation>
+		<wsdl:operation name="getReleasedHospitalPrescription" parameterOrder="providerCode workplaceCode insuranceHouseCode series no fractionNo">
+			<wsdl:input message="impl:getReleasedHospitalPrescriptionRequest" name="getReleasedHospitalPrescriptionRequest" />
+			<wsdl:output message="impl:getReleasedHospitalPrescriptionResponse" name="getReleasedHospitalPrescriptionResponse" />
+			<wsdl:fault message="impl:EPrescriptionException" name="EPrescriptionException" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="EPrescriptionWSSoapBinding" type="impl:EPrescriptionWS">
+		<wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="processPrescribedPrescription">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="processPrescribedPrescriptionRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="processPrescribedPrescriptionResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="EPrescriptionException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EPrescriptionException" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="processIssuedPrescription">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="processIssuedPrescriptionRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="processIssuedPrescriptionResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="EPrescriptionException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EPrescriptionException" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getPrescribedPrescription">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getPrescribedPrescriptionRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="getPrescribedPrescriptionResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="EPrescriptionException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EPrescriptionException" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="cancelPrescribedPrescription">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="cancelPrescribedPrescriptionRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="cancelPrescribedPrescriptionResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="EPrescriptionException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EPrescriptionException" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="cancelReleasedPrescription">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="cancelReleasedPrescriptionRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="cancelReleasedPrescriptionResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="EPrescriptionException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EPrescriptionException" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="updateInvoices">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="updateInvoicesRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="updateInvoicesResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="EPrescriptionException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EPrescriptionException" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getReleasedPrescription">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getReleasedPrescriptionRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="getReleasedPrescriptionResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="EPrescriptionException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EPrescriptionException" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="downloadNotReportedPrescriptionsReport">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="downloadNotReportedPrescriptionsReportRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="downloadNotReportedPrescriptionsReportResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="EPrescriptionException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EPrescriptionException" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getStatusForPrescriptions">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getStatusForPrescriptionsRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="getStatusForPrescriptionsResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="EPrescriptionException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EPrescriptionException" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getPrescribedPrescriptionsForCid">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getPrescribedPrescriptionsForCidRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="getPrescribedPrescriptionsForCidResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="EPrescriptionException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EPrescriptionException" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="processHospitalPrescription">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="processHospitalPrescriptionRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="processHospitalPrescriptionResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="EPrescriptionException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EPrescriptionException" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="cancelReleasedHospitalPrescription">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="cancelReleasedHospitalPrescriptionRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="cancelReleasedHospitalPrescriptionResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="EPrescriptionException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EPrescriptionException" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getReleasedHospitalPrescription">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getReleasedHospitalPrescriptionRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="getReleasedHospitalPrescriptionResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="EPrescriptionException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EPrescriptionException" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="EPrescriptionWSService">
+		<wsdl:port binding="impl:EPrescriptionWSSoapBinding" name="EPrescriptionWS">
+			<wsdlsoap:address location="https://sipe.siui.ro/svapntws/services/EPrescriptionWS" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
