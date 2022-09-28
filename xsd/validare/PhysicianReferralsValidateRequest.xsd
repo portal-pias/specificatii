@@ -165,11 +165,12 @@
 										</xs:attribute>
 										<xs:attribute name="personCID" use="optional">
 											<xs:annotation>
+												<xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
 												<xs:documentation xml:lang="ro">Numărul de asigurat al pacientului</xs:documentation>
 											</xs:annotation>
 											<xs:simpleType>
 												<xs:restriction base="xs:string">
-													<xs:length value="20"/>
+													<xs:maxLength value="20"/>
 												</xs:restriction>
 											</xs:simpleType>
 										</xs:attribute>

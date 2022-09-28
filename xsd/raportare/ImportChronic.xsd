@@ -84,6 +84,12 @@
 														<xs:documentation xml:lang="ro">Beneficiari de regulament cee 1408/1971</xs:documentation>
 													</xs:annotation>
 												</xs:enumeration>
+												<xs:enumeration value="OUGMGR">
+													<xs:annotation>
+														<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+														<xs:documentation xml:lang="ro">Beneficiari OUG 15</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>

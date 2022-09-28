@@ -118,6 +118,12 @@
 														<xs:documentation xml:lang="ro">Beneficiari de regulament cee 1408/1971</xs:documentation>
 													</xs:annotation>
 												</xs:enumeration>
+												<xs:enumeration value="OUGMGR">
+													<xs:annotation>
+														<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+														<xs:documentation xml:lang="ro">Beneficiari OUG 15</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
@@ -259,14 +265,12 @@
 												<xs:element name="ForeignExpenses" type="ForeignExpenses" minOccurs="0"/>
 												<xs:element name="ForeignExpensesDetails" minOccurs="0">
 					                                <xs:annotation>
-														<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 						                               <xs:documentation xml:lang="ro">Decont de cheltuieli pentru persoanele straine( Anexa 23 E )</xs:documentation>
 					                                </xs:annotation>
 					                                <xs:complexType>
 						                               <xs:sequence>
 							                              <xs:element name="drugsExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Farmacie - Cheltuieli pentru medicamente si alte produse din farmacie pe perioada spitalizarii( cheltuielile pentru medicamentele  suportate din programe vor fi evidentiate distinct ca fiind suportate din FNUASS si nu intra in calculul acestei sume )</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -278,7 +282,6 @@
                                                           </xs:element>
 							                              <xs:element name="medicalSuppliesExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Cheltuieli pentru materiale sanitare si alte consumabile( cheltuielile pentru materialele sanitare suportate din programe vor fi evidentiate distinct ca fiind suportate din FNUASS si nu intra in calculul acestei sume)</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -290,7 +293,6 @@
                                                           </xs:element>
 							                              <xs:element name="laboratoryExamExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Cheltuieli pentru investigatii paraclinice - analize medicale de laborator  (inclusiv investigaţii anatomie patologica)</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -302,7 +304,6 @@
                                                           </xs:element>
 							                              <xs:element name="laboratoryRadiologyAndImag" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Cheltuieli pentru investigatii paraclinice de radiologie imagistica medicala si medicina nucleara( cheltuielile pentru investigatiile suportate din programe vor fi evidentiate distinct ca fiind suportate din FNUASS si nu intra in calculul acestei sume )</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -314,7 +315,6 @@
                                                           </xs:element>
 							                              <xs:element name="otherInvestigationExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Cheltuieli pentru alte investigatii si proceduri</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -326,7 +326,6 @@
                                                           </xs:element>
 							                              <xs:element name="ClinicExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Cheltuieli consult(uri) interclinice</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -338,7 +337,6 @@
                                                           </xs:element>
 							                              <xs:element name="medicalDevicesExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Dispozitiv(e) medical(e) ( cheltuielile pentru dispozitivele suportate din programe vor fi evidentiate distinct ca fiind suportate din FNUASS si nu intra in calculul acestei sume )</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -350,7 +348,6 @@
                                                           </xs:element>
 							                              <xs:element name="otherServicesExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Alte servicii ( cheltuielile pentru servicii suportate din programe vor fi evidentiate distinct ca fiind suportate din FNUASS si nu intra in calculul acestei sume )</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -362,7 +359,6 @@
                                                           </xs:element>
 							                              <xs:element name="otherCareExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Alte ingrijiri</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -374,13 +370,11 @@
                                                           </xs:element>
 							                              <xs:element name="staffExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Cheltuieli personal</xs:documentation>
 								                              </xs:annotation>	
                                                               <xs:complexType>
 									                             <xs:attribute name="description" use="required">
 										                            <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 											                            <xs:documentation xml:lang="ro">Descrierea cheltuielii</xs:documentation>
 										                            </xs:annotation>
 										                            <xs:simpleType>
@@ -391,7 +385,6 @@
 									                             </xs:attribute>
 		                                                         <xs:attribute name="amount" type="xs:double" use="required">
 			                                                       <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				                                                      <xs:documentation xml:lang="ro">Suma</xs:documentation>
 			                                                       </xs:annotation>
 		                                                         </xs:attribute>
@@ -399,7 +392,6 @@
                                                           </xs:element>
 							                              <xs:element name="indirectExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Cheltuieli indirecte</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -411,7 +403,6 @@
                                                           </xs:element>
 							                              <xs:element name="otherMedicalServices" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Suma pentru servicii medicale suplimentare, nenecesare pentru rezolvarea cazului ( se vor evidentia toate serviciile medicale suplimentare, detaliat cu cantitate si pret ) </xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -424,37 +415,31 @@
 						                               </xs:sequence>
 		                                               <xs:attribute name="foodExpenses" type="xs:double" use="optional">
 			                                              <xs:annotation>
-															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				                                              <xs:documentation xml:lang="ro">Cheltuieli pentru cazare camera si hrana (la nivel standard): Nr. zile spitalizare x cheltuieli cazare si hrana pe zi de spitalizare</xs:documentation>
 			                                              </xs:annotation>
 		                                               </xs:attribute>
 		                                               <xs:attribute name="ATIExpenses" type="xs:double" use="optional">
 			                                              <xs:annotation>
-															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				                                             <xs:documentation xml:lang="ro">Cheltuieli pentru cazare ATI, dupa caz</xs:documentation>
 			                                              </xs:annotation>
 		                                               </xs:attribute>
 		                                               <xs:attribute name="otherHospitalExpenses" type="xs:double" use="optional">
 			                                              <xs:annotation>
-															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				                                             <xs:documentation xml:lang="ro">Suma pentru servicii nemedicale – servicii hoteliere suplimentare sau de confort sporit fata de standard(nr. zile spitalizare x suma servicii hoteliere suplimentare/zi de spitalizare )</xs:documentation>
 			                                              </xs:annotation>
 		                                               </xs:attribute>
 		                                               <xs:attribute name="hospitalAmount" type="xs:double" use="required">
 			                                              <xs:annotation>
-															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				                                             <xs:documentation xml:lang="ro">Tarif integral practicat de spital pentru rezolvarea cazului in regim de spitalizare continua</xs:documentation>
 			                                              </xs:annotation>
 		                                               </xs:attribute>
 		                                               <xs:attribute name="FNUASSAmount" type="xs:double" use="required">
 			                                              <xs:annotation>
-															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				                                             <xs:documentation xml:lang="ro">Suma suportata din FNUASS pentru serviciile medicale spitalicesti ce urmeaza sa fie acordate pacientului, rezultata din inmultirea valorii relative a cazului cu tariful pe caz ponderat propriu spitalului</xs:documentation>
 			                                              </xs:annotation>
 		                                               </xs:attribute>
 		                                               <xs:attribute name="personalContribution" type="xs:double" use="required">
 			                                              <xs:annotation>
-															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				                                             <xs:documentation xml:lang="ro">Contributia personala</xs:documentation>
 			                                              </xs:annotation>
 		                                               </xs:attribute>
@@ -490,14 +475,12 @@
 												<xs:element name="Expenses" type="Expenses" minOccurs="0"/>
 												<xs:element name="ExpensesDetails" minOccurs="0">
 					                                <xs:annotation>
-														<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 						                               <xs:documentation xml:lang="ro">Decont de cheltuieli pentru cetateni romani( Anexa 23 E )</xs:documentation>
 					                                </xs:annotation>
 					                                <xs:complexType>
 						                               <xs:sequence>
 							                              <xs:element name="drugsExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Farmacie - Cheltuieli pentru medicamente si alte produse din farmacie pe perioada spitalizarii( cheltuielile pentru medicamentele  suportate din programe vor fi evidentiate distinct ca fiind suportate din FNUASS si nu intra in calculul acestei sume )</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -509,7 +492,6 @@
                                                           </xs:element>
 							                              <xs:element name="medicalSuppliesExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Cheltuieli pentru materiale sanitare si alte consumabile( cheltuielile pentru materialele sanitare suportate din programe vor fi evidentiate distinct ca fiind suportate din FNUASS si nu intra in calculul acestei sume)</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -521,7 +503,6 @@
                                                           </xs:element>
 							                              <xs:element name="laboratoryExamExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Cheltuieli pentru investigatii paraclinice - analize medicale de laborator  (inclusiv investigaţii anatomie patologica)</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -533,7 +514,6 @@
                                                           </xs:element>
 							                              <xs:element name="laboratoryRadiologyAndImag" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Cheltuieli pentru investigatii paraclinice de radiologie imagistica medicala si medicina nucleara( cheltuielile pentru investigatiile suportate din programe vor fi evidentiate distinct ca fiind suportate din FNUASS si nu intra in calculul acestei sume )</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -545,7 +525,6 @@
                                                           </xs:element>
 							                              <xs:element name="otherInvestigationExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Cheltuieli pentru alte investigatii si proceduri</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -557,7 +536,6 @@
                                                           </xs:element>
 							                              <xs:element name="ClinicExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Cheltuieli consult(uri) interclinice</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -569,7 +547,6 @@
                                                           </xs:element>
 							                              <xs:element name="medicalDevicesExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Dispozitiv(e) medical(e) ( cheltuielile pentru dispozitivele suportate din programe vor fi evidentiate distinct ca fiind suportate din FNUASS si nu intra in calculul acestei sume )</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -581,7 +558,6 @@
                                                           </xs:element>
 							                              <xs:element name="otherServicesExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Alte servicii ( cheltuielile pentru servicii suportate din programe vor fi evidentiate distinct ca fiind suportate din FNUASS si nu intra in calculul acestei sume )</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -593,7 +569,6 @@
                                                           </xs:element>
 							                              <xs:element name="otherCareExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Alte ingrijiri</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -605,13 +580,11 @@
                                                           </xs:element>
 							                              <xs:element name="staffExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Cheltuieli personal</xs:documentation>
 								                              </xs:annotation>
                                                               <xs:complexType>
 									                             <xs:attribute name="description" use="required">
 										                            <xs:annotation>
-																		<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 											                            <xs:documentation xml:lang="ro">Descrierea cheltuielii</xs:documentation>
 										                            </xs:annotation>
 										                            <xs:simpleType>
@@ -622,7 +595,6 @@
 									                             </xs:attribute>
 		                                                         <xs:attribute name="amount" type="xs:double" use="required">
 			                                                       <xs:annotation>
-																		<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				                                                      <xs:documentation xml:lang="ro">Suma</xs:documentation>
 			                                                       </xs:annotation>
 		                                                         </xs:attribute>
@@ -630,7 +602,6 @@
                                                           </xs:element>
 							                              <xs:element name="indirectExpenses" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Cheltuieli indirecte</xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -642,7 +613,6 @@
                                                           </xs:element>
 							                              <xs:element name="otherMedicalServices" minOccurs="0" maxOccurs="unbounded">
 								                              <xs:annotation>
-																<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 									                              <xs:documentation xml:lang="ro">Suma pentru servicii medicale suplimentare, nenecesare pentru rezolvarea cazului ( se vor evidentia toate serviciile medicale suplimentare, detaliat cu cantitate si pret ) </xs:documentation>
 								                              </xs:annotation>
 								                              <xs:complexType>
@@ -655,37 +625,31 @@
 						                               </xs:sequence>
 		                                               <xs:attribute name="foodExpenses" type="xs:double" use="optional">
 			                                              <xs:annotation>
-															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				                                              <xs:documentation xml:lang="ro">Cheltuieli pentru cazare camera si hrana (la nivel standard): Nr. zile spitalizare x cheltuieli cazare si hrana pe zi de spitalizare</xs:documentation>
 			                                              </xs:annotation>
 		                                               </xs:attribute>
 		                                               <xs:attribute name="ATIExpenses" type="xs:double" use="optional">
 			                                              <xs:annotation>
-															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				                                             <xs:documentation xml:lang="ro">Cheltuieli pentru cazare ATI, dupa caz</xs:documentation>
 			                                              </xs:annotation>
 		                                               </xs:attribute>
 		                                               <xs:attribute name="otherHospitalExpenses" type="xs:double" use="optional">
 			                                              <xs:annotation>
-															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				                                             <xs:documentation xml:lang="ro">Suma pentru servicii nemedicale – servicii hoteliere suplimentare sau de confort sporit fata de standard(nr. zile spitalizare x suma servicii hoteliere suplimentare/zi de spitalizare )</xs:documentation>
 			                                              </xs:annotation>
 		                                               </xs:attribute>
 		                                               <xs:attribute name="hospitalAmount" type="xs:double" use="required">
 			                                              <xs:annotation>
-															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				                                             <xs:documentation xml:lang="ro">Tarif integral practicat de spital pentru rezolvarea cazului in regim de spitalizare continua</xs:documentation>
 			                                              </xs:annotation>
 		                                               </xs:attribute>
 		                                               <xs:attribute name="FNUASSAmount" type="xs:double" use="required">
 			                                              <xs:annotation>
-															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				                                             <xs:documentation xml:lang="ro">Suma suportata din FNUASS pentru serviciile medicale spitalicesti ce urmeaza sa fie acordate pacientului, rezultata din inmultirea valorii relative a cazului cu tariful pe caz ponderat propriu spitalului</xs:documentation>
 			                                              </xs:annotation>
 		                                               </xs:attribute>
 		                                               <xs:attribute name="personalContribution" type="xs:double" use="required">
 			                                              <xs:annotation>
-															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				                                             <xs:documentation xml:lang="ro">Contributia personala</xs:documentation>
 			                                              </xs:annotation>
 		                                               </xs:attribute>

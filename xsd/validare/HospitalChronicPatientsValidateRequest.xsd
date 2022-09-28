@@ -83,6 +83,12 @@
 																		<xs:documentation xml:lang="ro">Beneficiari de regulament cee 1408/1971</xs:documentation>
 																	</xs:annotation>
 																</xs:enumeration>
+																<xs:enumeration value="OUGMGR">
+																	<xs:annotation>
+																		<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+																		<xs:documentation xml:lang="ro">Beneficiari OUG 15</xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
 															</xs:restriction>
 														</xs:simpleType>
 													</xs:attribute>
@@ -343,6 +349,7 @@
 													<xs:attribute name="internmentCriteriaCode" type="xs:string" use="required"/>
 													<xs:attribute name="phone" use="optional">
 														<xs:annotation>
+															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 															<xs:documentation xml:lang="ro">Telefon/mobil</xs:documentation>
 														</xs:annotation>
 														<xs:simpleType>
@@ -354,6 +361,7 @@
 													</xs:attribute>	
 													<xs:attribute name="email" use="optional">
 														<xs:annotation>
+															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 															<xs:documentation xml:lang="ro">Adresa de e-mail</xs:documentation>
 														</xs:annotation>
 														<xs:simpleType>
@@ -567,6 +575,12 @@
 																<xs:enumeration value="5">
 																	<xs:annotation>
 																		<xs:documentation xml:lang="ro">Formulare europene</xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="6">
+																	<xs:annotation>
+																		<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+																		<xs:documentation xml:lang="ro">Beneficiari OUG 15</xs:documentation>
 																	</xs:annotation>
 																</xs:enumeration>
 															</xs:restriction>
@@ -852,6 +866,7 @@
 													</xs:attribute>
 													<xs:attribute name="phone" use="optional">
 														<xs:annotation>
+															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 															<xs:documentation xml:lang="ro">Telefon/mobil</xs:documentation>
 														</xs:annotation>
 														<xs:simpleType>
@@ -863,6 +878,7 @@
 													</xs:attribute>	
 													<xs:attribute name="email" use="optional">
 														<xs:annotation>
+															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 															<xs:documentation xml:lang="ro">Adresa de e-mail</xs:documentation>
 														</xs:annotation>
 														<xs:simpleType>

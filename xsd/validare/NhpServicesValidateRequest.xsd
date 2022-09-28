@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xs:schema id="NhpBPServicesValidateRequest"
     elementFormDefault="qualified"
     targetNamespace="http://www.cnas.ro/siui/2.0"
@@ -114,6 +114,7 @@
 										</xs:attribute>
 										<xs:attribute name="personType" use="optional">
 											<xs:annotation>
+												<xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
 												<xs:documentation xml:lang="ro">Tipul pacientului. Daca nu e completat se consideră implicit ASIGURAT.</xs:documentation>
 											</xs:annotation>
 											<xs:simpleType>
@@ -138,12 +139,17 @@
 															<xs:documentation xml:lang="ro">Beneficiari de regulament cee 1408/1971</xs:documentation>
 														</xs:annotation>
 													</xs:enumeration>
+													<xs:enumeration value="OUGMGR">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Beneficiari ai OUG15/2022</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
 												</xs:restriction>
 											</xs:simpleType>
 										</xs:attribute>
 										<xs:attribute name="exceptedFromCard" type="xs:boolean" use="optional">
 											<xs:annotation>
-												<xs:documentation xml:lang="ro">Indica daca serviciul este insotit sau nu de referatul de solicitare. Pentru serviciile insotite de referatul de solicitare nu este necesara prezentarea cardului national de asigurari sociale de sanatate.</xs:documentation>
+												<xs:documentation xml:lang="ro">Indica daca serviciul este insotit sau nu de referatul de solicitare. Pentru serviciile insotite de referatul de solicitare nu este necesara prezentarea cardului national de asigurari sociale de sanatate. </xs:documentation>
 											</xs:annotation>
 										</xs:attribute>
 									</xs:extension>

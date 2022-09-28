@@ -343,6 +343,7 @@
 													<xs:attribute name="internmentCriteriaCode" type="xs:string" use="required"/>
 													<xs:attribute name="phone" use="optional">
 														<xs:annotation>
+															<xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
 															<xs:documentation xml:lang="ro">Telefon/mobil</xs:documentation>
 														</xs:annotation>
 														<xs:simpleType>
@@ -354,6 +355,7 @@
 													</xs:attribute>	
 													<xs:attribute name="email" use="optional">
 														<xs:annotation>
+															<xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
 															<xs:documentation xml:lang="ro">Adresa de e-mail</xs:documentation>
 														</xs:annotation>
 														<xs:simpleType>
@@ -562,6 +564,12 @@
 																<xs:enumeration value="5">
 																	<xs:annotation>
 																		<xs:documentation xml:lang="ro">Formulare europene</xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="6">
+																	<xs:annotation>
+																		<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+																		<xs:documentation xml:lang="ro">Beneficiari OUG 15</xs:documentation>
 																	</xs:annotation>
 																</xs:enumeration>
 															</xs:restriction>
@@ -840,6 +848,7 @@
 													</xs:attribute>
 													<xs:attribute name="phone" use="optional">
 														<xs:annotation>
+															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 															<xs:documentation xml:lang="ro">Telefon/mobil</xs:documentation>
 														</xs:annotation>
 														<xs:simpleType>
@@ -851,6 +860,7 @@
 													</xs:attribute>	
 													<xs:attribute name="email" use="optional">
 														<xs:annotation>
+															<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 															<xs:documentation xml:lang="ro">Adresa de e-mail</xs:documentation>
 														</xs:annotation>
 														<xs:simpleType>
@@ -1026,19 +1036,19 @@
 															</xs:restriction>
 														</xs:simpleType>
 													</xs:attribute>
-													<xs:attribute name="serialCodeBi" use="required">
-														<xs:annotation>
-															<xs:documentation xml:lang="ro">Serie bilet de internare.</xs:documentation>
-														</xs:annotation>
-														<xs:simpleType>
-															<xs:restriction base="xs:string">
-																<xs:maxLength value="10"/>
+		                                            <xs:attribute name="serialCodeBi" use="required">
+			                                            <xs:annotation>
+				                                            <xs:documentation xml:lang="ro">Serie bilet de internare.</xs:documentation>
+			                                            </xs:annotation>
+	                                                    <xs:simpleType>
+				                                           <xs:restriction base="xs:string">
+					                                            <xs:maxLength value="10"/>
 					                                            <xs:minLength value="1"/>
 				                                           </xs:restriction>
 			                                            </xs:simpleType>
-													</xs:attribute>
-													<xs:attribute name="serialNoBi" use="required">
-						                                <xs:annotation>
+		                                            </xs:attribute>
+		                                            <xs:attribute name="serialNoBi" use="required">
+			                                            <xs:annotation>
 				                                            <xs:documentation xml:lang="ro">Numarul bilet de internare poate fi format numai din cifre</xs:documentation>
 			                                            </xs:annotation>
 			                                            <xs:simpleType>
@@ -1098,15 +1108,15 @@
 															</xs:restriction>
 														</xs:simpleType>
 													</xs:attribute>
-													<xs:attribute name="procedureCode" use="optional">
+												    <xs:attribute name="procedureCode" use="optional">
 														<xs:annotation>
 															<xs:documentation xml:lang="ro">Codul procedurii programate. Valoarea acestui atribut este preluata din nomenclatorul Procedures.</xs:documentation>
 														</xs:annotation>
-														<xs:simpleType>
-															<xs:restriction base="xs:string">
-															   <xs:maxLength value="50"/>
-															</xs:restriction>
-														</xs:simpleType>
+			                                            <xs:simpleType>
+				                                            <xs:restriction base="xs:string">
+					                                           <xs:maxLength value="50"/>
+				                                            </xs:restriction>
+			                                            </xs:simpleType>
 													</xs:attribute>
 													<xs:attribute name="stencilNo" type="stencilType" use="optional">
 														<xs:annotation>
@@ -1114,8 +1124,8 @@
 														</xs:annotation>
 													</xs:attribute>
 													<xs:attribute name="comments" use="optional">
-														<xs:annotation>
-															<xs:documentation xml:lang="ro">Observatii</xs:documentation>
+			                                            <xs:annotation>
+				                                            <xs:documentation xml:lang="ro">Observatii</xs:documentation>
 			                                            </xs:annotation>
 			                                            <xs:simpleType>
 				                                            <xs:restriction base="xs:string">

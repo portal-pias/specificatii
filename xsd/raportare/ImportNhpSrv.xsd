@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="ImportNhpSrv">
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="ImportNhpSrv">
 	<xs:element name="report">
 		<xs:annotation>
 			<xs:documentation xml:lang="ro">Raportare servicii PNS</xs:documentation>
@@ -12,80 +12,80 @@
 					</xs:annotation>
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="pidSrv" minOccurs="1" maxOccurs="unbounded">
+							<xs:element name="pidSrv" maxOccurs="unbounded">
 								<xs:annotation>
 									<xs:documentation xml:lang="ro">Serviciu PNS</xs:documentation>
 								</xs:annotation>
 								<xs:complexType>
-                                  <xs:sequence>
-                                     <xs:element name="ForeignPerson" minOccurs="0">
-					                    <xs:annotation>
-						                   <xs:documentation xml:lang="ro">Detalii legate de persoana străină.</xs:documentation>
-						                </xs:annotation>
-						                <xs:complexType>
-							               <xs:attribute name="personIdentifier" type="xs:string" use="required">
-								              <xs:annotation>
-									             <xs:documentation xml:lang="ro">Codul de identificare al persoanei străine.</xs:documentation>
-								              </xs:annotation>
-							               </xs:attribute>
-							               <xs:attribute name="personFirstName" type="xs:string" use="required">
-								              <xs:annotation>
-									             <xs:documentation xml:lang="ro">Prenumele persoanei străine.</xs:documentation>
-							                  </xs:annotation>
-							               </xs:attribute>
-							               <xs:attribute name="personLastName" type="xs:string" use="required">
-								              <xs:annotation>
-									              <xs:documentation xml:lang="ro">Numele persoanei străine.</xs:documentation>
-							                  </xs:annotation>
-							               </xs:attribute>
-							               <xs:attribute name="birthDate" type="xs:date" use="required">
-								              <xs:annotation>
-									              <xs:documentation xml:lang="ro">Data de naştere a persoanei străine.</xs:documentation>
-								              </xs:annotation>
-							              </xs:attribute>
-							              <xs:attribute name="countryCode" type="xs:string" use="optional">
-								             <xs:annotation>
-									             <xs:documentation xml:lang="ro">Codul ţării cetăţeniei persoanei străine.</xs:documentation>
-								             </xs:annotation>
-							              </xs:attribute>
-							             <xs:attribute name="cardCode" type="xs:string" use="optional">
-								            <xs:annotation>
-									            <xs:documentation xml:lang="ro">
+									<xs:sequence>
+										<xs:element name="ForeignPerson" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Detalii legate de persoana străină.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="personIdentifier" type="xs:string" use="required">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Codul de identificare al persoanei străine.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="personFirstName" type="xs:string" use="required">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Prenumele persoanei străine.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="personLastName" type="xs:string" use="required">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Numele persoanei străine.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="birthDate" type="xs:date" use="required">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Data de naştere a persoanei străine.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="countryCode" type="xs:string" use="optional">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Codul ţării cetăţeniei persoanei străine.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="cardCode" type="xs:string" use="optional">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">
                                                     Codul cardului de asigurat al persoanei străine.(In cazul in care persoana are card de asigurare european)
                                                 </xs:documentation>
-								            </xs:annotation>
-							             </xs:attribute>
-							             <xs:attribute name="cardExpireDate" type="xs:date" use="optional">
-								            <xs:annotation>
-									           <xs:documentation xml:lang="ro">
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="cardExpireDate" type="xs:date" use="optional">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">
                                                   Data de expirare a cardului de asigurare.(In cazul in care persoana are card de asigurare european)
                                                </xs:documentation>
-							               </xs:annotation>
-							             </xs:attribute>
-							             <xs:attribute name="emissiveOrgUnitCode" type="xs:string" use="optional">
-								            <xs:annotation>
-									           <xs:documentation xml:lang="ro">
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="emissiveOrgUnitCode" type="xs:string" use="optional">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">
                                                    Codul unitătii care a emis cardul de asigurare.(In cazul in care persoana are card de asigurare european)
                                                </xs:documentation>
-								            </xs:annotation>
-							             </xs:attribute>
-							             <xs:attribute name="emissiveOrgUnitName" type="xs:string" use="optional">
-								            <xs:annotation>
-									           <xs:documentation xml:lang="ro">
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="emissiveOrgUnitName" type="xs:string" use="optional">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">
                                                   Numele unitătii care a emis cardul de asigurare.(In cazul in care persoana are card de asigurare european)
                                                </xs:documentation>
-								            </xs:annotation>
-							             </xs:attribute>
-							             <xs:attribute name="emissiveOrgUnitAddress" type="xs:string" use="optional">
-							                <xs:annotation>
-								               <xs:documentation xml:lang="ro">
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="emissiveOrgUnitAddress" type="xs:string" use="optional">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">
                                                    Adresa unitătii care a emis cardul de asigurare.(In cazul in care persoana are card de asigurare european)
                                                </xs:documentation>
-								           </xs:annotation>
-							            </xs:attribute>
-						              </xs:complexType>
-					                 </xs:element>
-			                        </xs:sequence>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
 									<xs:attribute name="serviceCode" use="required">
 										<xs:annotation>
 											<xs:documentation xml:lang="ro">Codul serviciului PNS</xs:documentation>
@@ -174,7 +174,7 @@
 									</xs:attribute>
 									<xs:attribute name="appID" use="required">
 										<xs:annotation>
-											 <xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
+											<xs:documentation xml:lang="ro">Identificatorul unic al înregistrării</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
@@ -182,35 +182,41 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
-				                    <xs:attribute name="personType" use="optional">
-					                  <xs:annotation>
-						                 <xs:documentation xml:lang="ro">Tipul pacientului. Daca nu e completat se consideră implicit ASIGURAT.</xs:documentation>
-					                  </xs:annotation>
-					                  <xs:simpleType>
-						                <xs:restriction base="xs:string">
-							               <xs:enumeration value="ASIGURAT">
-								              <xs:annotation>
-									              <xs:documentation xml:lang="ro">Asiguraţi</xs:documentation>
-								              </xs:annotation>
-							               </xs:enumeration>
-							               <xs:enumeration value="CARD_EURO">
-								              <xs:annotation>
-									             <xs:documentation xml:lang="ro">Persoane titulare ale cardului european</xs:documentation>
-								              </xs:annotation>
-							               </xs:enumeration>
-							               <xs:enumeration value="CETA_CONV">
-								             <xs:annotation>
-									            <xs:documentation xml:lang="ro">Cetăţenii statelor cu care Romania a încheiat inţelegeri, convenţii sau protocoale internaţionale</xs:documentation>
-								             </xs:annotation>
-							               </xs:enumeration>
-							               <xs:enumeration value="FORM_CEE">
-								              <xs:annotation>
-									              <xs:documentation xml:lang="ro">Beneficiari de regulament cee 1408/1971</xs:documentation>
-								              </xs:annotation>
-							               </xs:enumeration>
-						                </xs:restriction>
-					                 </xs:simpleType>
-					              </xs:attribute>
+									<xs:attribute name="personType" use="optional">
+										<xs:annotation>
+											<xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
+											<xs:documentation xml:lang="ro">Tipul pacientului. Daca nu e completat se consideră implicit ASIGURAT.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="ASIGURAT">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Asiguraţi</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="CARD_EURO">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Persoane titulare ale cardului european</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="CETA_CONV">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Cetăţenii statelor cu care Romania a încheiat inţelegeri, convenţii sau protocoale internaţionale</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="FORM_CEE">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Beneficiari de regulament cee 1408/1971</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="OUGMGR">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Beneficiari ai OUG15/2022</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
 									<xs:attribute name="exceptedFromCard" type="xs:boolean" use="optional">
 										<xs:annotation>
 											<xs:documentation xml:lang="ro">Indica daca serviciul este insotit sau nu de referatul de solicitare. Pentru serviciile insotite de referatul de solicitare nu este necesara prezentarea cardului national de asigurari sociale de sanatate. </xs:documentation>

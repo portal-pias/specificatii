@@ -8,28 +8,28 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="requestContractType">
-					<xs:choice>
-						<xs:element name="emergService" type="emergencyServiceType" minOccurs="1" maxOccurs="unbounded">
+					<xs:sequence>
+						<xs:element name="emergService" type="emergencyServiceType" minOccurs="0" maxOccurs="unbounded">
 							<xs:annotation>
 								<xs:documentation xml:lang="ro">Serviciu de urgenţă</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="transAutoService" type="autoTransportServiceType" minOccurs="1" maxOccurs="unbounded">
+						<xs:element name="transAutoService" type="autoTransportServiceType" minOccurs="0" maxOccurs="unbounded">
 							<xs:annotation>
 								<xs:documentation xml:lang="ro">Serviciu de transport auto</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="transWaterService" type="waterTransportServiceType" minOccurs="1" maxOccurs="unbounded">
+						<xs:element name="transWaterService" type="waterTransportServiceType" minOccurs="0" maxOccurs="unbounded">
 							<xs:annotation>
 								<xs:documentation xml:lang="ro">Serviciu de transport naval</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="transAirService" type="airTransportServiceType" minOccurs="1" maxOccurs="unbounded">
+						<xs:element name="transAirService" type="airTransportServiceType" minOccurs="0" maxOccurs="unbounded">
 							<xs:annotation>
 								<xs:documentation xml:lang="ro">Serviciu de transport aerian</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-					</xs:choice>
+					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -81,7 +81,7 @@
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
-							<xs:length value="16"/>
+							<xs:maxLength value="20"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:attribute>

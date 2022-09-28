@@ -23,7 +23,11 @@ Aici este publicată documentaţia de interfaţare programatică cu Platforma  I
 - [Anexa 101 - Metode Obtinere CID](https://github.com/portal-siui/specificatii/blob/main/pdf/Specificatie%20Interfatare%20SIUI%20-%20Anexa%20101%20-%20Metode_Obtinere_CID.pdf)
 - [Anexa 102 - Specificatii eCard SDK](https://github.com/portal-siui/specificatii/blob/main/pdf/Specificatie%20Interfatare%20SIUI%20-%20Anexa%20102%20-%20Specificatii_eCard_SDK.pdf)
 
-## Structuri de validare XSD
+## Definiţii servicii Web WSDL
+
+- [Specificaţii](https://github.com/portal-siui/specificatii/tree/main/wsdl)
+
+## Scheme de validare XSD
 
 - [Raportare](https://github.com/portal-siui/specificatii/tree/main/xsd/raportare)
 - [Validare](https://github.com/portal-siui/specificatii/tree/main/xsd/validare)

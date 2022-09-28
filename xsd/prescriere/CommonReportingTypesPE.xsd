@@ -381,6 +381,11 @@
 									<xs:documentation xml:lang="ro">Altele2</xs:documentation>
 								</xs:annotation>
 							</xs:enumeration>
+							<xs:enumeration value="8">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Altele3</xs:documentation>
+								</xs:annotation>
+							</xs:enumeration>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:attribute>
@@ -473,6 +478,30 @@
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:attribute>
+        <xs:attribute name="identifDocNo" use="optional">
+          <xs:annotation>
+            <xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+            <xs:documentation xml:lang="ro">Nr. și serie document care au deschis dreptul la medicamente (se completeaza pentru categoria ALTE4)</xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:minLength value="1"/>
+              <xs:maxLength value="20"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="identifDocType" use="optional">
+          <xs:annotation>
+            <xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+            <xs:documentation xml:lang="ro">Tip document care a deschis dreptul la medicamente (se completeaza pentru categoria ALTE4)</xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:minLength value="1"/>
+              <xs:maxLength value="20"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
 				<xs:attribute name="cardNo" use="optional">
 					<xs:annotation>
 						<xs:documentation xml:lang="ro">Numărul cardului electronic de asigurat al beneficiarului</xs:documentation>
@@ -863,6 +892,11 @@
 			<xs:annotation>
 				<xs:documentation xml:lang="en">Released treatment days number</xs:documentation>
 				<xs:documentation xml:lang="ro">Numărul de zile de tratament eliberate</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isInitialTreatment" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="ro">Daca tratamentul prescris este Initial (1) sau Continuare (0)</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>

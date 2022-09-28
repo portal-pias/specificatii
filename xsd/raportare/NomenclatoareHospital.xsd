@@ -1673,6 +1673,12 @@
 											<xs:documentation xml:lang="ro">ATC-ul, conform HG: 1841/2006 (modificată 1209/2007), datorită căreia acest medicament intră în această listă de compensare.</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
+									<xs:attribute name="openCircuit" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+											<xs:documentation xml:lang="ro">Daca medicamentul se deconteaza in Circuit Deschis (1) sau doar in Circuit Inchis (0).</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
 									<xs:attribute name="validFrom" type="xs:date" use="required">
 										<xs:annotation>
 											<xs:documentation xml:lang="ro">Data de inceput a valabilităţii</xs:documentation>
@@ -3577,35 +3583,31 @@
 								<xs:complexType>
 									<xs:attribute name="code" use="required">
 										<xs:annotation>
-											<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 											<xs:documentation xml:lang="ro">Codul bolii</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
-												<xs:maxLength value="20" />
+												<xs:maxLength value="20"/>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
 									<xs:attribute name="description" use="required">
 										<xs:annotation>
-											<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 											<xs:documentation xml:lang="ro">Descrierea bolii</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
+												<xs:maxLength value="255"/>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
 									<xs:attribute name="validFrom" type="xs:date" use="required">
 										<xs:annotation>
-											<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 											<xs:documentation xml:lang="ro">Data de început a perioadei de valabilitate.</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
 									<xs:attribute name="validTo" type="xs:date" use="optional">
 										<xs:annotation>
-											<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 											<xs:documentation xml:lang="ro">Data de sfârşit a perioadei de valabilitate.</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
@@ -3967,6 +3969,11 @@
 												A = A.N.T. (Agentia Nationala a Transplantului),
 												0 = Fără aprobare
 											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="openCircuit" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Daca substanta activa se deconteaza in Circuit Deschis (1) sau doar in Circuit Inchis (0).</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
 									<xs:attribute name="contractCv" type="xs:string" use="optional">
@@ -4972,7 +4979,7 @@
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
-	<xs:element name="MedicalFormTypes" minOccurs="0">
+				<xs:element name="MedicalFormTypes" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation xml:lang="ro">Nomenclatorul tipurilor de formulare medicale.</xs:documentation>
 					</xs:annotation>

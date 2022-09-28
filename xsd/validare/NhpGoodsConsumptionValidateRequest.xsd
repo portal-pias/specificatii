@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xs:schema id="NhpGoodsConsumptionValidateRequest"
     elementFormDefault="qualified"
     targetNamespace="http://www.cnas.ro/siui/2.0"
@@ -22,7 +22,7 @@
 								<xs:complexContent>
 									<xs:extension base="claimItemType">
 										<xs:sequence>
-										    <xs:element name="foreignPerson" type="foreignPersonType" minOccurs="0">
+											<xs:element name="foreignPerson" type="foreignPersonType" minOccurs="0">
 												<xs:annotation>
 													<xs:documentation xml:lang="ro">Date de identificare pentru persoană străină (dacă este cazul)</xs:documentation>
 												</xs:annotation>
@@ -117,35 +117,41 @@
 												<xs:documentation xml:lang="ro">Data iesirii pacientului din PNS</xs:documentation>
 											</xs:annotation>
 										</xs:attribute>
-									    <xs:attribute name="personType" use="optional">
+										<xs:attribute name="personType" use="optional">
 											<xs:annotation>
+												<xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
 												<xs:documentation xml:lang="ro">Tipul pacientului.</xs:documentation>
 											</xs:annotation>
 											<xs:simpleType>
-											  <xs:restriction base="xs:string">
-												<xs:enumeration value="ASIGURAT">
-													<xs:annotation>
-														<xs:documentation xml:lang="ro">Asigurati</xs:documentation>
-													</xs:annotation>
-												</xs:enumeration>
-												<xs:enumeration value="CARD_EURO">
-													<xs:annotation>
-														<xs:documentation xml:lang="ro">Persoane titulare ale cardului european</xs:documentation>
-													</xs:annotation>
-												</xs:enumeration>
-												<xs:enumeration value="CETA_CONV">
-													<xs:annotation>
-														<xs:documentation xml:lang="ro">Cetatenii statelor cu care Romania a incheiat intelegeri, conventii sau protocoale internationale</xs:documentation>
-													</xs:annotation>
-												</xs:enumeration>
-												<xs:enumeration value="FORM_CEE">
-													<xs:annotation>
-														<xs:documentation xml:lang="ro">Beneficiari de regulament cee 1408/1971</xs:documentation>
-													</xs:annotation>
-												</xs:enumeration>
-											  </xs:restriction>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="ASIGURAT">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Asigurati</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="CARD_EURO">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Persoane titulare ale cardului european</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="CETA_CONV">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Cetatenii statelor cu care Romania a incheiat intelegeri, conventii sau protocoale internationale</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="FORM_CEE">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Beneficiari de regulament cee 1408/1971</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="OUGMGR">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Beneficiari ai OUG15/2022</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
 											</xs:simpleType>
-										</xs:attribute>											
+										</xs:attribute>
 									</xs:extension>
 								</xs:complexContent>
 							</xs:complexType>

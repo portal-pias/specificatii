@@ -35,6 +35,12 @@
 					<xs:documentation xml:lang="ro">Beneficiari de regulament cee 1408/1971</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="OUGMGR">
+				<xs:annotation>
+					<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+					<xs:documentation xml:lang="ro">Beneficiari OUG 15</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="stencilType">
@@ -51,12 +57,10 @@
 	</xs:simpleType>
 	<xs:complexType name="expenseType">
 		<xs:annotation>
-			<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 			<xs:documentation xml:lang="ro">Tip de date folosit pentru raportarea decontului de cheltuieli</xs:documentation>
 		</xs:annotation>
 		<xs:attribute name="description" use="required">
 			<xs:annotation>
-				<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				<xs:documentation xml:lang="ro">Descrierea cheltuielii</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
@@ -67,13 +71,11 @@
 		</xs:attribute>	
 		<xs:attribute name="quantity" type="xs:decimal" use="required">
 			<xs:annotation>
-				<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				<xs:documentation xml:lang="ro">Cantitate</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>		
 		<xs:attribute name="price" type="xs:double" use="required">
 			<xs:annotation>
-				<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				<xs:documentation xml:lang="ro">Pret/unitate de masura</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
@@ -833,6 +835,12 @@
 					<xs:enumeration value="5">
 						<xs:annotation>
 							<xs:documentation xml:lang="ro">Formulare europene</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="6">
+						<xs:annotation>
+							<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+							<xs:documentation xml:lang="ro">Beneficiari OUG 15</xs:documentation>
 						</xs:annotation>
 					</xs:enumeration>
 				</xs:restriction>
