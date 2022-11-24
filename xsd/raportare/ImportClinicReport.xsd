@@ -1518,9 +1518,21 @@
 														<xs:documentation xml:lang="ro">Numărul curent al procedurii.</xs:documentation>
 													</xs:annotation>
 												</xs:attribute>
-												<xs:attribute name="procedure" use="required">
+												<xs:attribute name="recaServiceCode" use="required">
 													<xs:annotation>
-														<xs:documentation xml:lang="ro">Codul procedurii (valoare din nomenclatorul de recuperare).</xs:documentation>
+														<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+														<xs:documentation xml:lang="ro">Codul serviciului reca (valoare din nomenclatorul de recuperare).</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="20"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="recaProcedureCode" use="required">
+													<xs:annotation>
+														<xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
+														<xs:documentation xml:lang="ro">Codul procedurii reca (valoare din nomenclatorul de recuperare).</xs:documentation>
 													</xs:annotation>
 													<xs:simpleType>
 														<xs:restriction base="xs:string">

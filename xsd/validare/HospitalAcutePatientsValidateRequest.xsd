@@ -534,7 +534,6 @@
 																</xs:enumeration>
 																<xs:enumeration value="6">
 																	<xs:annotation>
-																		<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 																		<xs:documentation xml:lang="ro">Beneficiari OUG 15</xs:documentation>
 																	</xs:annotation>
 																</xs:enumeration>
@@ -841,7 +840,18 @@
 																<xs:pattern value="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"/>
 															</xs:restriction>
 														</xs:simpleType>
-													</xs:attribute>	
+													</xs:attribute>
+		                                            <xs:attribute name="hospitalizedCategCode" use="optional">
+			                                          	<xs:annotation>
+														  	<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+				                                          	<xs:documentation xml:lang="ro">Codul categoriei de pacient pentru alocaţia de hrană. Acest atribut se preia din nomenclatorul HospitalizedCategories.</xs:documentation>
+			                                          	</xs:annotation>
+			                                          	<xs:simpleType>
+				                                         	<xs:restriction base="xs:string">
+					                                         	<xs:maxLength value="20"/>
+				                                         	</xs:restriction>
+			                                          	</xs:simpleType>
+		                                            </xs:attribute>
 												</xs:extension>
 											</xs:complexContent>
 										</xs:complexType>

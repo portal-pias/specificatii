@@ -1,1 +1,775 @@
-<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions targetNamespace="http://webservices.utils.svapnt.siveco.ro"                  xmlns:apachesoap="http://xml.apache.org/xml-soap"                  xmlns:impl="http://webservices.utils.svapnt.siveco.ro"                  xmlns:intf="http://webservices.utils.svapnt.siveco.ro"                  xmlns:tns1="http://exceptions.webservices.utils.svapnt.siveco.ro"                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"                  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"                  xmlns:xsd="http://www.w3.org/2001/XMLSchema">	<wsdl:types>		<schema elementFormDefault="qualified" targetNamespace="http://webservices.utils.svapnt.siveco.ro" xmlns="http://www.w3.org/2001/XMLSchema">			<import namespace="http://exceptions.webservices.utils.svapnt.siveco.ro" />			<element name="getCatalogues">				<complexType>					<sequence>						<element name="partnerCategory" type="xsd:string" />						<element name="start" type="xsd:dateTime" />					</sequence>				</complexType>			</element>			<element name="getCataloguesResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="getCataloguesReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="fault" type="tns1:RaportariException" />			<element name="getProviderInfo">				<complexType>					<sequence>						<element name="partnerCategory" type="xsd:string" />						<element name="start" type="xsd:dateTime" />						<element name="stop" type="xsd:dateTime" />						<element name="uic" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getProviderInfoResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="getProviderInfoReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getProviderInfoForPhysician">				<complexType>					<sequence>						<element name="partnerCategory" type="xsd:string" />						<element name="start" type="xsd:dateTime" />						<element name="stop" type="xsd:dateTime" />						<element name="uic" type="xsd:string" />						<element name="stencilNo" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getProviderInfoForPhysicianResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="getProviderInfoForPhysicianReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="sendReport">				<complexType>					<sequence>						<element name="reportType" type="xsd:string" />						<element name="reportXML" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="sendReportResponse">				<complexType>					<sequence>						<element name="sendReportReturn" type="xsd:int" />					</sequence>				</complexType>			</element>			<element name="getReportFeedback">				<complexType>					<sequence>						<element name="fileName" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getReportFeedbackResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="getReportFeedbackReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getRefund">				<complexType>					<sequence>						<element name="partnerCategory" type="xsd:string" />						<element name="start" type="xsd:dateTime" />						<element name="stop" type="xsd:dateTime" />						<element name="uic" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getRefundResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="getRefundReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getRefundForPhysician">				<complexType>					<sequence>						<element name="partnerCategory" type="xsd:string" />						<element name="start" type="xsd:dateTime" />						<element name="stop" type="xsd:dateTime" />						<element name="uic" type="xsd:string" />						<element name="stencil" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getRefundForPhysicianResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="getRefundForPhysicianReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getRefundForInvoice">				<complexType>					<sequence>						<element name="partnerCategory" type="xsd:string" />						<element name="invoiceNumber" type="xsd:string" />						<element name="invoiceDate" type="xsd:dateTime" />						<element name="uic" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getRefundForInvoiceResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="getRefundForInvoiceReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getDecisions">				<complexType>					<sequence>						<element name="partnerCategory" type="xsd:string" />						<element name="requestXml" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getDecisionsResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="getDecisionsReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="registerApplicationInstance">				<complexType>					<sequence>						<element name="provType" type="xsd:string" />						<element name="uic" type="xsd:string" />						<element name="ctrNo" type="xsd:string" />						<element name="serialNo" type="xsd:string" />						<element name="regDate" type="xsd:dateTime" />					</sequence>				</complexType>			</element>			<element name="registerApplicationInstanceResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="registerApplicationInstanceReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="isPhysicianOnContract">				<complexType>					<sequence>						<element name="contractNo" type="xsd:string" />						<element name="physicianId" type="xsd:long" />						<element name="atDate" type="xsd:dateTime" />					</sequence>				</complexType>			</element>			<element name="isPhysicianOnContractResponse">				<complexType>					<sequence>						<element name="isPhysicianOnContractReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="generatePrescriptionSeries">				<complexType>					<sequence>						<element name="categoryCode" type="xsd:string" />						<element name="orgUnitCode" type="xsd:string" />						<element name="uic" type="xsd:string" />						<element name="subUnitCode" type="xsd:string" />						<element name="validFrom" type="xsd:dateTime" />						<element name="isOnLine" type="xsd:boolean" />						<element name="quantity" type="xsd:int" />					</sequence>				</complexType>			</element>			<element name="generatePrescriptionSeriesResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="generatePrescriptionSeriesReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getPrescriptionSeriesInfo">				<complexType>					<sequence>						<element name="categoryCode" type="xsd:string" />						<element name="orgUnitCode" type="xsd:string" />						<element name="uic" type="xsd:string" />						<element name="subUnitCode" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getPrescriptionSeriesInfoResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="getPrescriptionSeriesInfoReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getPartnerInfo">				<complexType>					<sequence>						<element name="partnerCode" type="xsd:string" />						<element name="startDate" type="xsd:dateTime" />						<element name="stopDate" type="xsd:dateTime" />						<element name="uic" type="xsd:string" />						<element name="subUnitCode" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getPartnerInfoResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="getPartnerInfoReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getRegisterFeedbackAggregated">				<complexType>					<sequence>						<element name="partnerUic" type="xsd:string" />						<element name="partnerWorkplace" type="xsd:string" />						<element name="start" type="xsd:dateTime" />						<element name="stop" type="xsd:dateTime" />					</sequence>				</complexType>			</element>			<element name="getRegisterFeedbackAggregatedResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="getRegisterFeedbackAggregatedReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getRegisterFeedback">				<complexType>					<sequence>						<element name="filename" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getRegisterFeedbackResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="getRegisterFeedbackReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="sendSupplierData">				<complexType>					<sequence>						<element name="supplierType" type="xsd:string" />						<element name="reportXML" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="sendSupplierDataResponse">				<complexType>					<sequence>						<element name="sendSupplierDataReturn" type="xsd:long" />					</sequence>				</complexType>			</element>			<element name="getSupplierFeedback">				<complexType>					<sequence>						<element name="refId" type="xsd:long" />					</sequence>				</complexType>			</element>			<element name="getSupplierFeedbackResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="getSupplierFeedbackReturn" type="xsd:string" />					</sequence>				</complexType>			</element>			<element name="getPhysicianCatalogues">				<complexType/>			</element>			<element name="getPhysicianCataloguesResponse">				<complexType>					<sequence>						<element maxOccurs="unbounded" name="getPhysicianCataloguesReturn" type="xsd:string" />					</sequence>				</complexType>			</element>		</schema>		<schema elementFormDefault="qualified" targetNamespace="http://exceptions.webservices.utils.svapnt.siveco.ro" xmlns="http://www.w3.org/2001/XMLSchema">			<complexType name="RaportariException">				<sequence>					<element name="errorCode" type="xsd:int" />					<element name="message" nillable="true" type="xsd:string" />				</sequence>			</complexType>		</schema>	</wsdl:types>	<wsdl:message name="getPartnerInfoResponse">		<wsdl:part element="impl:getPartnerInfoResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="getPrescriptionSeriesInfoResponse">		<wsdl:part element="impl:getPrescriptionSeriesInfoResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="getProviderInfoForPhysicianRequest">		<wsdl:part element="impl:getProviderInfoForPhysician" name="parameters" />	</wsdl:message>	<wsdl:message name="getProviderInfoResponse">		<wsdl:part element="impl:getProviderInfoResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="getRefundForPhysicianResponse">		<wsdl:part element="impl:getRefundForPhysicianResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="generatePrescriptionSeriesResponse">		<wsdl:part element="impl:generatePrescriptionSeriesResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="getRegisterFeedbackAggregatedRequest">		<wsdl:part element="impl:getRegisterFeedbackAggregated" name="parameters" />	</wsdl:message>	<wsdl:message name="getRefundForInvoiceRequest">		<wsdl:part element="impl:getRefundForInvoice" name="parameters" />	</wsdl:message>	<wsdl:message name="sendSupplierDataRequest">		<wsdl:part element="impl:sendSupplierData" name="parameters" />	</wsdl:message>	<wsdl:message name="getSupplierFeedbackRequest">		<wsdl:part element="impl:getSupplierFeedback" name="parameters" />	</wsdl:message>	<wsdl:message name="getSupplierFeedbackResponse">		<wsdl:part element="impl:getSupplierFeedbackResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="registerApplicationInstanceRequest">		<wsdl:part element="impl:registerApplicationInstance" name="parameters" />	</wsdl:message>	<wsdl:message name="getPhysicianCataloguesResponse">		<wsdl:part element="impl:getPhysicianCataloguesResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="sendSupplierDataResponse">		<wsdl:part element="impl:sendSupplierDataResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="getCataloguesRequest">		<wsdl:part element="impl:getCatalogues" name="parameters" />	</wsdl:message>	<wsdl:message name="getCataloguesResponse">		<wsdl:part element="impl:getCataloguesResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="getRefundResponse">		<wsdl:part element="impl:getRefundResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="getPrescriptionSeriesInfoRequest">		<wsdl:part element="impl:getPrescriptionSeriesInfo" name="parameters" />	</wsdl:message>	<wsdl:message name="getProviderInfoForPhysicianResponse">		<wsdl:part element="impl:getProviderInfoForPhysicianResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="getProviderInfoRequest">		<wsdl:part element="impl:getProviderInfo" name="parameters" />	</wsdl:message>	<wsdl:message name="getRefundRequest">		<wsdl:part element="impl:getRefund" name="parameters" />	</wsdl:message>	<wsdl:message name="getRegisterFeedbackRequest">		<wsdl:part element="impl:getRegisterFeedback" name="parameters" />	</wsdl:message>	<wsdl:message name="getPartnerInfoRequest">		<wsdl:part element="impl:getPartnerInfo" name="parameters" />	</wsdl:message>	<wsdl:message name="getDecisionsResponse">		<wsdl:part element="impl:getDecisionsResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="getRefundForPhysicianRequest">		<wsdl:part element="impl:getRefundForPhysician" name="parameters" />	</wsdl:message>	<wsdl:message name="getRegisterFeedbackResponse">		<wsdl:part element="impl:getRegisterFeedbackResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="getRefundForInvoiceResponse">		<wsdl:part element="impl:getRefundForInvoiceResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="getDecisionsRequest">		<wsdl:part element="impl:getDecisions" name="parameters" />	</wsdl:message>	<wsdl:message name="isPhysicianOnContractResponse">		<wsdl:part element="impl:isPhysicianOnContractResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="sendReportRequest">		<wsdl:part element="impl:sendReport" name="parameters" />	</wsdl:message>	<wsdl:message name="registerApplicationInstanceResponse">		<wsdl:part element="impl:registerApplicationInstanceResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="isPhysicianOnContractRequest">		<wsdl:part element="impl:isPhysicianOnContract" name="parameters" />	</wsdl:message>	<wsdl:message name="RaportariException">		<wsdl:part element="impl:fault" name="fault" />	</wsdl:message>	<wsdl:message name="sendReportResponse">		<wsdl:part element="impl:sendReportResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="getPhysicianCataloguesRequest">		<wsdl:part element="impl:getPhysicianCatalogues" name="parameters" />	</wsdl:message>	<wsdl:message name="generatePrescriptionSeriesRequest">		<wsdl:part element="impl:generatePrescriptionSeries" name="parameters" />	</wsdl:message>	<wsdl:message name="getReportFeedbackResponse">		<wsdl:part element="impl:getReportFeedbackResponse" name="parameters" />	</wsdl:message>	<wsdl:message name="getReportFeedbackRequest">		<wsdl:part element="impl:getReportFeedback" name="parameters" />	</wsdl:message>	<wsdl:message name="getRegisterFeedbackAggregatedResponse">		<wsdl:part element="impl:getRegisterFeedbackAggregatedResponse" name="parameters" />	</wsdl:message>	<wsdl:portType name="SiuiWS">		<wsdl:operation name="getCatalogues">			<wsdl:input message="impl:getCataloguesRequest" name="getCataloguesRequest" />			<wsdl:output message="impl:getCataloguesResponse" name="getCataloguesResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="getProviderInfo">			<wsdl:input message="impl:getProviderInfoRequest" name="getProviderInfoRequest" />			<wsdl:output message="impl:getProviderInfoResponse" name="getProviderInfoResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="getProviderInfoForPhysician">			<wsdl:input message="impl:getProviderInfoForPhysicianRequest" name="getProviderInfoForPhysicianRequest" />			<wsdl:output message="impl:getProviderInfoForPhysicianResponse" name="getProviderInfoForPhysicianResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="sendReport">			<wsdl:input message="impl:sendReportRequest" name="sendReportRequest" />			<wsdl:output message="impl:sendReportResponse" name="sendReportResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="getReportFeedback">			<wsdl:input message="impl:getReportFeedbackRequest" name="getReportFeedbackRequest" />			<wsdl:output message="impl:getReportFeedbackResponse" name="getReportFeedbackResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="getRefund">			<wsdl:input message="impl:getRefundRequest" name="getRefundRequest" />			<wsdl:output message="impl:getRefundResponse" name="getRefundResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="getRefundForPhysician">			<wsdl:input message="impl:getRefundForPhysicianRequest" name="getRefundForPhysicianRequest" />			<wsdl:output message="impl:getRefundForPhysicianResponse" name="getRefundForPhysicianResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="getRefundForInvoice">			<wsdl:input message="impl:getRefundForInvoiceRequest" name="getRefundForInvoiceRequest" />			<wsdl:output message="impl:getRefundForInvoiceResponse" name="getRefundForInvoiceResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="getDecisions">			<wsdl:input message="impl:getDecisionsRequest" name="getDecisionsRequest" />			<wsdl:output message="impl:getDecisionsResponse" name="getDecisionsResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="registerApplicationInstance">			<wsdl:input message="impl:registerApplicationInstanceRequest" name="registerApplicationInstanceRequest" />			<wsdl:output message="impl:registerApplicationInstanceResponse" name="registerApplicationInstanceResponse" />		</wsdl:operation>		<wsdl:operation name="isPhysicianOnContract">			<wsdl:input message="impl:isPhysicianOnContractRequest" name="isPhysicianOnContractRequest" />			<wsdl:output message="impl:isPhysicianOnContractResponse" name="isPhysicianOnContractResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="generatePrescriptionSeries">			<wsdl:input message="impl:generatePrescriptionSeriesRequest" name="generatePrescriptionSeriesRequest" />			<wsdl:output message="impl:generatePrescriptionSeriesResponse" name="generatePrescriptionSeriesResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="getPrescriptionSeriesInfo">			<wsdl:input message="impl:getPrescriptionSeriesInfoRequest" name="getPrescriptionSeriesInfoRequest" />			<wsdl:output message="impl:getPrescriptionSeriesInfoResponse" name="getPrescriptionSeriesInfoResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="getPartnerInfo">			<wsdl:input message="impl:getPartnerInfoRequest" name="getPartnerInfoRequest" />			<wsdl:output message="impl:getPartnerInfoResponse" name="getPartnerInfoResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="getRegisterFeedbackAggregated">			<wsdl:input message="impl:getRegisterFeedbackAggregatedRequest" name="getRegisterFeedbackAggregatedRequest" />			<wsdl:output message="impl:getRegisterFeedbackAggregatedResponse" name="getRegisterFeedbackAggregatedResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="getRegisterFeedback">			<wsdl:input message="impl:getRegisterFeedbackRequest" name="getRegisterFeedbackRequest" />			<wsdl:output message="impl:getRegisterFeedbackResponse" name="getRegisterFeedbackResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="sendSupplierData">			<wsdl:input message="impl:sendSupplierDataRequest" name="sendSupplierDataRequest" />			<wsdl:output message="impl:sendSupplierDataResponse" name="sendSupplierDataResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="getSupplierFeedback">			<wsdl:input message="impl:getSupplierFeedbackRequest" name="getSupplierFeedbackRequest" />			<wsdl:output message="impl:getSupplierFeedbackResponse" name="getSupplierFeedbackResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>		<wsdl:operation name="getPhysicianCatalogues">			<wsdl:input message="impl:getPhysicianCataloguesRequest" name="getPhysicianCataloguesRequest" />			<wsdl:output message="impl:getPhysicianCataloguesResponse" name="getPhysicianCataloguesResponse" />			<wsdl:fault message="impl:RaportariException" name="RaportariException" />		</wsdl:operation>	</wsdl:portType>	<wsdl:binding name="SiuiWSSoapBinding" type="impl:SiuiWS">		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />		<wsdl:operation name="getCatalogues">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="getCataloguesRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="getCataloguesResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="getProviderInfo">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="getProviderInfoRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="getProviderInfoResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="getProviderInfoForPhysician">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="getProviderInfoForPhysicianRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="getProviderInfoForPhysicianResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="sendReport">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="sendReportRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="sendReportResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="getReportFeedback">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="getReportFeedbackRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="getReportFeedbackResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="getRefund">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="getRefundRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="getRefundResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="getRefundForPhysician">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="getRefundForPhysicianRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="getRefundForPhysicianResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="getRefundForInvoice">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="getRefundForInvoiceRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="getRefundForInvoiceResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="getDecisions">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="getDecisionsRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="getDecisionsResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="registerApplicationInstance">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="registerApplicationInstanceRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="registerApplicationInstanceResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>		</wsdl:operation>		<wsdl:operation name="isPhysicianOnContract">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="isPhysicianOnContractRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="isPhysicianOnContractResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="generatePrescriptionSeries">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="generatePrescriptionSeriesRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="generatePrescriptionSeriesResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="getPrescriptionSeriesInfo">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="getPrescriptionSeriesInfoRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="getPrescriptionSeriesInfoResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="getPartnerInfo">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="getPartnerInfoRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="getPartnerInfoResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="getRegisterFeedbackAggregated">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="getRegisterFeedbackAggregatedRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="getRegisterFeedbackAggregatedResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="getRegisterFeedback">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="getRegisterFeedbackRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="getRegisterFeedbackResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="sendSupplierData">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="sendSupplierDataRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="sendSupplierDataResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="getSupplierFeedback">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="getSupplierFeedbackRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="getSupplierFeedbackResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>		<wsdl:operation name="getPhysicianCatalogues">			<wsdlsoap:operation soapAction="" />			<wsdl:input name="getPhysicianCataloguesRequest">				<wsdlsoap:body use="literal" />			</wsdl:input>			<wsdl:output name="getPhysicianCataloguesResponse">				<wsdlsoap:body use="literal" />			</wsdl:output>			<wsdl:fault name="RaportariException">				<wsdlsoap:fault name="RaportariException" use="literal" />			</wsdl:fault>		</wsdl:operation>	</wsdl:binding>	<wsdl:service name="SiuiWSService">		<wsdl:port binding="impl:SiuiWSSoapBinding" name="SiuiWS">			<wsdlsoap:address location="https://www.siui.ro/svapntws/services/SiuiWS" />		</wsdl:port>	</wsdl:service></wsdl:definitions>
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://webservices.utils.svapnt.siveco.ro"
+                  xmlns:apachesoap="http://xml.apache.org/xml-soap"
+                  xmlns:impl="http://webservices.utils.svapnt.siveco.ro"
+                  xmlns:intf="http://webservices.utils.svapnt.siveco.ro"
+                  xmlns:tns1="http://exceptions.webservices.utils.svapnt.siveco.ro"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<schema elementFormDefault="qualified" targetNamespace="http://webservices.utils.svapnt.siveco.ro" xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://exceptions.webservices.utils.svapnt.siveco.ro" />
+			<element name="getCatalogues">
+				<complexType>
+					<sequence>
+						<element name="partnerCategory" type="xsd:string" />
+						<element name="start" type="xsd:dateTime" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getCataloguesResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="getCataloguesReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="fault" type="tns1:RaportariException" />
+			<element name="getProviderInfo">
+				<complexType>
+					<sequence>
+						<element name="partnerCategory" type="xsd:string" />
+						<element name="start" type="xsd:dateTime" />
+						<element name="stop" type="xsd:dateTime" />
+						<element name="uic" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getProviderInfoResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="getProviderInfoReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getProviderInfoForPhysician">
+				<complexType>
+					<sequence>
+						<element name="partnerCategory" type="xsd:string" />
+						<element name="start" type="xsd:dateTime" />
+						<element name="stop" type="xsd:dateTime" />
+						<element name="uic" type="xsd:string" />
+						<element name="stencilNo" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getProviderInfoForPhysicianResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="getProviderInfoForPhysicianReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="sendReport">
+				<complexType>
+					<sequence>
+						<element name="reportType" type="xsd:string" />
+						<element name="reportXML" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="sendReportResponse">
+				<complexType>
+					<sequence>
+						<element name="sendReportReturn" type="xsd:int" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getReportFeedback">
+				<complexType>
+					<sequence>
+						<element name="fileName" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getReportFeedbackResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="getReportFeedbackReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getRefund">
+				<complexType>
+					<sequence>
+						<element name="partnerCategory" type="xsd:string" />
+						<element name="start" type="xsd:dateTime" />
+						<element name="stop" type="xsd:dateTime" />
+						<element name="uic" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getRefundResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="getRefundReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getRefundForPhysician">
+				<complexType>
+					<sequence>
+						<element name="partnerCategory" type="xsd:string" />
+						<element name="start" type="xsd:dateTime" />
+						<element name="stop" type="xsd:dateTime" />
+						<element name="uic" type="xsd:string" />
+						<element name="stencil" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getRefundForPhysicianResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="getRefundForPhysicianReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getRefundForInvoice">
+				<complexType>
+					<sequence>
+						<element name="partnerCategory" type="xsd:string" />
+						<element name="invoiceNumber" type="xsd:string" />
+						<element name="invoiceDate" type="xsd:dateTime" />
+						<element name="uic" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getRefundForInvoiceResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="getRefundForInvoiceReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getDecisions">
+				<complexType>
+					<sequence>
+						<element name="partnerCategory" type="xsd:string" />
+						<element name="requestXml" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getDecisionsResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="getDecisionsReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="registerApplicationInstance">
+				<complexType>
+					<sequence>
+						<element name="provType" type="xsd:string" />
+						<element name="uic" type="xsd:string" />
+						<element name="ctrNo" type="xsd:string" />
+						<element name="serialNo" type="xsd:string" />
+						<element name="regDate" type="xsd:dateTime" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="registerApplicationInstanceResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="registerApplicationInstanceReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="isPhysicianOnContract">
+				<complexType>
+					<sequence>
+						<element name="contractNo" type="xsd:string" />
+						<element name="physicianId" type="xsd:long" />
+						<element name="atDate" type="xsd:dateTime" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="isPhysicianOnContractResponse">
+				<complexType>
+					<sequence>
+						<element name="isPhysicianOnContractReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="generatePrescriptionSeries">
+				<complexType>
+					<sequence>
+						<element name="categoryCode" type="xsd:string" />
+						<element name="orgUnitCode" type="xsd:string" />
+						<element name="uic" type="xsd:string" />
+						<element name="subUnitCode" type="xsd:string" />
+						<element name="validFrom" type="xsd:dateTime" />
+						<element name="isOnLine" type="xsd:boolean" />
+						<element name="quantity" type="xsd:int" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="generatePrescriptionSeriesResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="generatePrescriptionSeriesReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getPrescriptionSeriesInfo">
+				<complexType>
+					<sequence>
+						<element name="categoryCode" type="xsd:string" />
+						<element name="orgUnitCode" type="xsd:string" />
+						<element name="uic" type="xsd:string" />
+						<element name="subUnitCode" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getPrescriptionSeriesInfoResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="getPrescriptionSeriesInfoReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getPartnerInfo">
+				<complexType>
+					<sequence>
+						<element name="partnerCode" type="xsd:string" />
+						<element name="startDate" type="xsd:dateTime" />
+						<element name="stopDate" type="xsd:dateTime" />
+						<element name="uic" type="xsd:string" />
+						<element name="subUnitCode" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getPartnerInfoResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="getPartnerInfoReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getRegisterFeedbackAggregated">
+				<complexType>
+					<sequence>
+						<element name="partnerUic" type="xsd:string" />
+						<element name="partnerWorkplace" type="xsd:string" />
+						<element name="start" type="xsd:dateTime" />
+						<element name="stop" type="xsd:dateTime" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getRegisterFeedbackAggregatedResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="getRegisterFeedbackAggregatedReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getRegisterFeedback">
+				<complexType>
+					<sequence>
+						<element name="filename" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getRegisterFeedbackResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="getRegisterFeedbackReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="sendSupplierData">
+				<complexType>
+					<sequence>
+						<element name="supplierType" type="xsd:string" />
+						<element name="reportXML" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="sendSupplierDataResponse">
+				<complexType>
+					<sequence>
+						<element name="sendSupplierDataReturn" type="xsd:long" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getSupplierFeedback">
+				<complexType>
+					<sequence>
+						<element name="refId" type="xsd:long" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getSupplierFeedbackResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="getSupplierFeedbackReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getPhysicianCatalogues">
+				<complexType/>
+			</element>
+			<element name="getPhysicianCataloguesResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="getPhysicianCataloguesReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+		<schema elementFormDefault="qualified" targetNamespace="http://exceptions.webservices.utils.svapnt.siveco.ro" xmlns="http://www.w3.org/2001/XMLSchema">
+			<complexType name="RaportariException">
+				<sequence>
+					<element name="errorCode" type="xsd:int" />
+					<element name="message" nillable="true" type="xsd:string" />
+				</sequence>
+			</complexType>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="getPartnerInfoResponse">
+		<wsdl:part element="impl:getPartnerInfoResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getPrescriptionSeriesInfoResponse">
+		<wsdl:part element="impl:getPrescriptionSeriesInfoResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getProviderInfoForPhysicianRequest">
+		<wsdl:part element="impl:getProviderInfoForPhysician" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getProviderInfoResponse">
+		<wsdl:part element="impl:getProviderInfoResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getRefundForPhysicianResponse">
+		<wsdl:part element="impl:getRefundForPhysicianResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="generatePrescriptionSeriesResponse">
+		<wsdl:part element="impl:generatePrescriptionSeriesResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getRegisterFeedbackAggregatedRequest">
+		<wsdl:part element="impl:getRegisterFeedbackAggregated" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getRefundForInvoiceRequest">
+		<wsdl:part element="impl:getRefundForInvoice" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="sendSupplierDataRequest">
+		<wsdl:part element="impl:sendSupplierData" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getSupplierFeedbackRequest">
+		<wsdl:part element="impl:getSupplierFeedback" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getSupplierFeedbackResponse">
+		<wsdl:part element="impl:getSupplierFeedbackResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="registerApplicationInstanceRequest">
+		<wsdl:part element="impl:registerApplicationInstance" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getPhysicianCataloguesResponse">
+		<wsdl:part element="impl:getPhysicianCataloguesResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="sendSupplierDataResponse">
+		<wsdl:part element="impl:sendSupplierDataResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getCataloguesRequest">
+		<wsdl:part element="impl:getCatalogues" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getCataloguesResponse">
+		<wsdl:part element="impl:getCataloguesResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getRefundResponse">
+		<wsdl:part element="impl:getRefundResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getPrescriptionSeriesInfoRequest">
+		<wsdl:part element="impl:getPrescriptionSeriesInfo" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getProviderInfoForPhysicianResponse">
+		<wsdl:part element="impl:getProviderInfoForPhysicianResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getProviderInfoRequest">
+		<wsdl:part element="impl:getProviderInfo" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getRefundRequest">
+		<wsdl:part element="impl:getRefund" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getRegisterFeedbackRequest">
+		<wsdl:part element="impl:getRegisterFeedback" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getPartnerInfoRequest">
+		<wsdl:part element="impl:getPartnerInfo" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getDecisionsResponse">
+		<wsdl:part element="impl:getDecisionsResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getRefundForPhysicianRequest">
+		<wsdl:part element="impl:getRefundForPhysician" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getRegisterFeedbackResponse">
+		<wsdl:part element="impl:getRegisterFeedbackResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getRefundForInvoiceResponse">
+		<wsdl:part element="impl:getRefundForInvoiceResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getDecisionsRequest">
+		<wsdl:part element="impl:getDecisions" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="isPhysicianOnContractResponse">
+		<wsdl:part element="impl:isPhysicianOnContractResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="sendReportRequest">
+		<wsdl:part element="impl:sendReport" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="registerApplicationInstanceResponse">
+		<wsdl:part element="impl:registerApplicationInstanceResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="isPhysicianOnContractRequest">
+		<wsdl:part element="impl:isPhysicianOnContract" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="RaportariException">
+		<wsdl:part element="impl:fault" name="fault" />
+	</wsdl:message>
+	<wsdl:message name="sendReportResponse">
+		<wsdl:part element="impl:sendReportResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getPhysicianCataloguesRequest">
+		<wsdl:part element="impl:getPhysicianCatalogues" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="generatePrescriptionSeriesRequest">
+		<wsdl:part element="impl:generatePrescriptionSeries" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getReportFeedbackResponse">
+		<wsdl:part element="impl:getReportFeedbackResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getReportFeedbackRequest">
+		<wsdl:part element="impl:getReportFeedback" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getRegisterFeedbackAggregatedResponse">
+		<wsdl:part element="impl:getRegisterFeedbackAggregatedResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:portType name="SiuiWS">
+		<wsdl:operation name="getCatalogues">
+			<wsdl:input message="impl:getCataloguesRequest" name="getCataloguesRequest" />
+			<wsdl:output message="impl:getCataloguesResponse" name="getCataloguesResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="getProviderInfo">
+			<wsdl:input message="impl:getProviderInfoRequest" name="getProviderInfoRequest" />
+			<wsdl:output message="impl:getProviderInfoResponse" name="getProviderInfoResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="getProviderInfoForPhysician">
+			<wsdl:input message="impl:getProviderInfoForPhysicianRequest" name="getProviderInfoForPhysicianRequest" />
+			<wsdl:output message="impl:getProviderInfoForPhysicianResponse" name="getProviderInfoForPhysicianResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="sendReport">
+			<wsdl:input message="impl:sendReportRequest" name="sendReportRequest" />
+			<wsdl:output message="impl:sendReportResponse" name="sendReportResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="getReportFeedback">
+			<wsdl:input message="impl:getReportFeedbackRequest" name="getReportFeedbackRequest" />
+			<wsdl:output message="impl:getReportFeedbackResponse" name="getReportFeedbackResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="getRefund">
+			<wsdl:input message="impl:getRefundRequest" name="getRefundRequest" />
+			<wsdl:output message="impl:getRefundResponse" name="getRefundResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="getRefundForPhysician">
+			<wsdl:input message="impl:getRefundForPhysicianRequest" name="getRefundForPhysicianRequest" />
+			<wsdl:output message="impl:getRefundForPhysicianResponse" name="getRefundForPhysicianResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="getRefundForInvoice">
+			<wsdl:input message="impl:getRefundForInvoiceRequest" name="getRefundForInvoiceRequest" />
+			<wsdl:output message="impl:getRefundForInvoiceResponse" name="getRefundForInvoiceResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="getDecisions">
+			<wsdl:input message="impl:getDecisionsRequest" name="getDecisionsRequest" />
+			<wsdl:output message="impl:getDecisionsResponse" name="getDecisionsResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="registerApplicationInstance">
+			<wsdl:input message="impl:registerApplicationInstanceRequest" name="registerApplicationInstanceRequest" />
+			<wsdl:output message="impl:registerApplicationInstanceResponse" name="registerApplicationInstanceResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="isPhysicianOnContract">
+			<wsdl:input message="impl:isPhysicianOnContractRequest" name="isPhysicianOnContractRequest" />
+			<wsdl:output message="impl:isPhysicianOnContractResponse" name="isPhysicianOnContractResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="generatePrescriptionSeries">
+			<wsdl:input message="impl:generatePrescriptionSeriesRequest" name="generatePrescriptionSeriesRequest" />
+			<wsdl:output message="impl:generatePrescriptionSeriesResponse" name="generatePrescriptionSeriesResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="getPrescriptionSeriesInfo">
+			<wsdl:input message="impl:getPrescriptionSeriesInfoRequest" name="getPrescriptionSeriesInfoRequest" />
+			<wsdl:output message="impl:getPrescriptionSeriesInfoResponse" name="getPrescriptionSeriesInfoResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="getPartnerInfo">
+			<wsdl:input message="impl:getPartnerInfoRequest" name="getPartnerInfoRequest" />
+			<wsdl:output message="impl:getPartnerInfoResponse" name="getPartnerInfoResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="getRegisterFeedbackAggregated">
+			<wsdl:input message="impl:getRegisterFeedbackAggregatedRequest" name="getRegisterFeedbackAggregatedRequest" />
+			<wsdl:output message="impl:getRegisterFeedbackAggregatedResponse" name="getRegisterFeedbackAggregatedResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="getRegisterFeedback">
+			<wsdl:input message="impl:getRegisterFeedbackRequest" name="getRegisterFeedbackRequest" />
+			<wsdl:output message="impl:getRegisterFeedbackResponse" name="getRegisterFeedbackResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="sendSupplierData">
+			<wsdl:input message="impl:sendSupplierDataRequest" name="sendSupplierDataRequest" />
+			<wsdl:output message="impl:sendSupplierDataResponse" name="sendSupplierDataResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="getSupplierFeedback">
+			<wsdl:input message="impl:getSupplierFeedbackRequest" name="getSupplierFeedbackRequest" />
+			<wsdl:output message="impl:getSupplierFeedbackResponse" name="getSupplierFeedbackResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+		<wsdl:operation name="getPhysicianCatalogues">
+			<wsdl:input message="impl:getPhysicianCataloguesRequest" name="getPhysicianCataloguesRequest" />
+			<wsdl:output message="impl:getPhysicianCataloguesResponse" name="getPhysicianCataloguesResponse" />
+			<wsdl:fault message="impl:RaportariException" name="RaportariException" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SiuiWSSoapBinding" type="impl:SiuiWS">
+		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getCatalogues">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getCataloguesRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getCataloguesResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getProviderInfo">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getProviderInfoRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getProviderInfoResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getProviderInfoForPhysician">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getProviderInfoForPhysicianRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getProviderInfoForPhysicianResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="sendReport">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="sendReportRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="sendReportResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getReportFeedback">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getReportFeedbackRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getReportFeedbackResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getRefund">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getRefundRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getRefundResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getRefundForPhysician">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getRefundForPhysicianRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getRefundForPhysicianResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getRefundForInvoice">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getRefundForInvoiceRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getRefundForInvoiceResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getDecisions">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getDecisionsRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getDecisionsResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="registerApplicationInstance">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="registerApplicationInstanceRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="registerApplicationInstanceResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="isPhysicianOnContract">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="isPhysicianOnContractRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="isPhysicianOnContractResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="generatePrescriptionSeries">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="generatePrescriptionSeriesRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="generatePrescriptionSeriesResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getPrescriptionSeriesInfo">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getPrescriptionSeriesInfoRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getPrescriptionSeriesInfoResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getPartnerInfo">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getPartnerInfoRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getPartnerInfoResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getRegisterFeedbackAggregated">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getRegisterFeedbackAggregatedRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getRegisterFeedbackAggregatedResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getRegisterFeedback">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getRegisterFeedbackRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getRegisterFeedbackResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="sendSupplierData">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="sendSupplierDataRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="sendSupplierDataResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getSupplierFeedback">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getSupplierFeedbackRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getSupplierFeedbackResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getPhysicianCatalogues">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getPhysicianCataloguesRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getPhysicianCataloguesResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="RaportariException">
+				<wsdlsoap:fault name="RaportariException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SiuiWSService">
+		<wsdl:port binding="impl:SiuiWSSoapBinding" name="SiuiWS">
+			<wsdlsoap:address location="https://www.siui.ro/svapntws/services/SiuiWS" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
