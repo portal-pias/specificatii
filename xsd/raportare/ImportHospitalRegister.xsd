@@ -47,6 +47,11 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
+									<xs:attribute name="isInitialTreatment" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Daca tratamentul prescris este Initial (1) sau Continuare (0)</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
 									<xs:attribute name="quantityPrescribed" type="xs:double" use="optional">
 										<xs:annotation>
 											<xs:documentation xml:lang="ro">Cantitate prescrisa de UT</xs:documentation>
@@ -79,7 +84,7 @@
 									</xs:attribute>
 									<xs:attribute name="personCID" use="optional">
 										<xs:annotation>
-											<xs:documentation xml:lang="ro">Numărul de identificare al persoanei (dupa caz poate fi: CID,CE sau PASS)</xs:documentation>
+											<xs:documentation xml:lang="ro">Numărul de identificare al persoanei (dupa caz poate fi: CID,CE,PASS sau CIF)</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
@@ -92,22 +97,43 @@
 											<xs:documentation xml:lang="ro">Numărul Cardului European al persoanei (se completeaza pentru categoria CE)</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
-										<xs:restriction base="xs:string">
-											<xs:minLength value="1"/>
-											<xs:maxLength value="20"/>
-										</xs:restriction>
-									</xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:attribute>
 									<xs:attribute name="passportNo" use="optional">
 										<xs:annotation>
 											<xs:documentation xml:lang="ro">Numărul Pasaportului persoanei (se completeaza pentru categoria ACORD sau ALTE3-Formulare Europene)</xs:documentation>
 										</xs:annotation>
-									<xs:simpleType>
-										<xs:restriction base="xs:string">
-											<xs:minLength value="1"/>
-											<xs:maxLength value="20"/>
-										</xs:restriction>
-									</xs:simpleType>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="identifDocNo" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Nr. și serie document care a deschis dreptul la medicamente (se completeaza pentru categoria ALTE4)</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="identifDocType" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Tip document care a deschis dreptul la medicamente (se preia din DocumentTypes)</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:attribute>
 									<xs:attribute name="cardNo" use="optional">
 										<xs:annotation>

@@ -368,6 +368,21 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
+									<xs:attribute name="hospitalizedCategCode" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Codul categoriei de pacient pentru alocaţia de hrană. Acest atribut se preia din nomenclatorul HospitalizedCategories.</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="20"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="foodDaysNo" type="xs:integer" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Zile efective de hrană</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
