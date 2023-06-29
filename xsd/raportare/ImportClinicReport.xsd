@@ -1520,7 +1520,6 @@
 												</xs:attribute>
 												<xs:attribute name="recaServiceCode" use="required">
 													<xs:annotation>
-														<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 														<xs:documentation xml:lang="ro">Codul serviciului reca (valoare din nomenclatorul de recuperare).</xs:documentation>
 													</xs:annotation>
 													<xs:simpleType>
@@ -1531,7 +1530,6 @@
 												</xs:attribute>
 												<xs:attribute name="recaProcedureCode" use="required">
 													<xs:annotation>
-														<xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
 														<xs:documentation xml:lang="ro">Codul procedurii reca (valoare din nomenclatorul de recuperare).</xs:documentation>
 													</xs:annotation>
 													<xs:simpleType>

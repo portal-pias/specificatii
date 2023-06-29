@@ -104,7 +104,6 @@
                   </xs:attribute>
                   <xs:attribute name="decisionNo" use="required">
                     <xs:annotation>
-                      <xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
                       <xs:documentation xml:lang="en">Decision Number or CAS unique number</xs:documentation>
                       <xs:documentation xml:lang="ro">Numarul Deciziei, dupa 01.04.2018 numar unic de identificare CAS</xs:documentation>
                     </xs:annotation>
@@ -116,14 +115,12 @@
                   </xs:attribute>
                   <xs:attribute name="decisionDate" type="xs:dateTime" use="required">
                     <xs:annotation>
-                      <xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
                       <xs:documentation xml:lang="en">DecisionDate or CAS date</xs:documentation>
-                      <xs:documentation xml:lang="ro">Data Deciziei, dupa 01.04.2018 data numar CAS</xs:documentation>
+                      <xs:documentation xml:lang="ro">Data Deciziei, dupa 01.04.2018 data valabilitate numar CAS</xs:documentation>
                     </xs:annotation>
                   </xs:attribute>
-                  <xs:attribute name="recommendationNo" use="optional">
+                  <xs:attribute name="recommendationNo" use="required">
                     <xs:annotation>
-                      <xs:appinfo><xml:spec edit="added" /></xs:appinfo>
                       <xs:documentation xml:lang="en">Recommendation Number</xs:documentation>
                       <xs:documentation xml:lang="ro">Numar recomandare</xs:documentation>
                     </xs:annotation>
@@ -133,16 +130,14 @@
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:attribute>
-                  <xs:attribute name="recommendationDate" type="xs:dateTime" use="optional">
+                  <xs:attribute name="recommendationDate" type="xs:dateTime" use="required">
                     <xs:annotation>
-                      <xs:appinfo><xml:spec edit="added" /></xs:appinfo>
                       <xs:documentation xml:lang="en">Recommendation Date</xs:documentation>
                       <xs:documentation xml:lang="ro">Data Recomandare</xs:documentation>
                     </xs:annotation>
                   </xs:attribute>
 				  <xs:attribute name="isRural" use="optional">
 					  <xs:annotation>
-                      <xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 						<xs:documentation xml:lang="en">The service was provided in a rural area</xs:documentation>
 						<xs:documentation xml:lang="ro">Acordare serviciu in mediul rural</xs:documentation>
 					  </xs:annotation>
@@ -153,12 +148,32 @@
 						<xs:restriction base="xs:string">
 						  <xs:enumeration value="0">
 							<xs:annotation>
-							  <xs:documentation xml:lang="ro">Serviciile au fost acordate in mediul urban, la mai putin de 15km de punctul de lucru al furnizorului</xs:documentation>
+							  <xs:documentation xml:lang="ro">Serviciile au fost acordate in mediul urban (pentru recomandari pana la 30.06.2023:  la mai putin de 15km de punctul de lucru al furnizorului)</xs:documentation>
 							</xs:annotation>
 						  </xs:enumeration>
 						  <xs:enumeration value="1">
 							<xs:annotation>
-							  <xs:documentation xml:lang="ro">Serviciile au fost acordate in mediul rural, la mai mult de 15km de punctul de lucru al furnizorului</xs:documentation>
+							  <xs:documentation xml:lang="ro">Serviciile au fost acordate in mediul rural, la mai mult de 15km de punctul de lucru al furnizorului (pentru  recomandarile de pana la 30.06.2023) sau in mediul rural la peste 10 km în afara localităţii unde se află punctul de lucru al furnizorului (pentru recomandarile de la 01.07.2023)</xs:documentation>
+							</xs:annotation>
+						  </xs:enumeration>
+						  <xs:enumeration value="2">
+							<xs:annotation>
+							  <xs:documentation xml:lang="ro">Doar pentru recoamndarile de la 01.07.2023: Serviciile au fost acordate in mediul rural, la peste 20 km în afara localităţii unde se află punctul de lucru al furnizorului </xs:documentation>
+							</xs:annotation>
+						  </xs:enumeration>
+						  <xs:enumeration value="3">
+							<xs:annotation>
+							  <xs:documentation xml:lang="ro">Doar pentru recoamndarile de la 01.07.2023: Serviciile au fost acordate in mediul rural, la peste 30 km în afara localităţii unde se află punctul de lucru al furnizorului </xs:documentation>
+							</xs:annotation>
+						  </xs:enumeration>
+						  <xs:enumeration value="4">
+							<xs:annotation>
+							  <xs:documentation xml:lang="ro">Doar pentru recoamndarile de la 01.07.2023: Serviciile au fost acordate in mediul rural, la peste 40 km în afara localităţii unde se află punctul de lucru al furnizorului </xs:documentation>
+							</xs:annotation>
+						  </xs:enumeration>
+						  <xs:enumeration value="5">
+							<xs:annotation>
+							  <xs:documentation xml:lang="ro">Doar pentru recoamndarile de la 01.07.2023: Serviciile au fost acordate in mediul rural, la peste 50 km în afara localităţii unde se află punctul de lucru al furnizorului </xs:documentation>
 							</xs:annotation>
 						  </xs:enumeration>
 						</xs:restriction>
@@ -804,7 +819,7 @@
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:maxLength value="20" />
-      <xs:minLength value="20" />
+      <xs:minLength value="13" />
       <xs:pattern value="[0-9]{20}" />
     </xs:restriction>
   </xs:simpleType>

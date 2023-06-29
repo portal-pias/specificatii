@@ -81,7 +81,6 @@
 												</xs:enumeration>
 												<xs:enumeration value="OUGMGR">
 													<xs:annotation>
-														<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 														<xs:documentation xml:lang="ro">Beneficiari OUG 15</xs:documentation>
 													</xs:annotation>
 												</xs:enumeration>

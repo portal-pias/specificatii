@@ -5158,7 +5158,6 @@
 				</xs:element>
 				<xs:element name="HospitalizedCategories" minOccurs="0">
 					<xs:annotation>
-						<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 						<xs:documentation xml:lang="ro">Categorii de pacienţi pentru alocaţia de hrană</xs:documentation>
 					</xs:annotation>
 					<xs:complexType>

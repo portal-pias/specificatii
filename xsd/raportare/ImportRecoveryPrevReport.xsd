@@ -236,6 +236,21 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
+									<xs:attribute name="merNo" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numarul inregistrare foaie observatie</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="merDate" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data inregistrare foaie observatie</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
 									<xs:attribute name="hospitalizationDaysNo" type="xs:unsignedInt" use="required">
 										<xs:annotation>
 											<xs:documentation xml:lang="en">Hospitalization days number</xs:documentation>
@@ -1104,3 +1119,4 @@
 		</xs:attribute>
 	</xs:complexType>
 </xs:schema>
+

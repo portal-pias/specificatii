@@ -396,6 +396,17 @@
 												<xs:documentation xml:lang="ro">Data de sfarsit a fisei de consultatii</xs:documentation>
 											</xs:annotation>
 										</xs:attribute>
+										<xs:attribute name="diagnosticDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data confirmare diagnostic</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>										
+										<xs:attribute name="hospitalizationExitDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Hospitalization exit date</xs:documentation>
+												<xs:documentation xml:lang="ro">Data externarii</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>												
 										<xs:attribute name="interruptedCure" type="xs:boolean" use="required">
 											<xs:annotation>
 												<xs:documentation xml:lang="ro">Cura intrerupta</xs:documentation>
