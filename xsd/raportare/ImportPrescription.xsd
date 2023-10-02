@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="ImportPrescription">
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by rth77 (rus) -->
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="ImportPrescription">
 	<xs:element name="report">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">Farmacy reporting</xs:documentation>
@@ -165,11 +166,35 @@
 											<xs:documentation xml:lang="ro">Bifă care indică dacă medicamentul se eliberează pe bază de protocol</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
-									<xs:attribute name="diagnosticType" type="xs:string" use="required">
+									<xs:attribute name="diagnosticType" use="required">
 										<xs:annotation>
 											<xs:documentation xml:lang="en">Diagnostic type</xs:documentation>
 											<xs:documentation xml:lang="ro">Tipul diagnosticului</xs:documentation>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="0">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">ACUT</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="1">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">SUBACUT</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="2">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">CRONIC</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="3">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">PREVENTIE</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:attribute>
 									<xs:attribute name="vatPercent" type="xs:double" use="optional">
 										<xs:annotation>
@@ -470,7 +495,7 @@
 						<xs:attribute name="personCID" use="optional">
 							<xs:annotation>
 								<xs:documentation xml:lang="en">Identification code of person</xs:documentation>
-								<xs:documentation xml:lang="ro">Numărul de identificare al persoanei (dupa caz poate fi: CID,CE sau PASS)</xs:documentation>
+								<xs:documentation xml:lang="ro">Numărul de identificare al persoanei (dupa caz poate fi: CID,CE,PASS sau CIF)</xs:documentation>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
@@ -496,6 +521,27 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:minLength value="1"/>
+									<xs:maxLength value="20"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="identifDocNo" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Nr. și serie document care au deschis dreptul la medicamente (se completeaza pentru categoria ALTE4)</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="20"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="identifDocType" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Tip document care a deschis dreptul la medicamente (se preia din DocumentTypes)</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
 									<xs:maxLength value="20"/>
 								</xs:restriction>
 							</xs:simpleType>

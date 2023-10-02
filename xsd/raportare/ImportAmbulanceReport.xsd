@@ -293,7 +293,7 @@
 	<xs:simpleType name="diagnosticTypeType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">Diagnostic type</xs:documentation>
-			<xs:documentation xml:lang="ro">Tipul dianostic</xs:documentation>
+			<xs:documentation xml:lang="ro">Tip diagnostic</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="0">
@@ -309,6 +309,11 @@
 			<xs:enumeration value="2">
 				<xs:annotation>
 					<xs:documentation xml:lang="ro">CRONIC</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">PREVENTIE</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -430,7 +435,7 @@
 			<xs:annotation>
 				<xs:documentation xml:lang="ro">Data eliberarii adeverinței de asigurat</xs:documentation>
 			</xs:annotation>
-		</xs:attribute>		
+		</xs:attribute>
 		<xs:attribute name="country" use="optional">
 			<xs:annotation>
 				<xs:documentation xml:lang="en">Country</xs:documentation>
@@ -1053,7 +1058,7 @@
 			<xs:annotation>
 				<xs:documentation xml:lang="ro">Data eliberarii adeverinței de asigurat</xs:documentation>
 			</xs:annotation>
-		</xs:attribute>		
+		</xs:attribute>
 		<xs:attribute name="patientInsuranceHouse" use="optional">
 			<xs:annotation>
 				<xs:documentation xml:lang="en">Patient insurance house</xs:documentation>

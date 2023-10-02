@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="ImportSickLeaveReport">
 	<xs:element name="report">
 		<xs:annotation>
@@ -327,7 +327,7 @@
 								<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 								<xs:documentation xml:lang="ro">Specifică dacă există recomandare emisă de către medicul care a asistat urgenta, in cazul certificatelor de concediu medical eliberate de medicul de familie pentru urgente medico-chirurgicale</xs:documentation>
 							</xs:annotation>
-						</xs:attribute>	
+						</xs:attribute>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
@@ -473,6 +473,11 @@
 			<xs:enumeration value="2">
 				<xs:annotation>
 					<xs:documentation xml:lang="ro">CRONIC</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">PREVENTIE</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>

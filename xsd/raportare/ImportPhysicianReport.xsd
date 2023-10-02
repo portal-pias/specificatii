@@ -93,7 +93,7 @@
 																					<xs:length value="16"/>
 																				</xs:restriction>
 																			</xs:simpleType>
-																		</xs:attribute>										
+																		</xs:attribute>
 																		<xs:attribute name="signature" type="xs:base64Binary" use="optional">
 																			<xs:annotation>
 																				<xs:documentation xml:lang="ro">
@@ -1924,6 +1924,11 @@
 							<xs:documentation xml:lang="ro">CRONIC</xs:documentation>
 						</xs:annotation>
 					</xs:enumeration>
+					<xs:enumeration value="3">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">PREVENTIE</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -1996,7 +2001,7 @@
 					<xs:length value="20"/>
 				</xs:restriction>
 			</xs:simpleType>
-		</xs:attribute>	
+		</xs:attribute>
 		<xs:attribute name="signature" type="xs:base64Binary" use="optional">
 			<xs:annotation>
 				<xs:documentation xml:lang="ro">
@@ -2013,7 +2018,6 @@
 		</xs:attribute>
 		<xs:attribute name="imc" use="optional">
 			<xs:annotation>
-				<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				<xs:documentation xml:lang="ro">IMC </xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
@@ -2024,7 +2028,6 @@
 		</xs:attribute>
 		<xs:attribute name="bloodPressure" use="optional">
 			<xs:annotation>
-				<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				<xs:documentation xml:lang="ro">Valoarea tensiunii arteriale</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
@@ -2035,7 +2038,6 @@
 		</xs:attribute>
 		<xs:attribute name="cardioDiseaseFamilyHistory" use="optional">
 			<xs:annotation>
-				<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				<xs:documentation xml:lang="ro">Istoricul de deces prematur prin boala cardiovasculară</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
@@ -2055,7 +2057,6 @@
 		</xs:attribute>
 		<xs:attribute name="lipidMetabolismFamilyHistory" use="optional">
 			<xs:annotation>
-				<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				<xs:documentation xml:lang="ro">Istoricul familial de deces prematur prin boli familiale ale metabolismului lipidic</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
@@ -2075,7 +2076,6 @@
 		</xs:attribute>
 		<xs:attribute name="smokingStatus" use="optional">
 			<xs:annotation>
-				<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 				<xs:documentation xml:lang="ro">Statusul de fumător</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>

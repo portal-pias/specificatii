@@ -27,16 +27,16 @@
                       <xs:documentation xml:lang="ro">Anul de emitere a deciziei</xs:documentation>
                     </xs:annotation>
                   </xs:attribute>
-                  <xs:attribute name="resolutionCID" use="required">
-                    <xs:annotation>
-                      <xs:documentation xml:lang="ro">Cod de identificare al pacientului (CID romani, cod identificare 13 cifre straini)</xs:documentation>
-                    </xs:annotation>
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="20"/>
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:attribute>
+				  <xs:attribute name="resolutionCID" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Cod de identificare al pacientului (CID romani, cod identificare 13 cifre straini)</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="20"/>
+						</xs:restriction>
+					</xs:simpleType>
+			      </xs:attribute>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>

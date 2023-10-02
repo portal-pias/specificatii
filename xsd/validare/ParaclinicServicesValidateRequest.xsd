@@ -258,6 +258,11 @@
 														<xs:documentation xml:lang="ro">Monitor 7 - investigațiile paraclinice recomandate pentru monitorizarea pacienților diagnosticați cu boli cerebrovasculare</xs:documentation>
 													</xs:annotation>
 												</xs:enumeration>
+												<xs:enumeration value="8">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Monitorizarea evoluției sarcinii</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
@@ -312,39 +317,60 @@
 										</xs:annotation>
 										</xs:attribute>
 										<xs:attribute name="prevention" use="optional">
-										<xs:annotation>
-											<xs:documentation xml:lang="ro">Investigatie paraclinica recomandata de medicul de familie ca urmare a unei consultaţii preventive</xs:documentation>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:unsignedInt">
-												<xs:enumeration value="1">
-													<xs:annotation>
-														<xs:documentation xml:lang="ro">pentru copiii cu vârsta cuprinsa între 2 si 5 ani inclusiv</xs:documentation>
-													</xs:annotation>
-												</xs:enumeration>
-												<xs:enumeration value="2">
-													<xs:annotation>
-														<xs:documentation xml:lang="ro">pentru copiii cu vârsta cuprinsa între 6 si 9 ani inclusiv</xs:documentation>
-													</xs:annotation>
-												</xs:enumeration>
-												<xs:enumeration value="3">
-													<xs:annotation>
-														<xs:documentation xml:lang="ro">pentru copiii cu vârsta cuprinsa între 10 si 17 ani inclusiv</xs:documentation>
-													</xs:annotation>
-												</xs:enumeration>
-												<xs:enumeration value="4">
-													<xs:annotation>
-														<xs:documentation xml:lang="ro">pentru persoanele asimptomatice cu vârsta cuprinsa între 18 si 39 de ani</xs:documentation>
-													</xs:annotation>
-												</xs:enumeration>
-												<xs:enumeration value="5">
-													<xs:annotation>
-														<xs:documentation xml:lang="ro">pentru persoanele asimptomatice cu vârsta de 40 de ani si peste</xs:documentation>
-													</xs:annotation>
-												</xs:enumeration>
-											</xs:restriction>
-										</xs:simpleType>
+											 <xs:annotation>
+												   <xs:documentation xml:lang="ro">Investigatie paraclinica recomandata de medicul de familie ca urmare a unei consultatii preventive</xs:documentation>
+											 </xs:annotation>
+											 <xs:simpleType>
+												   <xs:restriction base="xs:unsignedInt">
+														<xs:enumeration value="1">
+															  <xs:annotation>
+																   <xs:documentation xml:lang="ro">pentru copiii cu vârsta cuprinsa între 2 si 5 ani inclusiv</xs:documentation>
+															  </xs:annotation>
+														</xs:enumeration>
+														<xs:enumeration value="2">
+															  <xs:annotation>
+																   <xs:documentation xml:lang="ro">pentru copiii cu vârsta cuprinsa între 6 si 9 ani inclusiv</xs:documentation>
+															  </xs:annotation>
+														</xs:enumeration>
+														<xs:enumeration value="3">
+															  <xs:annotation>
+																   <xs:documentation xml:lang="ro">pentru copiii cu vârsta cuprinsa între 10 si 17 ani inclusiv</xs:documentation>
+															  </xs:annotation>
+														</xs:enumeration>
+														<xs:enumeration value="4">
+															  <xs:annotation>
+																   <xs:documentation xml:lang="ro">pentru persoanele asimptomatice cu vârsta cuprinsa între 18 si 39 de ani</xs:documentation>
+															  </xs:annotation>
+														</xs:enumeration>
+														<xs:enumeration value="5">
+															  <xs:annotation>
+																   <xs:documentation xml:lang="ro">pentru persoanele asimptomatice cu vârsta de 40 de ani si peste</xs:documentation>
+															  </xs:annotation>
+														</xs:enumeration>
+														<xs:enumeration value="6">
+														  <xs:annotation>
+															   <xs:documentation xml:lang="ro">pentru persoanele cu vârsta cuprinsă între 40 și 60 de ani care sunt înregistrate la medicul de familie cu una sau mai multe afecțiuni cronice</xs:documentation>
+														  </xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="7">
+														  <xs:annotation>
+															   <xs:documentation xml:lang="ro">pentru persoanele cu vârsta de peste 60 de ani care sunt înregistrate la medicul de familie cu una sau mai multe afecțiuni cronice</xs:documentation>
+														  </xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="8">
+														  <xs:annotation>
+															   <xs:documentation xml:lang="ro">pentru persoanele care nu prezintă simptome sugestive pentru diabet zaharat, cu vârsta de 18 ani şi peste, supraponderali/obezi şi/sau care prezintă unul sau mai mulţi factori de risc pentru diabetul zaharat</xs:documentation>
+														  </xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="9">
+														  <xs:annotation>
+															   <xs:documentation xml:lang="ro">pentru persoanele cu vârsta de 18 ani şi peste, care nu prezintă simptome sugestive pentru boala cronică de rinichi, dar care au unul sau mai mulţi factori de risc pentru boală cronică de rinichi precum boli cardiovasculare, hipertensiune arterială sau diabet zaharat</xs:documentation>
+														  </xs:annotation>
+													</xs:enumeration>
+												   </xs:restriction>
+											 </xs:simpleType>
 										</xs:attribute>
+
 									</xs:extension>
 								</xs:complexContent>
 							</xs:complexType>

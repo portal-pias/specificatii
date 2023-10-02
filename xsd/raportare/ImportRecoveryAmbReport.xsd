@@ -192,36 +192,36 @@
 																	</xs:documentation>
 																</xs:annotation>
 															</xs:attribute>
-														<xs:attribute name="exceptedFromCard" use="optional">
-													<xs:annotation>
-														<xs:documentation xml:lang="ro">Serviciul este exceptat de la semnarea cu cardul pacientului</xs:documentation>
-													</xs:annotation>
-													<xs:simpleType>
-														<xs:restriction base="xs:string">
-															<xs:length value="1"/>
-															<xs:enumeration value="1">
+															<xs:attribute name="exceptedFromCard" use="optional">
 																<xs:annotation>
-																	<xs:documentation xml:lang="ro">pacientul executa o pedeapsa privativa de libertate sau se afla în arest preventiv</xs:documentation>
+																	<xs:documentation xml:lang="ro">Serviciul este exceptat de la semnarea cu cardul pacientului</xs:documentation>
 																</xs:annotation>
-															</xs:enumeration>
-															<xs:enumeration value="2">
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:length value="1"/>
+																		<xs:enumeration value="1">
+																			<xs:annotation>
+																				<xs:documentation xml:lang="ro">pacientul executa o pedeapsa privativa de libertate sau se afla în arest preventiv</xs:documentation>
+																			</xs:annotation>
+																		</xs:enumeration>
+																		<xs:enumeration value="2">
+																			<xs:annotation>
+																				<xs:documentation xml:lang="ro">persoane cu tulburari psihice prevazute în Legea sanatatii mintale</xs:documentation>
+																			</xs:annotation>
+																		</xs:enumeration>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+															<xs:attribute name="authorizedPersonCid" use="optional">
 																<xs:annotation>
-																	<xs:documentation xml:lang="ro">persoane cu tulburari psihice prevazute în Legea sanatatii mintale</xs:documentation>
+																	<xs:documentation xml:lang="ro">Codul de identificare al reprezentantului legal</xs:documentation>
 																</xs:annotation>
-															</xs:enumeration>
-														</xs:restriction>
-													</xs:simpleType>
-													</xs:attribute>
-													<xs:attribute name="authorizedPersonCid" use="optional">
-														<xs:annotation>
-															<xs:documentation xml:lang="ro">Codul de identificare al reprezentantului legal</xs:documentation>
-														</xs:annotation>
-														<xs:simpleType>
-															<xs:restriction base="xs:string">
-																<xs:length value="20"/>
-															</xs:restriction>
-														</xs:simpleType>
-													</xs:attribute>															
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:length value="20"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
 															<xs:attribute name="signHash" type="xs:hexBinary" use="optional">
 																<xs:annotation>
 																	<xs:documentation xml:lang="ro">Nu se mai foloseşte!</xs:documentation>
@@ -232,7 +232,7 @@
 																	<xs:documentation xml:lang="ro">Data eliberarii adeverinței de asigurat</xs:documentation>
 																</xs:annotation>
 															</xs:attribute>
-															<xs:attribute name="stencilNo" use="required">
+															<xs:attribute name="stencilNo" use="optional">
 																<xs:annotation>
 																	<xs:documentation xml:lang="ro">Codul de parafă</xs:documentation>
 																</xs:annotation>
@@ -552,13 +552,13 @@
 										<xs:annotation>
 											<xs:documentation xml:lang="ro">Data confirmare diagnostic</xs:documentation>
 										</xs:annotation>
-									</xs:attribute>										
+									</xs:attribute>
 									<xs:attribute name="hospitalizationExitDate" type="xs:date" use="optional">
 										<xs:annotation>
 											<xs:documentation xml:lang="en">Hospitalization exit date</xs:documentation>
 											<xs:documentation xml:lang="ro">Data externarii</xs:documentation>
 										</xs:annotation>
-									</xs:attribute>										
+									</xs:attribute>
 									<xs:attribute name="interruptedCure" type="xs:boolean" use="required">
 										<xs:annotation>
 											<xs:documentation xml:lang="en">Medical record interrupted</xs:documentation>
@@ -866,6 +866,11 @@
 			<xs:enumeration value="2">
 				<xs:annotation>
 					<xs:documentation xml:lang="ro">CRONIC</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">PREVENTIE</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>

@@ -64,15 +64,15 @@
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:maxLength value="255" />
+					<xs:maxLength value="255"/>
 				</xs:restriction>
 			</xs:simpleType>
-		</xs:attribute>	
+		</xs:attribute>
 		<xs:attribute name="quantity" type="xs:decimal" use="required">
 			<xs:annotation>
 				<xs:documentation xml:lang="ro">Cantitate</xs:documentation>
 			</xs:annotation>
-		</xs:attribute>		
+		</xs:attribute>
 		<xs:attribute name="price" type="xs:double" use="required">
 			<xs:annotation>
 				<xs:documentation xml:lang="ro">Pret/unitate de masura</xs:documentation>
@@ -135,6 +135,7 @@
 					1 -&gt; ACUT
 					2 -&gt; SUBACUT
 					3 -&gt; CRONIC
+					4 -&gt; PREVENTIE
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
@@ -568,12 +569,14 @@
 		</xs:annotation>
 		<xs:attribute name="AppID" use="required">
 			<xs:annotation>
-				<xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
+				<xs:appinfo>
+					<xml:spec edit="changed"/>
+				</xs:appinfo>
 				<xs:documentation xml:lang="ro">Identificatorul unic al înregistrării la nivelul aplicaţiei de raportare</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:maxLength value="20" />
+					<xs:maxLength value="20"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -583,7 +586,7 @@
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:maxLength value="30" />
+					<xs:maxLength value="30"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -593,7 +596,7 @@
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:maxLength value="100" />
+					<xs:maxLength value="100"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -603,7 +606,7 @@
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:maxLength value="100" />
+					<xs:maxLength value="100"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -618,7 +621,7 @@
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:maxLength value="20" />
+					<xs:maxLength value="20"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -628,7 +631,7 @@
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:maxLength value="40" />
+					<xs:maxLength value="40"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -643,7 +646,7 @@
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:maxLength value="30" />
+					<xs:maxLength value="30"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -653,7 +656,7 @@
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:maxLength value="100" />
+					<xs:maxLength value="100"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -663,7 +666,7 @@
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:maxLength value="100" />
+					<xs:maxLength value="100"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -883,7 +886,9 @@
 		</xs:attribute>
 		<xs:attribute name="phone" use="optional">
 			<xs:annotation>
-				<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+				<xs:appinfo>
+					<xml:spec edit="added"/>
+				</xs:appinfo>
 				<xs:documentation xml:lang="ro">Telefon/mobil</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
@@ -894,7 +899,9 @@
 		</xs:attribute>
 		<xs:attribute name="email" use="optional">
 			<xs:annotation>
-				<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+				<xs:appinfo>
+					<xml:spec edit="added"/>
+				</xs:appinfo>
 				<xs:documentation xml:lang="ro">Adresa de e-mail</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
@@ -903,7 +910,7 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
-        <xs:attribute name="hospitalizedCategCode" use="optional">
+		<xs:attribute name="hospitalizedCategCode" use="optional">
 			<xs:annotation>
 				<xs:documentation xml:lang="ro">Codul categoriei de pacient pentru alocaţia de hrană. Acest atribut se preia din nomenclatorul HospitalizedCategories.</xs:documentation>
 			</xs:annotation>
@@ -913,9 +920,9 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
-        <xs:attribute name="foodDaysNo" type="xs:integer" use="optional">
+		<xs:attribute name="foodDaysNo" type="xs:integer" use="optional">
 			<xs:annotation>
-			    <xs:documentation xml:lang="ro">Zile efective de hrană</xs:documentation>
+				<xs:documentation xml:lang="ro">Zile efective de hrană</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>
@@ -970,10 +977,10 @@
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:maxLength value="20" />
+					<xs:maxLength value="20"/>
 				</xs:restriction>
 			</xs:simpleType>
-        </xs:attribute>
+		</xs:attribute>
 		<xs:attribute name="pid" use="required">
 			<xs:annotation>
 				<xs:documentation xml:lang="ro">CNP-ul persoanei.</xs:documentation>
@@ -1417,7 +1424,9 @@
 		</xs:attribute>
 		<xs:attribute name="exceptedFromBi" use="optional">
 			<xs:annotation>
-				<xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
+				<xs:appinfo>
+					<xml:spec edit="changed"/>
+				</xs:appinfo>
 				<xs:documentation xml:lang="ro">Internarea este exceptata de la bilet de internare</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
@@ -1487,7 +1496,9 @@
 		</xs:attribute>
 		<xs:attribute name="recommendationDate" type="xs:date" use="optional">
 			<xs:annotation>
-				<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+				<xs:appinfo>
+					<xml:spec edit="added"/>
+				</xs:appinfo>
 				<xs:documentation xml:lang="ro">Data scrisorii medicale acordate la externare cu indicatie de revenire pentru internare</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
@@ -1527,7 +1538,9 @@
 		</xs:attribute>
 		<xs:attribute name="phone" use="optional">
 			<xs:annotation>
-				<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+				<xs:appinfo>
+					<xml:spec edit="added"/>
+				</xs:appinfo>
 				<xs:documentation xml:lang="ro">Telefon/mobil</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
@@ -1538,7 +1551,9 @@
 		</xs:attribute>
 		<xs:attribute name="email" use="optional">
 			<xs:annotation>
-				<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
+				<xs:appinfo>
+					<xml:spec edit="added"/>
+				</xs:appinfo>
 				<xs:documentation xml:lang="ro">Adresa de e-mail</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
