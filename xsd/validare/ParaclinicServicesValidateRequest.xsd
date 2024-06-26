@@ -194,7 +194,7 @@
 										</xs:attribute>
 										<xs:attribute name="diagnostic" use="optional">
 											<xs:annotation>
-												<xs:documentation xml:lang="ro">Diagnosticul bolii pentru care sa făcut serviciu paraclinic.</xs:documentation>
+												<xs:documentation xml:lang="ro">Diagnosticul bolii pentru care s-a făcut serviciu paraclinic.</xs:documentation>
 											</xs:annotation>
 											<xs:simpleType>
 												<xs:restriction base="xs:string">
@@ -230,7 +230,7 @@
 												</xs:enumeration>
 												<xs:enumeration value="2">
 													<xs:annotation>
-														<xs:documentation xml:lang="ro">Monitor 2 - investigațiile paraclinice recomandate pentru monitorizarea pacienților diagnosticați cu boli oncologice</xs:documentation>
+														<xs:documentation xml:lang="ro">Monitor 2 - investigațiile paraclinice recomandate pentru monitorizarea pacienților diagnosticați cu boli oncologice - AO pe biletul de trimiere</xs:documentation>
 													</xs:annotation>
 												</xs:enumeration>
 												<xs:enumeration value="3">
@@ -263,6 +263,22 @@
 														<xs:documentation xml:lang="ro">Monitorizarea evoluției sarcinii</xs:documentation>
 													</xs:annotation>
 												</xs:enumeration>
+												<xs:enumeration value="9">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Monitorizarea pacientilor cu boala cronica renala</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="a">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Suspiciune oncologica - SO pe biletul de trimitere </xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="b">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Suspiciune hepatita B, C, HIV/SIDA (hiv/sida doar pentru gravide) - HS pe biletul de trimiere</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>

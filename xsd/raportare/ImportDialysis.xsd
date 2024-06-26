@@ -675,7 +675,6 @@
 			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
-	
 	<xs:complexType name="foreignPersonType">
 		<xs:annotation>
 			<xs:documentation xml:lang="ro">Tipul de date folosit pentru datele cetăţeni străini</xs:documentation>
@@ -771,7 +770,6 @@
 			</xs:simpleType>
 		</xs:attribute>
 	</xs:complexType>
-
 	<xs:simpleType name="patientType">
 		<xs:annotation>
 			<xs:documentation xml:lang="ro">Valori posibile pentru tipul unui pacient</xs:documentation>
@@ -798,5 +796,5 @@
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
-	</xs:simpleType>	
+	</xs:simpleType>
 </xs:schema>

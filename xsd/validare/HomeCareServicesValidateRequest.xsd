@@ -131,15 +131,13 @@
 											</xs:annotation>
 											<xs:simpleType>
 												<xs:restriction base="xs:string">
-													<xs:length value="20"/>
+													<xs:maxLength value="20"/>
 												</xs:restriction>
 											</xs:simpleType>
 										</xs:attribute>
 										<xs:attribute name="decisionNo" use="required">
 											<xs:annotation>
-												<xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
-												<xs:documentation xml:lang="en">Decision Number or CAS unique number</xs:documentation>
-												<xs:documentation xml:lang="ro">Numarul Deciziei, dupa 01.04.2018 numar unic de identificare CAS</xs:documentation>
+												<xs:documentation xml:lang="ro">Numărul unic CAS de identificare a deciziei</xs:documentation>
 											</xs:annotation>
 											<xs:simpleType>
 												<xs:restriction base="xs:string">
@@ -149,9 +147,7 @@
 										</xs:attribute>
 										<xs:attribute name="decisionDate" type="xs:dateTime" use="required">
 											<xs:annotation>
-												<xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
-												<xs:documentation xml:lang="en">Decision Date or CAS date</xs:documentation>
-												<xs:documentation xml:lang="ro">Data Deciziei, dupa 01.04.2018 data numar CAS</xs:documentation>
+												<xs:documentation xml:lang="ro">Data numărului unic CAS de identificare a deciziei</xs:documentation>
 											</xs:annotation>
 										</xs:attribute>
 									</xs:extension>
@@ -160,18 +156,6 @@
 						</xs:element>
 					</xs:sequence>
 				</xs:extension>
-				<!--
-					<xs:attribute name="noDecision" use="optional">
-						<xs:annotation>
-							<xs:documentation xml:lang="ro">Numarul Deciziei ???</xs:documentation>
-						</xs:annotation>
-						<xs:simpleType>
-							<xs:restriction base="xs:string">
-								<xs:maxLength value="40" />
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:attribute>
-					-->
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>

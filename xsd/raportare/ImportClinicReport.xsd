@@ -180,7 +180,7 @@
 									</xs:attribute>
 									<xs:attribute name="merDate" type="xs:date" use="optional">
 										<xs:annotation>
-											<xs:documentation xml:lang="ro">Data la care sa facut înregistrarea în registru</xs:documentation>
+											<xs:documentation xml:lang="ro">Data la care s-a facut înregistrarea în registru</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
 									<xs:attribute name="initialDiagnostic" use="required">
@@ -413,7 +413,7 @@
 									</xs:attribute>
 									<xs:attribute name="refferedByContractNo" use="optional">
 										<xs:annotation>
-											<xs:documentation xml:lang="ro">Numărul contractului în baza căruia sa emis biletul de trimitere</xs:documentation>
+											<xs:documentation xml:lang="ro">Numărul contractului în baza căruia s-a emis biletul de trimitere</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
@@ -433,7 +433,7 @@
 								  </xs:attribute>
 									<xs:attribute name="refferedByDate" type="xs:date" use="optional">
 										<xs:annotation>
-											<xs:documentation xml:lang="ro">Data la care sa emis biletul de trimitere</xs:documentation>
+											<xs:documentation xml:lang="ro">Data la care s-a emis biletul de trimitere</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
 									<xs:attribute name="personType" use="optional">
@@ -630,7 +630,7 @@
 									</xs:attribute>
 									<xs:attribute name="refferedByStencilNo" use="optional">
 										<xs:annotation>
-											<xs:documentation xml:lang="ro">Numar parafă medic care a întocmit biletul de trimitere în baza căruia sa efectuat serviciu medical.</xs:documentation>
+											<xs:documentation xml:lang="ro">Numar parafă medic care a întocmit biletul de trimitere în baza căruia s-a efectuat serviciu medical.</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
@@ -850,7 +850,7 @@
 									</xs:attribute>
 									<xs:attribute name="dailyServiceDate" type="xs:dateTime" use="required">
 										<xs:annotation>
-											<xs:documentation xml:lang="ro">Data la care sa efectuat serviciu spitalicesc.</xs:documentation>
+											<xs:documentation xml:lang="ro">Data la care s-a efectuat serviciu spitalicesc.</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
 									<xs:attribute name="dailyServiceNote" use="optional">
@@ -1017,7 +1017,7 @@
 												</xs:attribute>
 												<xs:attribute name="diseaseCategory" use="optional">
 													<xs:annotation>
-														<xs:documentation xml:lang="ro">Categoria bolii pentru care sa prescris medicamentul.</xs:documentation>
+														<xs:documentation xml:lang="ro">Categoria bolii pentru care s-a prescris medicamentul.</xs:documentation>
 													</xs:annotation>
 													<xs:simpleType>
 														<xs:restriction base="xs:string">
@@ -1027,7 +1027,7 @@
 												</xs:attribute>
 												<xs:attribute name="diseaseCode" use="optional">
 													<xs:annotation>
-														<xs:documentation xml:lang="ro">Codul de boală pentru care sa prescris medicamentul.</xs:documentation>
+														<xs:documentation xml:lang="ro">Codul de boală pentru care s-a prescris medicamentul.</xs:documentation>
 													</xs:annotation>
 													<xs:simpleType>
 														<xs:restriction base="xs:string">
@@ -1158,7 +1158,7 @@
 									</xs:attribute>
 									<xs:attribute name="patientInsuranceHouse" use="optional">
 										<xs:annotation>
-											<xs:documentation xml:lang="ro">Codul casei de asigurări cu care sa încheiat contractul de compensare medicamente.</xs:documentation>
+											<xs:documentation xml:lang="ro">Codul casei de asigurări cu care s-a încheiat contractul de compensare medicamente.</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
@@ -1429,7 +1429,7 @@
 									</xs:attribute>
 									<xs:attribute name="merDate" type="xs:date" use="optional">
 										<xs:annotation>
-											<xs:documentation xml:lang="ro">Data la care sa făcut înregistrarea biletului în registru medical.</xs:documentation>
+											<xs:documentation xml:lang="ro">Data la care s-a făcut înregistrarea biletului în registru medical.</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
 									<xs:attribute name="ticketType" use="required">

@@ -155,6 +155,16 @@
 									<xs:documentation xml:lang="ro">Definiţia unui medic</xs:documentation>
 								</xs:annotation>
 								<xs:complexType>
+									<xs:attribute name="pid" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">CNP-ul medicului</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
 									<xs:attribute name="name" use="required">
 										<xs:annotation>
 											<xs:documentation xml:lang="ro">Numele medicului</xs:documentation>

@@ -246,7 +246,7 @@
 				</xs:attribute>
 				<xs:attribute name="diagnosticType" use="optional">
 					<xs:annotation>
-						<xs:documentation xml:lang="ro">Tipul de diagnosticului de mai sus.</xs:documentation>
+						<xs:documentation xml:lang="ro">Tipul diagnosticului de mai sus.</xs:documentation>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">

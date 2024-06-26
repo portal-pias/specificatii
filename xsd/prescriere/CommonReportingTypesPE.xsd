@@ -281,7 +281,7 @@
 				</xs:attribute>
 				<xs:attribute name="reportDate" type="xs:date" use="required">
 					<xs:annotation>
-						<xs:documentation xml:lang="ro">Luna (prima zi sau orice alta zi din luna) pentru care se realizează raportarea (toate înregistrările trebuie sa se încadreze in această lună)</xs:documentation>
+						<xs:documentation xml:lang="ro">Luna (prima zi sau orice alta zi din luna) pentru care se realizează raportarea (toate înregistrările trebuie să se încadreze în această lună)</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 			</xs:extension>
@@ -755,7 +755,7 @@
 		</xs:attribute>
 		<xs:attribute name="diseaseCode" use="optional">
 			<xs:annotation>
-				<xs:documentation xml:lang="ro">Codul de boală pentru care sa prescris medicamentul (din nomenclatorul ICD10)</xs:documentation>
+				<xs:documentation xml:lang="ro">Codul de boală pentru care s-a prescris medicamentul (din nomenclatorul ICD10)</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
@@ -765,7 +765,7 @@
 		</xs:attribute>
 		<xs:attribute name="diseaseCodeCIM" use="optional">
 			<xs:annotation>
-				<xs:documentation xml:lang="ro">Codul de boală pentru care sa prescris medicamentul (din nomenclatorul CIM10)</xs:documentation>
+				<xs:documentation xml:lang="ro">Codul de boală pentru care s-a prescris medicamentul (din nomenclatorul CIM10)</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">

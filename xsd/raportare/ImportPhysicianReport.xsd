@@ -1110,6 +1110,11 @@
 																							<xs:documentation xml:lang="ro">CRONIC</xs:documentation>
 																						</xs:annotation>
 																					</xs:enumeration>
+																					<xs:enumeration value="3">
+																						<xs:annotation>
+																							<xs:documentation xml:lang="ro">PREVENTIE</xs:documentation>
+																						</xs:annotation>
+																					</xs:enumeration>
 																				</xs:restriction>
 																			</xs:simpleType>
 																		</xs:attribute>
@@ -1922,11 +1927,6 @@
 					<xs:enumeration value="2">
 						<xs:annotation>
 							<xs:documentation xml:lang="ro">CRONIC</xs:documentation>
-						</xs:annotation>
-					</xs:enumeration>
-					<xs:enumeration value="3">
-						<xs:annotation>
-							<xs:documentation xml:lang="ro">PREVENTIE</xs:documentation>
 						</xs:annotation>
 					</xs:enumeration>
 				</xs:restriction>

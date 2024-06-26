@@ -324,7 +324,6 @@
 						</xs:attribute>
 						<xs:attribute name="isEmergencyRecommendation" type="xs:boolean" use="optional">
 							<xs:annotation>
-								<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 								<xs:documentation xml:lang="ro">Specifică dacă există recomandare emisă de către medicul care a asistat urgenta, in cazul certificatelor de concediu medical eliberate de medicul de familie pentru urgente medico-chirurgicale</xs:documentation>
 							</xs:annotation>
 						</xs:attribute>

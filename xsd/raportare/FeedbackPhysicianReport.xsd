@@ -319,7 +319,6 @@
                             </xs:element>
                             <xs:element name="monitoringServices" minOccurs="0" maxOccurs="unbounded">
                                 <xs:annotation>
-                                    <xs:appinfo><xml:spec edit="added" /></xs:appinfo>
                                     <xs:documentation xml:lang="ro">Serviciii de monitorizare
                                     </xs:documentation>
                                 </xs:annotation>
@@ -328,7 +327,6 @@
                                         <xs:element name="monitoringService" minOccurs="0"
                                                     maxOccurs="unbounded">
                                             <xs:annotation>
-                                                <xs:appinfo><xml:spec edit="added" /></xs:appinfo>
                                                 <xs:documentation xml:lang="ro">Serviciu de monitorizare
                                                 </xs:documentation>
                                             </xs:annotation>

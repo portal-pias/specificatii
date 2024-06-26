@@ -119,7 +119,6 @@
 										</xs:attribute>
 										<xs:attribute name="personType" use="optional">
 											<xs:annotation>
-												<xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
 												<xs:documentation xml:lang="ro">Tipul pacientului.</xs:documentation>
 											</xs:annotation>
 											<xs:simpleType>

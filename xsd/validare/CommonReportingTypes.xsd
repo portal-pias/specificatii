@@ -93,7 +93,6 @@
 			</xs:enumeration>
 			<xs:enumeration value="OUGMGR">
 				<xs:annotation>
-					<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 					<xs:documentation xml:lang="ro">Beneficiari OUG 15</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -119,7 +118,7 @@
 	</xs:simpleType>
 	<xs:simpleType name="diagnosticType">
 		<xs:annotation>
-			<xs:documentation xml:lang="ro">Tipul dianostic</xs:documentation>
+			<xs:documentation xml:lang="ro">Tip diagnostic</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="0">

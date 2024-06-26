@@ -150,7 +150,7 @@
 									</xs:attribute>
 									<xs:attribute name="orgUnitCode" use="required">
 										<xs:annotation>
-											<xs:documentation xml:lang="ro">codul casei de asigurări cu care s-a încheiat contractul.</xs:documentation>
+											<xs:documentation xml:lang="ro">Codul casei de asigurări cu care s-a încheiat contractul.</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">

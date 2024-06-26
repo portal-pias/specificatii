@@ -2252,7 +2252,6 @@
 									</xs:attribute>
 									<xs:attribute name="openCircuit" type="xs:string" use="optional">
 										<xs:annotation>
-											<xs:appinfo><xml:spec edit="added" /></xs:appinfo>
 											<xs:documentation xml:lang="ro">Daca medicamentul se deconteaza in Circuit Deschis (1) sau doar in Circuit Inchis (0).</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>

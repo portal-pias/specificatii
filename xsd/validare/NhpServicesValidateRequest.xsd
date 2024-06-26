@@ -114,7 +114,6 @@
 										</xs:attribute>
 										<xs:attribute name="personType" use="optional">
 											<xs:annotation>
-												<xs:appinfo><xml:spec edit="changed" /></xs:appinfo>
 												<xs:documentation xml:lang="ro">Tipul pacientului. Daca nu e completat se consideră implicit ASIGURAT.</xs:documentation>
 											</xs:annotation>
 											<xs:simpleType>

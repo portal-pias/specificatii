@@ -89,12 +89,11 @@
 																	<xs:documentation xml:lang="ro">Valoare platita de asigurat</xs:documentation>
 																</xs:annotation>
 															</xs:attribute>
-                              <xs:attribute name="personValueReturn" type="xs:double" use="optional">
-                                <xs:annotation>
-                                  <xs:appinfo><xml:spec edit="added" /></xs:appinfo>
-                                  <xs:documentation xml:lang="ro">Valoare platita de asigurat, decontata catre Farmacie</xs:documentation>
-                                </xs:annotation>
-                              </xs:attribute>
+															<xs:attribute name="personValueReturn" type="xs:double" use="optional">
+																<xs:annotation>
+																	<xs:documentation xml:lang="ro">Valoare platita de asigurat, decontata catre Farmacie</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
 															<xs:attribute name="drugInvoiceNo" type="xs:string" use="optional">
 																<xs:annotation>
 																	<xs:documentation xml:lang="ro">Seria şi numărul facturii</xs:documentation>
