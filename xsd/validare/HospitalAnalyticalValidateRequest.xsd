@@ -482,13 +482,37 @@
 													<xs:attribute name="internmentCriteriaCd" use="required">
 														<xs:annotation>
 															<xs:documentation xml:lang="ro">
-																Codul criteriului de internare. Acest cod este preluat din nomenclatorul InternmentCriterias.
+																Codul criteriului de internare.
 															</xs:documentation>
 														</xs:annotation>
 		                                                <xs:simpleType>
-											                <xs:restriction base="xs:string">
-												                <xs:maxLength value="20"/>
-											                </xs:restriction>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="1">
+																	<xs:annotation>
+																		<xs:documentation xml:lang="ro">Urgenţe medico-chirurgicale</xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="2">
+																	<xs:annotation>
+																		<xs:documentation xml:lang="ro">Diagnosticul nu poate fi stabilit şi tratamentul nu poate fi efectuat şi/sau monitorizat în ambulatoriu</xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="3">
+																	<xs:annotation>
+																		<xs:documentation xml:lang="ro">Epidemiologic </xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="4">
+																	<xs:annotation>
+																		<xs:documentation xml:lang="ro">Afectiune oncologica diagnosticata </xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="5">
+																	<xs:annotation>
+																		<xs:documentation xml:lang="ro">Suspiciune de afectiune oncologica, pentru confirmare </xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+															</xs:restriction>
 										                </xs:simpleType>
 													</xs:attribute>
 													<xs:attribute name="internmentType" use="required">

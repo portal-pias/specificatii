@@ -536,6 +536,16 @@
 														<xs:documentation xml:lang="ro">Epidemiologic </xs:documentation>
 													</xs:annotation>
 												</xs:enumeration>
+												<xs:enumeration value="4">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Afectiune oncologica diagnosticata </xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="5">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Suspiciune de afectiune oncologica, pentru confirmare </xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
