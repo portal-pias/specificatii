@@ -543,7 +543,27 @@
 												</xs:enumeration>
 												<xs:enumeration value="5">
 													<xs:annotation>
-														<xs:documentation xml:lang="ro">Suspiciune de afectiune oncologica, pentru confirmare </xs:documentation>
+														<xs:documentation xml:lang="ro">Suspiciune de afectiune oncologica, pentru confirmare - persoana asigurata</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="6">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Suspiciune de afectiune oncologica, pentru confirmare - persoana neasigurata</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="7">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Persoane prevazute la art. VI din Ordonanta Guvernului nr. 12/2025, care beneficiaza de pachetul de baza până la data de 31 decembrie 2025</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>	
+												<xs:enumeration value="8">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Bolnavii neasigurati cu afectiuni incluse in programele nationale de sanatate, cu exceptia celor inrolati in Programul national de prevenire, supraveghere si control al infectiei HIV/SIDA, respectiv in Programul national de prevenire, supraveghere si control al tuberculozei, care beneficiaza de servicii medicale, servicii conexe, medicamente, materiale sanitare, dispozitive medicale si altele asemenea, dupa caz, acordate in cadrul programelor nationale de sanatate ai caror beneficiari sunt, precum si de serviciile medicale care stau la baza acordarii acestora cuprinse în pachetul de servicii medicale de baza, pana la vindecarea respectivei afectiuni</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="9">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Bolnavii neasigurati inrolati in Programul national de prevenire, supraveghere si control al infectiei HIV/SIDA, respectiv in Programul national de prevenire, supravegehre si control al tuberculozei, care beneficiaza de pachetul de baza acordat in cadrul sistemului de asigurari sociale de sanatate, precum si de medicamentele, materialele sanitare, dispozitivele medicale si serviciile medicale cuprinse in programele nationale de sanatate ai căror beneficiari sunt, pana la vindecarea respectivei afectiuni</xs:documentation>
 													</xs:annotation>
 												</xs:enumeration>
 											</xs:restriction>
@@ -558,6 +578,12 @@
 												3 -&gt; TRIMITERE MEDIC SPECIALIST AMBULATORIU
 												5 -&gt; LA CERERE
 												9 -&gt; ALTE
+												10 -&gt; fara bilet de internare pentru persoanele asigurate diagnosticate cu tuberculoza sau HIV/SIDA, in cazul acordarii serviciilor medicale spitalicesti in regim de spitalizare de zi specifice pentru afectiunea pentru care sunt inscrise in program
+												11 -&gt; bilet de internare de la medicul de familie pentru persoanele asigurate diagnosticate cu tuberculoza sau HIV/SIDA
+												12 -&gt; bilet de internare de la medicul de specialitate din ambulatoriul de specialitate clinic pentru persoanele asigurate diagnosticate cu tuberculoza sau HIV/SIDA
+												13 -&gt; fara bilet de trimitere pentru persoanele asigurate inscrise in programele nationale de sanatate, cu exceptia persoanele asigurate diagnosticate cu tuberculoza sau HIV/SIDA, in cazul acordarii de servicii medicale spitalicesti in regim de spitalizare de zi specifice pentru afectiunea pentru care sunt inscrise in program
+												14 -&gt; bilet de internare de la medicul de familie pentru persoanele asigurate inscrise in programele nationale de sanatate, cu exceptia persoanele asigurate diagnosticate cu tuberculoza sau HIV/SIDA, in cazul acordarii de servicii medicale spitalicesti in regim de spitalizare de zi specifice  pentru afectiunea pentru care sunt inscrise in program
+												15 -&gt; bilet de internare de la medicul de specialitate din ambulatoriul de specialitate clinic pentru persoanele asigurate inscrise în programele nationale de sanatate, cu exceptia persoanele asigurate diagnosticate cu tuberculoza sau HIV/SIDA, in cazul acordarii de servicii medicale spitalicesti in regim de spitalizare de zi specifice  pentru afectiunea pentru care sunt inscrise in program
 											</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
@@ -567,6 +593,12 @@
 												<xs:enumeration value="3"/>
 												<xs:enumeration value="5"/>
 												<xs:enumeration value="9"/>
+												<xs:enumeration value="10"/>
+												<xs:enumeration value="11"/>
+												<xs:enumeration value="12"/>
+												<xs:enumeration value="13"/>
+												<xs:enumeration value="14"/>
+												<xs:enumeration value="15"/>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>

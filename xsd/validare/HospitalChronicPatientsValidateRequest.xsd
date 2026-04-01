@@ -697,6 +697,12 @@
 																4 -&gt; TRANSFER INTERSPITALICESC
 																5 -&gt; LA CERERE
 																9 -&gt; ALTE
+																10 -&gt; fara bilet de internare pentru persoanele asigurate diagnosticate cu tuberculoza sau HIV/SIDA, in cazul acordarii serviciilor medicale spitalicesti in regim de spitalizare de zi specifice pentru afectiunea pentru care sunt inscrise in program
+												                11 -&gt; bilet de internare de la medicul de familie pentru persoanele asigurate diagnosticate cu tuberculoza sau HIV/SIDA
+												                12 -&gt; bilet de internare de la medicul de specialitate din ambulatoriul de specialitate clinic pentru persoanele asigurate diagnosticate cu tuberculoza sau HIV/SIDA
+												                13 -&gt; fara bilet de trimitere pentru persoanele asigurate inscrise in programele nationale de sanatate, cu exceptia persoanele asigurate diagnosticate cu tuberculoza sau HIV/SIDA, in cazul acordarii de servicii medicale spitalicesti in regim de spitalizare de zi specifice pentru afectiunea pentru care sunt inscrise in program
+												                14 -&gt; bilet de internare de la medicul de familie pentru persoanele asigurate inscrise in programele nationale de sanatate, cu exceptia persoanele asigurate diagnosticate cu tuberculoza sau HIV/SIDA, in cazul acordarii de servicii medicale spitalicesti in regim de spitalizare de zi specifice  pentru afectiunea pentru care sunt inscrise in program
+												                15 -&gt; bilet de internare de la medicul de specialitate din ambulatoriul de specialitate clinic pentru persoanele asigurate inscrise în programele nationale de sanatate, cu exceptia persoanele asigurate diagnosticate cu tuberculoza sau HIV/SIDA, in cazul acordarii de servicii medicale spitalicesti in regim de spitalizare de zi specifice  pentru afectiunea pentru care sunt inscrise in program
 															</xs:documentation>
 														</xs:annotation>
 													</xs:attribute>

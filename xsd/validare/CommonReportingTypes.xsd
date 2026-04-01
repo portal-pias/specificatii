@@ -96,6 +96,21 @@
 					<xs:documentation xml:lang="ro">Beneficiari OUG 15</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="PNCC">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Persoana neasigurata cu suspiciune de afectiune oncologica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PNHS">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Persoana neasigurata cu suspiciune de Hepatita/HIV (gravida)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PNCCS">
+				<xs:annotation>
+					<xs:documentation xml:lang="ro">Persoana cu suspiciune oncologica [SO]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="monthType">

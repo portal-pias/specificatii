@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="http://www.cnas.ro/pel/1.0" xmlns="http://www.cnas.ro/pel/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="1.2" id="PEBarcode">
+<xs:schema targetNamespace="http://www.cnas.ro/pel/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/pel/1.0" elementFormDefault="qualified" version="1.2" id="PEBarcode">
 	<xs:annotation>
 		<xs:documentation xml:lang="ro">Definiţie structură cod de bare 2D tipărit pe reţetă</xs:documentation>
 	</xs:annotation>
@@ -39,9 +39,14 @@
 											<xs:documentation xml:lang="ro">Tipul pacientului</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
+									<xs:attribute name="NA" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numar PNS in baza caruia pacientul este asigurat (capitolul 2 din prescriptie)</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
 									<xs:attribute name="N" type="xs:string" use="optional">
 										<xs:annotation>
-											<xs:documentation xml:lang="ro">PNS în care este înscris pacientul</xs:documentation>
+											<xs:documentation xml:lang="ro">Numar PNS în care este înscris pacientul (capitolul 3 din prescriptie)</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
 									<xs:attribute name="ON" type="xs:string" use="optional">

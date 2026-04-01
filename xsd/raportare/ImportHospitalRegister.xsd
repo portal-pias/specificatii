@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="ImportHospitalRegister">
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="ImportHospitalRegister">
 	<xs:element name="report">
 		<xs:annotation>
 			<xs:documentation xml:lang="ro">Raportare pentru farmacii cu circuit închis</xs:documentation>
@@ -264,9 +264,19 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
+									<xs:attribute name="nhpInsured" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Număr PNS in baza caruia pacientul este asigurat (capitolul 2 din prescriptie).</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
 									<xs:attribute name="nhpNo" use="optional">
 										<xs:annotation>
-											<xs:documentation xml:lang="ro">Numărul programului naţional de sănătate.</xs:documentation>
+											<xs:documentation xml:lang="ro">Număr PNS în care este înscris pacientul (capitolul 3 din prescriptie).</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">

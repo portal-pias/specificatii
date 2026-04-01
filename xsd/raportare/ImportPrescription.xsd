@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by rth77 (rus) -->
-<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="ImportPrescription">
+<xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cnas.ro/siui/2.0" elementFormDefault="qualified" id="ImportPrescription">
 	<xs:element name="report">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">Farmacy reporting</xs:documentation>
@@ -391,10 +390,16 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:attribute>
+						<xs:attribute name="nhpInsured" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">The number of NHP for the patient insured</xs:documentation>
+								<xs:documentation xml:lang="ro">Număr PNS in baza caruia pacientul este asigurat (capitolul 2 din prescriptie)</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
 						<xs:attribute name="nhpNo" type="xs:string" use="optional">
 							<xs:annotation>
-								<xs:documentation xml:lang="en">The number of NHP for the patient</xs:documentation>
-								<xs:documentation xml:lang="ro">Numărul PNS-ului în care este înscris pacientul</xs:documentation>
+								<xs:documentation xml:lang="en">The number of NHP for the prescription of the patient.</xs:documentation>
+								<xs:documentation xml:lang="ro">Număr PNS în care este înscris pacientul (capitolul 3 din prescriptie)</xs:documentation>
 							</xs:annotation>
 						</xs:attribute>
 						<xs:attribute name="diagnostic" type="xs:string" use="optional">

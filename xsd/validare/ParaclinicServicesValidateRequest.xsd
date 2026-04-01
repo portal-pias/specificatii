@@ -230,7 +230,7 @@
 												</xs:enumeration>
 												<xs:enumeration value="2">
 													<xs:annotation>
-														<xs:documentation xml:lang="ro">Monitor 2 - investigațiile paraclinice recomandate pentru monitorizarea pacienților diagnosticați cu boli oncologice - AO pe biletul de trimiere</xs:documentation>
+														<xs:documentation xml:lang="ro">Monitor 2 - investigațiile paraclinice recomandate pentru monitorizarea pacienților diagnosticați cu boli oncologice</xs:documentation>
 													</xs:annotation>
 												</xs:enumeration>
 												<xs:enumeration value="3">
@@ -268,7 +268,7 @@
 														<xs:documentation xml:lang="ro">Monitorizarea pacientilor cu boala cronica renala</xs:documentation>
 													</xs:annotation>
 												</xs:enumeration>
-												<xs:enumeration value="a">
+												<xs:enumeration value="@">
 													<xs:annotation>
 														<xs:documentation xml:lang="ro">Suspiciune oncologica - SO pe biletul de trimitere </xs:documentation>
 													</xs:annotation>
@@ -278,7 +278,11 @@
 														<xs:documentation xml:lang="ro">Suspiciune hepatita B, C, HIV/SIDA (hiv/sida doar pentru gravide) - HS pe biletul de trimiere</xs:documentation>
 													</xs:annotation>
 												</xs:enumeration>
-												
+												<xs:enumeration value="c">
+													<xs:annotation>
+														<xs:documentation xml:lang="ro">Afectiune oncologica  - AO pe biletul de trimiere</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
@@ -330,6 +334,11 @@
 										<xs:attribute name="collected" type="xs:boolean" use="optional">
 										<xs:annotation>
 											<xs:documentation xml:lang="ro">Indică faptul că recoltarea s-a realizat la furnizor (true = implicit) sau a fost primita de la alt furnizor. Absenta atributului are semnificatia true.</xs:documentation>
+										</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="serviceL163" type="xs:boolean" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Serviciu de inalta performanta decontat in plus peste valoarea de contract (in limita a 1 serviciu/cnp/an - conform Legii 163.</xs:documentation>
 										</xs:annotation>
 										</xs:attribute>
 										<xs:attribute name="prevention" use="optional">

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by rth77 (rus) -->
 <xs:schema targetNamespace="http://www.cnas.ro/siui/2.0" xmlns="http://www.cnas.ro/siui/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="FeedbackPrescriptionReport">
 	<xs:element name="report">
 		<xs:annotation>
