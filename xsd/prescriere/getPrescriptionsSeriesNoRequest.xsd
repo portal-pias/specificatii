@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/pel/1.0" xmlns="http://www.cnas.ro/pel/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="getPrescribedPrescriptionsForCidRequest">
+	<xs:annotation>
+		<xs:documentation xml:lang="ro">Structura unei cereri de preluare a istoricului unei reţete prescrise de medic, dupa Serie si Numar (prescripţie electronică)</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="CommonReportingTypesPE.xsd"/>
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de preluare a istoricului reţetei cu Seria si Numarul</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:attribute name="series" type="prescriptionSeriesType" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Seria reţetei electronice</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="no" type="prescriptionNoType" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Numărul de serie al reţetei electronice</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="atDate" type="xs:date" use="required">
+						<xs:annotation>
+							<xs:documentation xml:lang="ro">Data relativ la care se face cautarea dacă există reţeta - se întorc reţetele prescrise/eliberate in perioada atDate - prezent</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

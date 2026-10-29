@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/pias/2.0" xmlns="http://www.cnas.ro/pias/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="RecoveryMedicalPlanRequest">
+	<xs:annotation>
+		<xs:documentation xml:lang="ro">Structura unei cereri de validare pentru plan de tratament pentru recuperare ambulatorie (documente medicale electronice)</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="CommonDocumentTypesPias.xsd"/>
+	<xs:element name="RecoveryMedicalPlanRequest">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de validare pentru plan de tratament pentru recuperare ambulatorie</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:sequence>
+						<xs:element name="recoveryMedicalPlan">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Plan de tratament pentru recuperare ambulatorie</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="documentStencilType">
+										<xs:sequence>
+											<xs:element name="recommendedProcedure" minOccurs="0" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Serviciu medical de îngrijire la domiciliu recomandat</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:attribute name="no" type="xs:integer" use="required">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Numar curent</xs:documentation>
+														</xs:annotation>
+													</xs:attribute>
+													<xs:attribute name="code" use="required">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Proceduri de reabilitare şi recuperare (cod din nomenclatorul de proceduri)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="20"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:attribute>
+													<xs:attribute name="quantity" type="xs:integer" use="required">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Numărul de proceduri</xs:documentation>
+														</xs:annotation>
+													</xs:attribute>
+													<xs:attribute name="duration" use="required">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Durata procedurilor</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="20"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:attribute>
+													<xs:attribute name="comments" use="optional">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Indicaţii specifice</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="200"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:attribute>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="startDate" type="xs:date" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data de început a planului de tratament</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="endDate" type="xs:date" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data de sfârşit a planului de tratament</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="pnccPatient" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Pacient diagnosticat cu afecțiune oncologică?</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="diagnostic" type="diagnosticCodeList" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Diagnosticul medical (lista codurilor de diagnostic)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="diagnosticType" type="diagnosticType" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Tipul de diagnostic medical</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="reevaluationRec" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Indicaţie de revenire pentru reevaluare</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">da, revine pentru reevaluare în termen de ...</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">nu, nu este necesară revenirea pentru reevaluare</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="reevaluationRecDays" type="xs:integer" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Termen de revenire (dacă s-a completat 1 mai sus)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="validityProdecurePlanDays" type="xs:integer" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Termen de valabilitate a planului în zile</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="deliveryBy" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">docs</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">prin asigurat</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">prin poştă electronică</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="deliveryEmail" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Adresa de email către care a fost trimis documentul, dacă este cazul</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="100"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

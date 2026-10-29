@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cnas.ro/pias/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MedicalDocumentDownloader" targetNamespace="http://www.cnas.ro/pias/2.0">
+	<types>
+		<xsd:schema>
+			<xsd:import namespace="http://www.cnas.ro/pias/2.0" schemaLocation="../xsd/MedicalDocumentAll.xsd"/>
+		</xsd:schema>
+	</types>
+	<message name="GetMedicalDocumentXmlRequest">
+		<part element="tns:GetMedicalDocumentXmlRequest" name="parameters"/>
+	</message>
+	<message name="GetMedicalDocumentXmlResponse">
+		<part element="tns:GetMedicalDocumentXmlResponse" name="result"/>
+	</message>
+	<message name="GetMedicalDocumentRequest">
+		<part element="tns:GetMedicalDocumentRequest" name="parameters"/>
+	</message>
+	<message name="GetMedicalDocumentResponse">
+		<part element="tns:GetMedicalDocumentResponse" name="result"/>
+	</message>
+	<portType name="GetMedicalDocumentXml">
+		<operation name="GetMedicalDocumentXml">
+			<input message="tns:GetMedicalDocumentXmlRequest"/>
+			<output message="tns:GetMedicalDocumentXmlResponse"/>
+		</operation>
+	</portType>
+	<binding name="GetMedicalDocumentXmlBinding" type="tns:GetMedicalDocumentXml">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="GetMedicalDocumentXml">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="GetMedicalDocument">
+		<operation name="GetMedicalDocument">
+			<input message="tns:GetMedicalDocumentRequest"/>
+			<output message="tns:GetMedicalDocumentResponse"/>
+		</operation>
+	</portType>
+	<binding name="GetMedicalDocumentBinding" type="tns:GetMedicalDocument">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="GetMedicalDocument">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="MedicalDocumentDownloader">
+		<port binding="tns:GetMedicalDocumentXmlBinding" name="GetMedicalDocumentXmlPort">
+			<soap:address location="https://docmed.e-pias.ro/download/ws"/>
+		</port>
+		<port binding="tns:GetMedicalDocumentBinding" name="GetMedicalDocumentPort">
+			<soap:address location="https://docmed.e-pias.ro/download/ws"/>
+		</port>
+	</service>
+</definitions>

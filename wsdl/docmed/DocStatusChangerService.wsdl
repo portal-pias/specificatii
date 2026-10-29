@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cnas.ro/pias/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DocStatusChangerService" targetNamespace="http://www.cnas.ro/pias/2.0">
+	<types>
+		<xsd:schema>
+			<xsd:import namespace="http://www.cnas.ro/pias/2.0" schemaLocation="../xsd/DocStatusChangerSchema.xsd"/>
+		</xsd:schema>
+	</types>
+	<message name="ConsumeDocumentRequest">
+		<part element="tns:ConsumeDocumentRequest" name="parameters"/>
+	</message>
+	<message name="ConsumeDocumentResponse">
+		<part element="tns:ConsumeDocumentResponse" name="result"/>
+	</message>
+	<message name="UnconsumeDocumentRequest">
+		<part element="tns:UnconsumeDocumentRequest" name="parameters"/>
+	</message>
+	<message name="UnconsumeDocumentResponse">
+		<part element="tns:UnconsumeDocumentResponse" name="result"/>
+	</message>
+	<message name="GetDocumentStatusRequest">
+		<part element="tns:GetDocumentStatusRequest" name="parameters"/>
+	</message>
+	<message name="GetDocumentStatusResponse">
+		<part element="tns:GetDocumentStatusResponse" name="result"/>
+	</message>
+	<portType name="DocStatusChangerService">
+		<operation name="ConsumeDocument">
+			<input message="tns:ConsumeDocumentRequest"/>
+			<output message="tns:ConsumeDocumentResponse"/>
+		</operation>
+		<operation name="UnconsumeDocument">
+			<input message="tns:UnconsumeDocumentRequest"/>
+			<output message="tns:UnconsumeDocumentResponse"/>
+		</operation>
+		<operation name="GetDocumentStatus">
+			<input message="tns:GetDocumentStatusRequest"/>
+			<output message="tns:GetDocumentStatusResponse"/>
+		</operation>
+	</portType>
+	<binding name="DocStatusChangerServiceBinding" type="tns:DocStatusChangerService">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="ConsumeDocument">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="UnconsumeDocument">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetDocumentStatus">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="DocStatusChangerService">
+		<port binding="tns:DocStatusChangerServiceBinding" name="DocStatusChangerServicePort">
+			<soap:address location="https://docmed.e-pias.ro/status/ws"/>
+		</port>
+	</service>
+</definitions>

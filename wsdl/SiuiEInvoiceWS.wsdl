@@ -226,7 +226,7 @@
 	</wsdl:binding>
 	<wsdl:service name="SiuiEInvoiceWSService">
 		<wsdl:port binding="impl:SiuiEInvoiceWSSoapBinding" name="SiuiEInvoiceWS">
-			<wsdlsoap:address location="https://testsiui.siui.ro/svapntws/services/SiuiEInvoiceWS" />
+			<wsdlsoap:address location="https://siui.e-pias.ro/svapntws/services/SiuiEInvoiceWS" />
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>

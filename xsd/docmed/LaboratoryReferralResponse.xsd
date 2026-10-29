@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/pias/2.0" xmlns="http://www.cnas.ro/pias/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="LaboratoryReferralResponse">
+	<xs:annotation>
+		<xs:documentation xml:lang="ro">Structura unui răspuns de validare pentru bilet de trimitere pentru investigaţii de laborator (documente medicale electronice)</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="CommonDocumentTypesPias.xsd"/>
+	<xs:element name="LaboratoryReferralResponse">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Răspuns de validare pentru bilet de trimitere pentru investigaţii de laborator</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="responseDocumentType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

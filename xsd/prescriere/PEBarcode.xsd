@@ -22,7 +22,7 @@
 		<xs:complexContent>
 			<xs:extension base="O">
 				<xs:sequence>
-					<xs:element name="PD" minOccurs="0" maxOccurs="1">
+					<xs:element name="PD" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation xml:lang="ro">Detalii reţetă</xs:documentation>
 						</xs:annotation>
@@ -236,7 +236,7 @@
 							</xs:complexContent>
 						</xs:complexType>
 					</xs:element>
-					<xs:element name="FD" minOccurs="0" maxOccurs="1">
+					<xs:element name="FD" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation xml:lang="ro">Detalii farmacie</xs:documentation>
 						</xs:annotation>

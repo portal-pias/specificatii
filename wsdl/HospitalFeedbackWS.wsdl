@@ -57,7 +57,7 @@
 	</wsdl:binding>
 	<wsdl:service name="HospitalFeedbackWS">
 		<wsdl:port name="HospitalFeedbackWS" binding="impl:HospitalFeedbackWSSoapBinding">
-			<wsdlsoap:address location="https://www.siui.ro/svapntws/services/HospitalFeedbackWS" />
+			<wsdlsoap:address location="https://siui.e-pias.ro/svapntws/services/HospitalFeedbackWS" />
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>

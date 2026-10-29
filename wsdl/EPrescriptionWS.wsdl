@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wsdl:definitions targetNamespace="http://processPrescription.webservices.utils.svapnt.siveco.ro"
-                  xmlns:apachesoap="http://xml.apache.org/xml-soap"
-                  xmlns:impl="http://processPrescription.webservices.utils.svapnt.siveco.ro"
-                  xmlns:intf="http://processPrescription.webservices.utils.svapnt.siveco.ro"
-                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
-                  xmlns:tns1="http://exceptions.webservices.utils.svapnt.siveco.ro"
-                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-                  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
-                  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	xmlns:apachesoap="http://xml.apache.org/xml-soap"
+	xmlns:impl="http://processPrescription.webservices.utils.svapnt.siveco.ro"
+	xmlns:intf="http://processPrescription.webservices.utils.svapnt.siveco.ro"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:tns1="http://exceptions.webservices.utils.svapnt.siveco.ro"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<wsdl:types>
 		<schema targetNamespace="http://exceptions.webservices.utils.svapnt.siveco.ro" xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
@@ -21,6 +21,9 @@
 	</wsdl:types>
 	<wsdl:message name="processPrescribedPrescriptionRequest">
 		<wsdl:part name="reportXml" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="getPrescriptionsSeriesNoResponse">
+		<wsdl:part name="getPrescriptionsSeriesNoReturn" type="xsd:string" />
 	</wsdl:message>
 	<wsdl:message name="cancelReleasedPrescriptionRequest">
 		<wsdl:part name="providerCode" type="xsd:string" />
@@ -104,6 +107,9 @@
 	</wsdl:message>
 	<wsdl:message name="cancelPrescribedPrescriptionResponse">
 		<wsdl:part name="cancelPrescribedPrescriptionReturn" type="xsd:int" />
+	</wsdl:message>
+	<wsdl:message name="getPrescriptionsSeriesNoRequest">
+		<wsdl:part name="requestXml" type="xsd:string" />
 	</wsdl:message>
 	<wsdl:message name="cancelReleasedHospitalPrescriptionResponse">
 		<wsdl:part name="cancelReleasedHospitalPrescriptionReturn" type="xsd:int" />
@@ -211,6 +217,11 @@
 		<wsdl:operation name="getReleasedHospitalPrescription" parameterOrder="providerCode workplaceCode insuranceHouseCode series no fractionNo">
 			<wsdl:input message="impl:getReleasedHospitalPrescriptionRequest" name="getReleasedHospitalPrescriptionRequest" />
 			<wsdl:output message="impl:getReleasedHospitalPrescriptionResponse" name="getReleasedHospitalPrescriptionResponse" />
+			<wsdl:fault message="impl:EPrescriptionException" name="EPrescriptionException" />
+		</wsdl:operation>
+		<wsdl:operation name="getPrescriptionsSeriesNo" parameterOrder="requestXml">
+			<wsdl:input message="impl:getPrescriptionsSeriesNoRequest" name="getPrescriptionsSeriesNoRequest" />
+			<wsdl:output message="impl:getPrescriptionsSeriesNoResponse" name="getPrescriptionsSeriesNoResponse" />
 			<wsdl:fault message="impl:EPrescriptionException" name="EPrescriptionException" />
 		</wsdl:operation>
 	</wsdl:portType>
@@ -372,10 +383,22 @@
 				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EPrescriptionException" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
 			</wsdl:fault>
 		</wsdl:operation>
+		<wsdl:operation name="getPrescriptionsSeriesNo">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getPrescriptionsSeriesNoRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="getPrescriptionsSeriesNoResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:output>
+			<wsdl:fault name="EPrescriptionException">
+				<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EPrescriptionException" namespace="http://processPrescription.webservices.utils.svapnt.siveco.ro" use="encoded" />
+			</wsdl:fault>
+		</wsdl:operation>
 	</wsdl:binding>
 	<wsdl:service name="EPrescriptionWSService">
 		<wsdl:port binding="impl:EPrescriptionWSSoapBinding" name="EPrescriptionWS">
-			<wsdlsoap:address location="https://sipe.siui.ro/svapntws/services/EPrescriptionWS" />
+			<wsdlsoap:address location="https://sipe.e-pias.ro/svapntws/services/EPrescriptionWS" />
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>

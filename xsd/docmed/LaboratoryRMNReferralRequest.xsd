@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/pias/2.0" xmlns="http://www.cnas.ro/pias/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="LaboratoryRMNReferralRequest">
+	<xs:annotation>
+		<xs:documentation xml:lang="ro">Structura unei cereri de validare pentru bilet de trimitere pentru investigaţii de laborator - RMN (documente medicale electronice)</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="CommonDocumentTypesPias.xsd"/>
+	<xs:element name="LaboratoryRMNReferralRequest">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de validare pentru bilet de trimitere pentru investigaţii de laborator - RMN</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:sequence>
+						<xs:element name="laboratoryRMNReferral">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Bilet de trimitere pentru investigaţii de laborator - RMN</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="documentStencilType">
+										<xs:sequence>
+											<xs:element name="foreignPerson" type="foreignPersonType" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Datele de identificare ale pacientului de altă cetăţenie</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="investigation" minOccurs="1" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Detalii investigaţie</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:attribute name="no" type="xs:integer" use="required">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Numar curent</xs:documentation>
+														</xs:annotation>
+													</xs:attribute>
+													<xs:attribute name="code" use="required">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Codul investigaţiei (valoare din nomenclator)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="20"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:attribute>
+													<xs:attribute name="done" type="xs:boolean" use="optional">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Investigaţie efectuată</xs:documentation>
+														</xs:annotation>
+													</xs:attribute>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="referralType" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Tipul biletului de trimitere</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="3">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">INVESTIGATII RMN</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="sourceReferral" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Sursa bilet trimitere</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">MF</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Amb. Spec.</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="4">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Altele</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="priorityLevel" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Nivel de prioritate</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Urgenta</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Curente</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="citizenship" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Codul cetateniei pacientului (valoare din nomenclatorul Citizenships)</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="personState" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Starea de asigurare al pacientului (valoare din nomenclatorul PersonStates)</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="nhpNumber" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numar PNS (Program Naţional de Sănătate)</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="5"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="diagnostic" type="diagnosticCodeList" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Diagnosticul medical/prezumptiv (lista codurilor de diagnostic)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="labDiseaseType" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Pachetul de servicii de care beneficiaza pacientul</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">P</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">A/S</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="3">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">C</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="6">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">SO</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="7">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">AO</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="workEvent" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Accidente de muncă / Boli profesionale / Daune</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Accident de munca</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Boli profeisonale</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="3">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Daune</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="presentationDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data prezentarii cu biletul de trimitere la laborator</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="employeeProvName" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numele şi semnătura persoanei desemnate de furnizorul de servicii paraclinice</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="100"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="reconfDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Dată reconfirmare</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="reconfStencilNo" type="stencilType" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Farafă reconfirmare</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="clnLabInfo" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Date clinice şi paraclinice care să justifice investigaţia</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="100"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="rmnExAnte" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Examen RMN anterior</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="contrastSubst" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Substanţă de contrast</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="personWeight" type="xs:integer" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Greutate pacient (kg)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="personIsCoop" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Cooperare previzibilă</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="personHasAsthma" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Astm bronsic</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="personIsPregnant" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Suspiciune de sarcină</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="cardiacValves" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Valve cardiace, ventriculare</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="intrauterineDev" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Dispozitive intrauterine</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="otherProstheses" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Alte proteze</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="metalObjects" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Schije, gloante, obiecte metalice</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="prostheses" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Proteze articulare, materiale de osteosinteză</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="metalWork" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Meserii legate de prelucrarea metalelor (schije, obiecte metalice)</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="surgicalClips" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Clipuri chirurgicale, materiale metalice de sutură</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="cardiorespAssit" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Asistat cardiorespirator</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="allergicHistory" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Antecedente alergice</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="epilepticSeizures" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Crize epileptice</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="claustrophobia" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Claustrofobie</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="hearingAids" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Proteze auditive</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="stomaMaterials" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Materiale stomatologice</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="intraocularFB" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Corpi străini intraocular</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

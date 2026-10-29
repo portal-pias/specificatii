@@ -391,7 +391,7 @@
 					</xs:enumeration>
 					<xs:enumeration value="PNCC">
 						<xs:annotation>
-							<xs:documentation xml:lang="ro">Persoana neasigurata cu suspiciune de afectiune oncologica</xs:documentation>
+							<xs:documentation xml:lang="ro">Pacient asigurat cu afectiune oncologica</xs:documentation>
 						</xs:annotation>
 					</xs:enumeration>
 				</xs:restriction>
@@ -1167,4 +1167,3 @@
 		</xs:attribute>
 	</xs:complexType>
 </xs:schema>
-

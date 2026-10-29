@@ -188,6 +188,11 @@
         <xs:documentation xml:lang="ro">Tipul de persoană (valoarea codului din nomenclatorul de tipuri de persoană)</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="pncc" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation xml:lang="ro">Pacient diagnosticat cu afecțiune oncologică (1 - da, 0 - nu)</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="prescIcd10" type="xs:string" use="optional">
       <xs:annotation>
         <xs:documentation xml:lang="ro">Codul de diagnostic de pe scrisoarea medicală pe bază căruia s-a acordat dispozitivul</xs:documentation>

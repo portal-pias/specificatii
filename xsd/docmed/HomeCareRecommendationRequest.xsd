@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/pias/2.0" xmlns="http://www.cnas.ro/pias/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="HomeCareRecommendationRequest">
+	<xs:annotation>
+		<xs:documentation xml:lang="ro">Structura unei cereri de validare pentru recomandare pentru dispozitive medicale (documente medicale electronice)</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="CommonDocumentTypesPias.xsd"/>
+	<xs:element name="HomeCareRecommendationRequest">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de validare pentru recomandare pentru dispozitive medicale</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:sequence>
+						<xs:element name="homeCareRecommendation">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Recomandare pentru dispozitive medicale</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="documentStencilType">
+										<xs:sequence>
+											<xs:element name="personDeclaredAddress" type="addressType" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Adresa pacientului/beneficiarului</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="recommendedService" minOccurs="0" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Serviciu medical de îngrijire la domiciliu recomandat</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:attribute name="no" type="xs:integer" use="required">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Numar curent</xs:documentation>
+														</xs:annotation>
+													</xs:attribute>
+													<xs:attribute name="code" use="required">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Serviciul de îngrijire medicală la domiciliu (cod din nomenclatorul de servicii)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:attribute>
+													<xs:attribute name="period" type="xs:integer" use="optional">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Periodicitate</xs:documentation>
+														</xs:annotation>
+													</xs:attribute>
+													<xs:attribute name="rhythm" type="xs:integer" use="optional">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Ritmicitate</xs:documentation>
+														</xs:annotation>
+													</xs:attribute>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="foreignPerson" type="foreignPersonType" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Datele de identificare ale pacientului de altă cetăţenie</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="pnccPatient" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Pacient diagnosticat cu afecțiune oncologică?</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">DA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">NU</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="diagnostic" type="diagnosticCodeList" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Diagnosticul medical (lista codurilor de diagnostic)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="diagnosticType" type="diagnosticType" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Tipul de diagnostic medical</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="dependenceType" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Statusul de performanţă ECOG</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">ECOG 3</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">ECOG 4</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="dependenceTypeText" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Text ECOG</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="100"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="recomDays" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Durata pentru care asiguratul poate beneficia de îngrijiri medicale la domiciliu</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:maxInclusive value="999"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="justifyRec" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Justificarea recomandării privind necesitatea şi oportunitatea acordării îngrijirilor medicale la domiciliu</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="200"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="justifyPeriodRec" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Justificare pentru recomandarea unui episod mai mare de 15 zile, dar nu mai mult de 30 de zile</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="internStencil" type="stencilType" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Codul de parafă al medicului pentru ingrijire asigurat internat</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="internIssueDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data recomandării (ingrijire asigurat internat)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="receivedDate" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data primirii de către pacient/beneficiar</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="insHouseNameVisa" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Vizat CAS</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="insHouseDateVisa" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Data vizei CAS</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

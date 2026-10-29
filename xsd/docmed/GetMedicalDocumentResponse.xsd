@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/pias/2.0" xmlns="http://www.cnas.ro/pias/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="GetMedicalDocumentResponse">
+	<xs:annotation>
+		<xs:documentation xml:lang="ro">Structura unui răspuns de obţinere a unui document medical electronic</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="CommonDocumentTypesPias.xsd"/>
+	<xs:element name="GetMedicalDocumentResponse">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Răspuns de obţinere a unui document medical electronic</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="responseBaseType">
+					<xs:sequence>
+						<xs:element name="attachedFile" type="xs:base64Binary" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Documentul medical ataşat în format PDF (arhivat ZIP)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

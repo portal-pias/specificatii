@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/pias/2.0"
+           xmlns="http://www.cnas.ro/pias/2.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <!-- common types -->
+    <xs:include schemaLocation="CommonDocumentTypesPias.xsd"/>
+
+    <!-- PDF download -->
+    <xs:include schemaLocation="GetMedicalDocumentRequest.xsd"/>
+    <xs:include schemaLocation="GetMedicalDocumentResponse.xsd"/>
+
+    <!-- XML download -->
+    <xs:include schemaLocation="GetMedicalDocumentXmlRequest.xsd"/>
+    <xs:include schemaLocation="GetMedicalDocumentXmlResponse.xsd"/>
+
+</xs:schema>

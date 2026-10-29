@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/pias/2.0"
+           xmlns="http://www.cnas.ro/pias/2.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <!-- Common types -->
+    <xs:include schemaLocation="CommonDocumentTypesPias.xsd"/>
+
+    <!-- Clinical referrals -->
+    <xs:include schemaLocation="ClinicalReferralRequest.xsd"/>
+    <xs:include schemaLocation="ClinicalReferralResponse.xsd"/>
+
+    <!-- Home care medical plans -->
+    <xs:include schemaLocation="HomeCareMedicalPlanRequest.xsd"/>
+    <xs:include schemaLocation="HomeCareMedicalPlanResponse.xsd"/>
+    <xs:include schemaLocation="HomeCareRecommendationRequest.xsd"/>
+    <xs:include schemaLocation="HomeCareRecommendationResponse.xsd"/>
+
+    <!-- Laboratory referrals -->
+    <xs:include schemaLocation="LaboratoryAGReferralRequest.xsd"/>
+    <xs:include schemaLocation="LaboratoryAGReferralResponse.xsd"/>
+    <xs:include schemaLocation="LaboratoryCTReferralRequest.xsd"/>
+    <xs:include schemaLocation="LaboratoryCTReferralResponse.xsd"/>
+    <xs:include schemaLocation="LaboratoryMFReferralRequest.xsd"/>
+    <xs:include schemaLocation="LaboratoryMFReferralResponse.xsd"/>
+    <xs:include schemaLocation="LaboratoryReferralRequest.xsd"/>
+    <xs:include schemaLocation="LaboratoryReferralResponse.xsd"/>
+    <xs:include schemaLocation="LaboratoryRMNReferralRequest.xsd"/>
+    <xs:include schemaLocation="LaboratoryRMNReferralResponse.xsd"/>
+    <xs:include schemaLocation="LaboratorySGReferralRequest.xsd"/>
+    <xs:include schemaLocation="LaboratorySGReferralResponse.xsd"/>
+
+    <!-- Medical device recommendations -->
+    <xs:include schemaLocation="MedicalDeviceRecommendationRequest.xsd"/>
+    <xs:include schemaLocation="MedicalDeviceRecommendationResponse.xsd"/>
+
+    <!-- Medical leave -->
+    <xs:include schemaLocation="MedicalLeaveRequest.xsd"/>
+    <xs:include schemaLocation="MedicalLeaveResponse.xsd"/>
+
+    <!-- Medical letters -->
+    <xs:include schemaLocation="MedicalLetterRequest.xsd"/>
+    <xs:include schemaLocation="MedicalLetterResponse.xsd"/>
+
+    <!-- Palliative recommendations -->
+    <xs:include schemaLocation="PalliativeRecommendationRequest.xsd"/>
+    <xs:include schemaLocation="PalliativeRecommendationResponse.xsd"/>
+
+    <!-- Recovery medical plans -->
+    <xs:include schemaLocation="RecoveryMedicalPlanRequest.xsd"/>
+    <xs:include schemaLocation="RecoveryMedicalPlanResponse.xsd"/>
+
+</xs:schema>

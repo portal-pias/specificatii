@@ -253,6 +253,11 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
+									<xs:attribute name="pncc" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Pacient diagnosticat cu afecțiune oncologică (1 - da, 0 - nu)</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
 									<xs:attribute name="recomDays" type="xs:integer" use="required">
 										<xs:annotation>
 											<xs:documentation xml:lang="ro">Numarul de zile de ingrijiri recomandate</xs:documentation>
@@ -315,6 +320,21 @@
                                           </xs:enumeration>
                                         </xs:restriction>
                                       </xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="recomSeries" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Seria recomandarii</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="recomNo" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numarul recomandarii</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="recomDate" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data recomandarii</xs:documentation>
+										</xs:annotation>
 									</xs:attribute>
 									<xs:attribute name="decisionValue" type="xs:double" use="required">
 										<xs:annotation>

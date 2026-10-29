@@ -1950,6 +1950,16 @@
 											<xs:documentation xml:lang="ro">Clasificarea medicamentelor de la PNS-DIABET in Insuline, Ado si Teste. Poate avea valorile I,A,T sau 0.</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
+									<xs:attribute name="biologicBiosimilar" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+												Camp generat in functie de substantele active biologice si medicamentele brand sau generice participante la grupa de calcul a preturilor de referinta. Precizează dacă medicamentul este:
+												DN = Biologic fara Biosimilar
+												DD = Biologic cu Biosimilar
+												ND = doar Biosimilar
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
 									<xs:attribute name="hgDci" type="xs:string" use="optional">
 										<xs:annotation>
 											<xs:documentation xml:lang="ro">Substanţa activă, conform HG: 1841/2006 (modificată 1209/2007), datorită căreia acest medicament intră în această listă de compensare.</xs:documentation>
@@ -1980,6 +1990,169 @@
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
+				<xs:element name="CopaymentListActSubstOnlyIcds" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Restrictii la diagnostice ICD10 a substantei prescrise din lista de compensare. Extinde elementul din CopaymentListActiveSubsts acolo unde icd10 nu era precizat, dar se impun restrictii de diagnostic</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CopaymentListActSubstOnlyIcd" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Înregistrare din lista de Restrictii ICD10 disponibile într-o listă de compensare</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="copaymentListType" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul tipului de listă de compensare (valoare din catalogul de liste de compensare)</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="activeSubstance" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul substanţei active</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="aTC" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul ATC</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="diseaseCategory" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul categoriei de boală.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="nhpCode" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numărul programului naţional de sănătate (valoare din catalogul de PNS-uri)</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="needApproval" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+												Precizează dacă medicamentul poate fi prescris numai cu aprobare specială. Poate lua urmatoarele valori:
+												P = Ministerul Sănătăţii Publice,
+												S = MSS (Medic de Specialitate),
+												0 = Fără aprobare
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="openCircuit" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Daca substanta activa se deconteaza in Circuit Deschis (1) sau doar in Circuit Inchis (0).</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="contractCv" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+												Precizează dacă medicamentul se supune conditiilor specificate in aditionalul la contract de tip CV/CVR. Poate lua urmatoarele valori:
+												R = Cost Volum Rezultat,
+												V = Cost Volum,
+												0 = Fără contract
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="onIcd" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+												Precizează Codul de diagnostic pentru care substanta activa poate fi prescrisa.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="maxdaysOnIcd" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numar maxim de zile de prescriere</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:totalDigits value="18"/>
+												<xs:fractionDigits value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="maxUtOnIcd" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Numar maxim de Unitati Terapeutice prescrise</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:totalDigits value="18"/>
+												<xs:fractionDigits value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="concentrationOnIcd" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">
+												Restrictia se aplica doar pentru aceasta Concentratie si ICD10.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="validFrom" type="xs:date" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data de început a valabilităţii</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="validTo" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CopaymentListActivSubBiologics" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="ro">Lista substantelor active BIOLOGICE dintr-o lista de compensare.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CopaymentListActivSubBiologic" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="ro">Înregistrare din lista de substante active biologice dintr-o listă de compensare</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="copaymentListType" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul tipului de listă de compensare (valoare din catalogul de liste de compensare)</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="activeSubstance" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul substanţei active</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="aTC" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Codul ATC</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="validFrom" type="xs:date" use="required">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data de început a valabilităţii</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="validTo" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>								
 				<xs:element name="EmergencyCategs" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation xml:lang="ro">Catalogul de categorii de urgenţă</xs:documentation>

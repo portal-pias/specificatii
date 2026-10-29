@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/pias/2.0" xmlns="http://www.cnas.ro/pias/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="MedicalLetterRequest">
+	<xs:annotation>
+		<xs:documentation xml:lang="ro">Structura unei cereri de validare pentru scrisoarea medicală (documente medicale electronice)</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="CommonDocumentTypesPias.xsd"/>
+	<xs:element name="MedicalLetterRequest">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de validare pentru scrisoarea medicală</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestContractType">
+					<xs:sequence>
+						<xs:element name="medicalLetter">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Scrisoare medicală</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="documentStencilType">
+										<xs:sequence>
+											<xs:element name="foreignPerson" type="foreignPersonType" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="ro">Datele de identificare ale pacientului de altă cetăţenie</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="internDateFrom" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Perioada de internare (de la)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="internDateTo" type="xs:date" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Perioada de internare (până la)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="presentationReason" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Motivul prezentării</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="200"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="diagnostic" type="diagnosticCodeList" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Diagnosticul medical (lista codurilor de diagnostic)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="diagnosticType" type="diagnosticType" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Tipul de diagnostic medical</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="pnccPatient" type="xs:boolean" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Pacient diagnosticat cu afecţiune oncologică</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="diseaseHystory" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Anamneza</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="200"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="riskFactors" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Factori de risc </xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="200"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="generalClinicalExam" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Examen clinic general</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="200"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="localClinicalExam" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Examen clinic local</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="200"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="normalValLabExam" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Examene de laborator valori normale</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="200"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="pathologicValLabExam" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Exameme de laborator valori patologice</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="200"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="ekgParaExam" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Examen paraclinic: EKG</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="200"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="ecoParaExam" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Examen paraclinic: Ecografii</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="200"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="radioParaExam" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Examen paraclinic: Rx (radiografii/imagistica)</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="200"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="otherParaExam" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Examene paraclinice: altele</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="200"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="administeredTreatment" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Tratament efectuat</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="200"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="otherInfo" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Alte informaţii referitoare la starea de sănătate a asiguratului</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="200"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="recommendedTreatment" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Tratament recomandat</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="200"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="needHospitalization" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Revenire pentru internare</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">da, revine pentru internare in termen de ...</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">nu, nu este necesara revenirea pentru internare</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="hospitalizationTerm" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Termenul de revenire pentru internare, dacă este cazul</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="prescription" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Prescriere reteta</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">S-a eliberat prescripţie medicală, caz în care se va înscrie seria şi numărul acesteia</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Nu s-a eliberat prescripţie medicală deoarece nu a fost necesar</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="3">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Nu s-a eliberat prescripţie medicală</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="prescriptionSerialCode" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Seria prescripţiei medicale eliberate, dacă este cazul</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="prescriptionSerialNo" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numărul prescripţiei medicale eliberate, dacă este cazul</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="medicalCertificate" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Eliberare certificat medical</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">S-a eliberat concediu medical la externare/consultaţia din ambulatoriu, caz în care se va înscrie seria şi numărul acestuia</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Nu s-a eliberat concediu medical la externare deoarece nu a fost necesar</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="3">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Nu s-a eliberat concediu medical la externare</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="medicalCertificateSerialCode" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Seria certificatului de concediu medical eliberat, dacă este cazul</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="medicalCertificateSerialNo" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Numărul certificatului de concediu medical eliberat, dacă este cazul</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="homeCareRecomandation" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Prescriere recomandare pentru ingrijiri la domiciliu</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">S-a eliberat recomandare pentru îngrijiri medicale la domiciliu/paliative la domiciliu</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Nu s-a eliberat recomandare pentru ingrijiri medicale la domiciliu/ paliative la domiciliu deoarece nu a fost necesar</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="medicalDeviceRecomandation" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Prescriere recomandare pentru dispozitive medicale</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">S-a eliberat prescripţie medicală pentru dispozitive medicale în ambulatoriu</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">Nu s-a eliberat prescripţie medicală pentru dispozitive medicale în ambulatoriu deoarece nu a fost necesa</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="deliveryBy" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">docs</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">prin asigurat</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation xml:lang="ro">prin poştă electronică</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="deliveryEmail" use="optional">
+											<xs:annotation>
+												<xs:documentation xml:lang="ro">Adresa de email către care a fost trimis documentul, dacă este cazul</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/pias/2.0"
+           xmlns="http://www.cnas.ro/pias/2.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <!-- common types -->
+    <xs:include schemaLocation="CommonDocumentTypesPias.xsd"/>
+
+    <!-- two requests -->
+    <xs:include schemaLocation="GenDocumentSeriesRequest.xsd"/>
+    <xs:include schemaLocation="GetDocumentSeriesRequest.xsd"/>
+
+    <!-- response -->
+    <xs:include schemaLocation="DocumentSeriesResponse.xsd"/>
+
+</xs:schema>

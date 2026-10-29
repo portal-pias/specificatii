@@ -769,7 +769,7 @@
 	</wsdl:binding>
 	<wsdl:service name="SiuiWSService">
 		<wsdl:port binding="impl:SiuiWSSoapBinding" name="SiuiWS">
-			<wsdlsoap:address location="https://www.siui.ro/svapntws/services/SiuiWS" />
+			<wsdlsoap:address location="https://siui.e-pias.ro/svapntws/services/SiuiWS" />
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/pias/2.0" xmlns="http://www.cnas.ro/pias/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="GetMedicalDocumentRequest">
+	<xs:annotation>
+		<xs:documentation xml:lang="ro">Structura unei cereri de obţinere a unui document medical electronic</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="CommonDocumentTypesPias.xsd"/>
+	<xs:element name="GetMedicalDocumentRequest">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de obţinere a unui document medical electronic</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestBaseType">
+					<xs:sequence>
+						<xs:element name="MedicalDocument">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Date de identificare document medical</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="personCID" type="cidType" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Codul de asigurat al pacientului/beneficiarului</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="issueDate" type="xs:date" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Data completării documentului medical</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="serialCode" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Seria documentului medical</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="20"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="serialNo" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Numărul documentului medical</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="20"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="cardNo" type="cardType" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Numărul cardului electronic de asigurat al pacientului/beneficiarului</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="signature" type="xs:base64Binary" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">
+											Semnătura digitală a pacientului/beneficiarului în format Base64, utilizând certificatul de pe card.
+											Se completează numai dacă este completat şi numărul de card şi cuprinde atributele "personCID|cardNo|issueDate|serialCode/serialNo".
+										</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

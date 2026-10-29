@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.cnas.ro/pias/2.0" xmlns="http://www.cnas.ro/pias/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" id="GenDocumentSeriesRequest">
+	<xs:annotation>
+		<xs:documentation xml:lang="ro">Structura unei cereri de generare a seriilor de documente medicale electronice</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="CommonDocumentTypesPias.xsd"/>
+	<xs:element name="GenDocumentSeriesRequest">
+		<xs:annotation>
+			<xs:documentation xml:lang="ro">Cerere de generare serii noi pentru documente medicale</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="requestBaseType">
+					<xs:sequence>
+						<xs:element name="genDocumentSeries">
+							<xs:annotation>
+								<xs:documentation xml:lang="ro">Serii de documente medicale</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="insuranceHouseCode" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Codul casei de asigurări emitente (valoare din nomenclator)</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="20"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="documentCount" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Numărul de documente din serie</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:integer">
+											<xs:minInclusive value="1000"/>
+											<xs:maxInclusive value="9999"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="documentType" type="documentType" use="required">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Tipul de document medical</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="validFrom" type="xs:date" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Data de inceput a valabilităţii</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="validTo" type="xs:date" use="optional">
+									<xs:annotation>
+										<xs:documentation xml:lang="ro">Data de sfârşit a valabilităţii</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

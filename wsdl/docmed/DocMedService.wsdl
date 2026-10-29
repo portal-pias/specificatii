@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cnas.ro/pias/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DocMedService" targetNamespace="http://www.cnas.ro/pias/2.0">
+	<types>
+		<xsd:schema>
+			<xsd:import namespace="http://www.cnas.ro/pias/2.0" schemaLocation="../xsd/DocMedSchema.xsd"/>
+		</xsd:schema>
+	</types>
+	<message name="MedicalLeaveRequest">
+		<part element="tns:MedicalLeaveRequest" name="parameters"/>
+	</message>
+	<message name="MedicalLeaveResponse">
+		<part element="tns:MedicalLeaveResponse" name="result"/>
+	</message>
+	<message name="MedicalLetterRequest">
+		<part element="tns:MedicalLetterRequest" name="parameters"/>
+	</message>
+	<message name="MedicalLetterResponse">
+		<part element="tns:MedicalLetterResponse" name="result"/>
+	</message>
+	<message name="PhysicianElectronicPrescriptionRequest">
+		<part element="tns:PhysicianElectronicPrescriptionRequest" name="parameters"/>
+	</message>
+	<message name="PhysicianElectronicPrescriptionResponse">
+		<part element="tns:PhysicianElectronicPrescriptionResponse" name="result"/>
+	</message>
+	<message name="RecoveryMedicalPlanRequest">
+		<part element="tns:RecoveryMedicalPlanRequest" name="parameters"/>
+	</message>
+	<message name="RecoveryMedicalPlanResponse">
+		<part element="tns:RecoveryMedicalPlanResponse" name="result"/>
+	</message>
+	<message name="LaboratoryMFReferralRequest">
+		<part element="tns:LaboratoryMFReferralRequest" name="parameters"/>
+	</message>
+	<message name="LaboratoryMFReferralResponse">
+		<part element="tns:LaboratoryMFReferralResponse" name="result"/>
+	</message>
+	<message name="LaboratoryAGReferralRequest">
+		<part element="tns:LaboratoryAGReferralRequest" name="parameters"/>
+	</message>
+	<message name="LaboratoryAGReferralResponse">
+		<part element="tns:LaboratoryAGReferralResponse" name="result"/>
+	</message>
+	<message name="LaboratoryCTReferralRequest">
+		<part element="tns:LaboratoryCTReferralRequest" name="parameters"/>
+	</message>
+	<message name="LaboratoryCTReferralResponse">
+		<part element="tns:LaboratoryCTReferralResponse" name="result"/>
+	</message>
+	<message name="LaboratorySGReferralRequest">
+		<part element="tns:LaboratorySGReferralRequest" name="parameters"/>
+	</message>
+	<message name="LaboratorySGReferralResponse">
+		<part element="tns:LaboratorySGReferralResponse" name="result"/>
+	</message>
+	<message name="PalliativeRecommendationRequest">
+		<part element="tns:PalliativeRecommendationRequest" name="parameters"/>
+	</message>
+	<message name="PalliativeRecommendationResponse">
+		<part element="tns:PalliativeRecommendationResponse" name="result"/>
+	</message>
+	<message name="MedicalDeviceRecommendationRequest">
+		<part element="tns:MedicalDeviceRecommendationRequest" name="parameters"/>
+	</message>
+	<message name="MedicalDeviceRecommendationResponse">
+		<part element="tns:MedicalDeviceRecommendationResponse" name="result"/>
+	</message>
+	<message name="HomeCareMedicalPlanRequest">
+		<part element="tns:HomeCareMedicalPlanRequest" name="parameters"/>
+	</message>
+	<message name="HomeCareMedicalPlanResponse">
+		<part element="tns:HomeCareMedicalPlanResponse" name="result"/>
+	</message>
+	<message name="ClinicalReferralRequest">
+		<part element="tns:ClinicalReferralRequest" name="parameters"/>
+	</message>
+	<message name="ClinicalReferralResponse">
+		<part element="tns:ClinicalReferralResponse" name="result"/>
+	</message>
+	<message name="LaboratoryRMNReferralRequest">
+		<part element="tns:LaboratoryRMNReferralRequest" name="parameters"/>
+	</message>
+	<message name="LaboratoryRMNReferralResponse">
+		<part element="tns:LaboratoryRMNReferralResponse" name="result"/>
+	</message>
+	<message name="LaboratoryReferralRequest">
+		<part element="tns:LaboratoryReferralRequest" name="parameters"/>
+	</message>
+	<message name="LaboratoryReferralResponse">
+		<part element="tns:LaboratoryReferralResponse" name="result"/>
+	</message>
+	<message name="HomeCareRecommendationRequest">
+		<part element="tns:HomeCareRecommendationRequest" name="parameters"/>
+	</message>
+	<message name="HomeCareRecommendationResponse">
+		<part element="tns:HomeCareRecommendationResponse" name="result"/>
+	</message>
+	<portType name="MedicalLeave">
+		<operation name="MedicalLeave">
+			<input message="tns:MedicalLeaveRequest"/>
+			<output message="tns:MedicalLeaveResponse"/>
+		</operation>
+	</portType>
+	<binding name="MedicalLeaveBinding" type="tns:MedicalLeave">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="MedicalLeave">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="MedicalLetter">
+		<operation name="MedicalLetter">
+			<input message="tns:MedicalLetterRequest"/>
+			<output message="tns:MedicalLetterResponse"/>
+		</operation>
+	</portType>
+	<binding name="MedicalLetterBinding" type="tns:MedicalLetter">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="MedicalLetter">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="PhysicianElectronicPrescription">
+		<operation name="PhysicianElectronicPrescription">
+			<input message="tns:PhysicianElectronicPrescriptionRequest"/>
+			<output message="tns:PhysicianElectronicPrescriptionResponse"/>
+		</operation>
+	</portType>
+	<binding name="PhysicianElectronicPrescriptionBinding" type="tns:PhysicianElectronicPrescription">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="PhysicianElectronicPrescription">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="RecoveryMedicalPlan">
+		<operation name="RecoveryMedicalPlan">
+			<input message="tns:RecoveryMedicalPlanRequest"/>
+			<output message="tns:RecoveryMedicalPlanResponse"/>
+		</operation>
+	</portType>
+	<binding name="RecoveryMedicalPlanBinding" type="tns:RecoveryMedicalPlan">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="RecoveryMedicalPlan">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="LaboratoryMFReferral">
+		<operation name="LaboratoryMFReferral">
+			<input message="tns:LaboratoryMFReferralRequest"/>
+			<output message="tns:LaboratoryMFReferralResponse"/>
+		</operation>
+	</portType>
+	<binding name="LaboratoryMFReferralBinding" type="tns:LaboratoryMFReferral">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="LaboratoryMFReferral">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="LaboratoryAGReferral">
+		<operation name="LaboratoryAGReferral">
+			<input message="tns:LaboratoryAGReferralRequest"/>
+			<output message="tns:LaboratoryAGReferralResponse"/>
+		</operation>
+	</portType>
+	<binding name="LaboratoryAGReferralBinding" type="tns:LaboratoryAGReferral">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="LaboratoryAGReferral">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="LaboratoryCTReferral">
+		<operation name="LaboratoryCTReferral">
+			<input message="tns:LaboratoryCTReferralRequest"/>
+			<output message="tns:LaboratoryCTReferralResponse"/>
+		</operation>
+	</portType>
+	<binding name="LaboratoryCTReferralBinding" type="tns:LaboratoryCTReferral">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="LaboratoryCTReferral">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="LaboratorySGReferral">
+		<operation name="LaboratorySGReferral">
+			<input message="tns:LaboratorySGReferralRequest"/>
+			<output message="tns:LaboratorySGReferralResponse"/>
+		</operation>
+	</portType>
+	<binding name="LaboratorySGReferralBinding" type="tns:LaboratorySGReferral">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="LaboratorySGReferral">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="PalliativeRecommendation">
+		<operation name="PalliativeRecommendation">
+			<input message="tns:PalliativeRecommendationRequest"/>
+			<output message="tns:PalliativeRecommendationResponse"/>
+		</operation>
+	</portType>
+	<binding name="PalliativeRecommendationBinding" type="tns:PalliativeRecommendation">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="PalliativeRecommendation">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="MedicalDeviceRecommendation">
+		<operation name="MedicalDeviceRecommendation">
+			<input message="tns:MedicalDeviceRecommendationRequest"/>
+			<output message="tns:MedicalDeviceRecommendationResponse"/>
+		</operation>
+	</portType>
+	<binding name="MedicalDeviceRecommendationBinding" type="tns:MedicalDeviceRecommendation">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="MedicalDeviceRecommendation">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="HomeCareMedicalPlan">
+		<operation name="HomeCareMedicalPlan">
+			<input message="tns:HomeCareMedicalPlanRequest"/>
+			<output message="tns:HomeCareMedicalPlanResponse"/>
+		</operation>
+	</portType>
+	<binding name="HomeCareMedicalPlanBinding" type="tns:HomeCareMedicalPlan">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="HomeCareMedicalPlan">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="ClinicalReferral">
+		<operation name="ClinicalReferral">
+			<input message="tns:ClinicalReferralRequest"/>
+			<output message="tns:ClinicalReferralResponse"/>
+		</operation>
+	</portType>
+	<binding name="ClinicalReferralBinding" type="tns:ClinicalReferral">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="ClinicalReferral">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="LaboratoryRMNReferral">
+		<operation name="LaboratoryRMNReferral">
+			<input message="tns:LaboratoryRMNReferralRequest"/>
+			<output message="tns:LaboratoryRMNReferralResponse"/>
+		</operation>
+	</portType>
+	<binding name="LaboratoryRMNReferralBinding" type="tns:LaboratoryRMNReferral">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="LaboratoryRMNReferral">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="LaboratoryReferral">
+		<operation name="LaboratoryReferral">
+			<input message="tns:LaboratoryReferralRequest"/>
+			<output message="tns:LaboratoryReferralResponse"/>
+		</operation>
+	</portType>
+	<binding name="LaboratoryReferralBinding" type="tns:LaboratoryReferral">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="LaboratoryReferral">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="HomeCareRecommendation">
+		<operation name="HomeCareRecommendation">
+			<input message="tns:HomeCareRecommendationRequest"/>
+			<output message="tns:HomeCareRecommendationResponse"/>
+		</operation>
+	</portType>
+	<binding name="HomeCareRecommendationBinding" type="tns:HomeCareRecommendation">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="HomeCareRecommendation">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="DocMedService">
+		<port binding="tns:MedicalLeaveBinding" name="MedicalLeavePort">
+			<soap:address location="https://docmed.e-pias.ro/loader/ws"/>
+		</port>
+		<port binding="tns:MedicalLetterBinding" name="MedicalLetterPort">
+			<soap:address location="https://docmed.e-pias.ro/loader/ws"/>
+		</port>
+		<port binding="tns:PhysicianElectronicPrescriptionBinding" name="PhysicianElectronicPrescriptionPort">
+			<soap:address location="https://docmed.e-pias.ro/loader/ws"/>
+		</port>
+		<port binding="tns:RecoveryMedicalPlanBinding" name="RecoveryMedicalPlanPort">
+			<soap:address location="https://docmed.e-pias.ro/loader/ws"/>
+		</port>
+		<port binding="tns:LaboratoryMFReferralBinding" name="LaboratoryMFReferralPort">
+			<soap:address location="https://docmed.e-pias.ro/loader/ws"/>
+		</port>
+		<port binding="tns:LaboratoryAGReferralBinding" name="LaboratoryAGReferralPort">
+			<soap:address location="https://docmed.e-pias.ro/loader/ws"/>
+		</port>
+		<port binding="tns:LaboratoryCTReferralBinding" name="LaboratoryCTReferralPort">
+			<soap:address location="https://docmed.e-pias.ro/loader/ws"/>
+		</port>
+		<port binding="tns:LaboratorySGReferralBinding" name="LaboratorySGReferralPort">
+			<soap:address location="https://docmed.e-pias.ro/loader/ws"/>
+		</port>
+		<port binding="tns:PalliativeRecommendationBinding" name="PalliativeRecommendationPort">
+			<soap:address location="https://docmed.e-pias.ro/loader/ws"/>
+		</port>
+		<port binding="tns:MedicalDeviceRecommendationBinding" name="MedicalDeviceRecommendationPort">
+			<soap:address location="https://docmed.e-pias.ro/loader/ws"/>
+		</port>
+		<port binding="tns:HomeCareMedicalPlanBinding" name="HomeCareMedicalPlanPort">
+			<soap:address location="https://docmed.e-pias.ro/loader/ws"/>
+		</port>
+		<port binding="tns:ClinicalReferralBinding" name="ClinicalReferralPort">
+			<soap:address location="https://docmed.e-pias.ro/loader/ws"/>
+		</port>
+		<port binding="tns:LaboratoryRMNReferralBinding" name="LaboratoryRMNReferralPort">
+			<soap:address location="https://docmed.e-pias.ro/loader/ws"/>
+		</port>
+		<port binding="tns:LaboratoryReferralBinding" name="LaboratoryReferralPort">
+			<soap:address location="https://docmed.e-pias.ro/loader/ws"/>
+		</port>
+		<port binding="tns:HomeCareRecommendationBinding" name="HomeCareRecommendationPort">
+			<soap:address location="https://docmed.e-pias.ro/loader/ws"/>
+		</port>
+	</service>
+</definitions>

@@ -74,7 +74,7 @@
 	</wsdl:binding>
 	<wsdl:service name="SiuiInsuredWSService">
 		<wsdl:port name="SiuiInsuredWS" binding="impl:SiuiInsuredWSSoapBinding">
-			<wsdlsoap:address location="https://www.siui.ro/svapntws/services/SiuiInsuredWS" />
+			<wsdlsoap:address location="https://siui.e-pias.ro/svapntws/services/SiuiInsuredWS" />
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>

@@ -793,7 +793,7 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
-		<xs:attribute name="diagnosticType" type="diagnosticType" use="required">
+		<xs:attribute name="diagnosticType" type="diagnosticType" use="optional">
 			<xs:annotation>
 				<xs:documentation xml:lang="ro">Codul tipului de diagnostic</xs:documentation>
 			</xs:annotation>

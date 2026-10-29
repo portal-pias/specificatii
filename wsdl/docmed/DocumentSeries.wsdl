@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cnas.ro/pias/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DocumentSeries" targetNamespace="http://www.cnas.ro/pias/2.0">
+	<types>
+		<xsd:schema>
+			<xsd:import namespace="http://www.cnas.ro/pias/2.0" schemaLocation="../xsd/DocumentSeriesAll.xsd"/>
+		</xsd:schema>
+	</types>
+	<message name="GenDocumentSeriesRequest">
+		<part element="tns:GenDocumentSeriesRequest" name="parameters"/>
+	</message>
+	<message name="GenDocumentSeriesResponse">
+		<part element="tns:GenDocumentSeriesResponse" name="result"/>
+	</message>
+	<message name="GetDocumentSeriesRequest">
+		<part element="tns:GetDocumentSeriesRequest" name="parameters"/>
+	</message>
+	<message name="GetDocumentSeriesResponse">
+		<part element="tns:GetDocumentSeriesResponse" name="result"/>
+	</message>
+	<portType name="GenDocumentSeries">
+		<operation name="GenDocumentSeries">
+			<input message="tns:GenDocumentSeriesRequest"/>
+			<output message="tns:GenDocumentSeriesResponse"/>
+		</operation>
+	</portType>
+	<binding name="GenDocumentSeriesBinding" type="tns:GenDocumentSeries">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="GenDocumentSeries">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<portType name="GetDocumentSeries">
+		<operation name="GetDocumentSeries">
+			<input message="tns:GetDocumentSeriesRequest"/>
+			<output message="tns:GetDocumentSeriesResponse"/>
+		</operation>
+	</portType>
+	<binding name="GetDocumentSeriesBinding" type="tns:GetDocumentSeries">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="GetDocumentSeries">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="DocumentSeries">
+		<port binding="tns:GenDocumentSeriesBinding" name="GenDocumentSeriesPort">
+			<soap:address location="https://docmed.e-pias.ro/seq/ws"/>
+		</port>
+		<port binding="tns:GetDocumentSeriesBinding" name="GetDocumentSeriesPort">
+			<soap:address location="https://docmed.e-pias.ro/seq/ws"/>
+		</port>
+	</service>
+</definitions>
