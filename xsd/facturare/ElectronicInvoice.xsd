@@ -318,7 +318,7 @@
 		</xs:attribute>
 		<xs:attribute name="quantity" type="xs:decimal" use="required">
 			<xs:annotation>
-				<xs:documentation xml:lang="ro">Cantitatea facturată</xs:documentation>
+				<xs:documentation xml:lang="ro">Cantitatea facturată (poate fi negativă pentru articolele de stornare/regularizare; preţul unitar rămâne întotdeauna pozitiv)</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="ammount" type="xs:decimal" use="required">

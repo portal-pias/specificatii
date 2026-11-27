@@ -167,6 +167,11 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
+									<xs:attribute name="isNaval" type="xs:boolean" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Flag care specifică dacă tariful include şi transport naval</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
@@ -460,6 +465,11 @@
 												<xs:maxLength value="40" />
 											</xs:restriction>
 										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="isNaval" type="xs:boolean" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Flag care specifică dacă tariful include şi transport naval</xs:documentation>
+										</xs:annotation>
 									</xs:attribute>
 								</xs:complexType>
 							</xs:element>

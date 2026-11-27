@@ -287,6 +287,11 @@
 											<xs:documentation xml:lang="ro">Valoarea tarifară (per serviciu) pentru hemodializă convenţională</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
+									<xs:attribute name="tariffHD_VAMAL" type="xs:decimal" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Valoarea tarifară (per serviciu) pentru hemodializă convenţională - include şi tarif naval</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
 									<xs:attribute name="tariffDP" type="xs:decimal" use="optional">
 										<xs:annotation>
 											<xs:documentation xml:lang="ro">Valoarea tarifară (pe an, per pacient)  pentru dializă peritoneală continuă</xs:documentation>
@@ -295,6 +300,11 @@
 									<xs:attribute name="tariffHDO" type="xs:decimal" use="optional">
 										<xs:annotation>
 											<xs:documentation xml:lang="ro">Valoarea tarifară (per serviciu) pentru hemodiafiltrare intermitentă online</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="tariffHDO_VAMAL" type="xs:decimal" use="optional">
+										<xs:annotation>
+											<xs:documentation xml:lang="ro">Valoarea tarifară (per serviciu) pentru hemodiafiltrare intermitentă online - include şi tarif naval</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
 									<xs:attribute name="tariffDPA" type="xs:decimal" use="optional">
